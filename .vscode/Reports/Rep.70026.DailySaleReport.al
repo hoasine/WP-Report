@@ -1,0 +1,461 @@
+table 58050 "Daily Sale Report"
+{
+    Access = Internal;
+    Caption = 'Daily Sale Report';
+    DataClassification = CustomerContent;
+    TableType = Temporary;
+    ReplicateData = false;
+
+    fields
+    {
+        field(1; "Divison"; Text[500])
+        {
+            Caption = 'Divison';
+            DataClassification = ToBeClassified;
+        }
+        field(2; "TypeTemp"; Text[500])
+        {
+            Caption = 'TypeTemp';
+            DataClassification = ToBeClassified;
+        }
+        field(3; "Monthly Targe"; Decimal)
+        {
+            Caption = 'MonthlyTarge';
+            DataClassification = ToBeClassified;
+        }
+        field(4; "Daily Target Total"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Daily Target Total';
+        }
+        field(5; "Sales Total"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Sales Total';
+        }
+        field(6; "Balance(Sale-Target)"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Balance(Sale-Target)';
+        }
+        field(7; "Acv Daily Target Total"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Acv Daily Target Total';
+        }
+        field(8; "Daily Target"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'DailyTarget';
+        }
+        field(9; "Daily Sales"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'DailyTarget';
+        }
+        field(10; "Last Year Sales"; Decimal)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Last Year Sales';
+        }
+    }
+    keys
+    {
+        key(PK; "Divison", "TypeTemp")
+        {
+            Clustered = true;
+        }
+    }
+}
+
+report 70026 "Daily Sale Report"
+{
+    DefaultLayout = RDLC;
+    RDLCLayout = '.vscode\ReportLayouts\\Rep.70026.DailySaleReport.rdl';
+    ApplicationArea = All;
+    Caption = 'Daily Sale Report';
+    UsageCategory = ReportsAndAnalysis;
+
+    dataset
+    {
+        dataitem("Data"; "Daily Sale Report")
+        {
+
+            // DataItemTableView = SORTING("");
+            // RequestFilterFields = "Document No.", "Vendor No.", "Product Group";
+
+            column(FORMAT_TODAY_0_4_; Format(Today, 0, 4))
+            {
+            }
+            column(COMPANYNAME; CompanyName)
+            {
+            }
+            column(USERID; UserId)
+            {
+
+            }
+
+            column(Date; DateFilter)
+            {
+
+            }
+            column(StoreNo; StoreFilter)
+            {
+
+            }
+
+
+            column(Division; "Divison")
+            {
+
+            }
+
+            column(TypeTemp; TypeTemp)
+            {
+
+            }
+
+            column(AcvDailyTargetTotal_Data; "Acv Daily Target Total")
+            {
+            }
+            column(BalanceSaleTarget_Data; "Balance(Sale-Target)")
+            {
+            }
+            column(DailySales_Data; "Daily Sales")
+            {
+            }
+            column(DailyTarget_Data; "Daily Target")
+            {
+            }
+            column(DailyTargetTotal_Data; "Daily Target Total")
+            {
+            }
+            column(LastYearSales_Data; "Last Year Sales")
+            {
+            }
+            column(MonthlyTarge_Data; "Monthly Targe")
+            {
+            }
+            column(SalesTotal_Data; "Sales Total")
+            {
+            }
+
+            trigger OnAfterGetRecord()
+            begin
+
+            end;
+
+            trigger OnPreDataItem()
+            begin
+                CreateData();
+            end;
+        }
+    }
+
+
+    requestpage
+    {
+        layout
+        {
+            area(Content)
+            {
+                group(Option)
+                {
+                    field("Date"; DateFilter)
+                    {
+                        // trigger OnValidate()
+                        // begin
+                        //     ApplicationManagement.MakeDateFilter(DateFilter);
+                        // end;
+                    }
+                    field("Store"; StoreFilter)
+                    {
+                        TableRelation = "LSC Store";
+                    }
+                    field("Pos terminal"; PosTerminalFilter)
+                    {
+                        TableRelation = "LSC POS Terminal";
+                    }
+                    field("Division"; DivisionFilter)
+                    {
+                        TableRelation = "LSC Division";
+                    }
+                    field("Brand"; SpecialGroupFilter)
+                    {
+                        TableRelation = "LSC Item Special Groups";
+                    }
+                }
+            }
+        }
+    }
+
+    labels
+    {
+
+    }
+    procedure CreateData()
+    var
+        tbDivision: Record "LSC Division";
+        querry: Query "QueDailySaleReport";
+        querryCustomer: Query "QueCustumerReportCount";
+        tbTransHeader: Record "LSC Transaction Header";
+        DateChange: Text[100];
+
+        Window: Dialog;
+        TotalTrans: Integer;
+        Counter: Integer;
+    begin
+        IF (DateFilter = 0D) THEN
+            ERROR('The report couldn’t be generated, because the Date is empty.');
+
+        IF (StoreFilter = '') THEN
+            ERROR('The report couldn’t be generated, because the Store is empty.');
+
+
+        Clear(Data);
+        Data.DeleteAll;
+        Counter := 0;
+
+        Window.Open(
+          'Number of Transactions #1###########\' +
+          'Processed              #2###########');
+
+        clear(tbDivision);
+        tbDivision.SetFilter(Code, '<>%1', '');
+        if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
+        TotalTrans := tbDivision.Count;
+        Window.Update(1, TotalTrans);
+        if tbDivision.FindSet() then begin
+            repeat
+                Counter += 1;
+                if (Counter mod 100) = 0 then
+                    Window.Update(2, Counter);
+
+                Clear(Data);
+                Data."Divison" := tbDivision.Description;
+                Data."TypeTemp" := 'Quantity';
+                Data."Monthly Targe" := 0;
+                Data."Daily Target Total" := 0;
+
+                data."Acv Daily Target Total" := 0;
+                data."Daily Target" := 0;
+
+                //Month Sale
+                DateChange := GetDateRange(DateFilter);
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetFilter(TH_DateFilter, DateChange);
+                querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Sales Total" := querry.TSE_Quantity_Amount;
+                end;
+                //Month Sale
+
+                Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
+
+                //Daily Sale
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetRange(TH_DateFilter, DateFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Daily Sales" := querry.TSE_Quantity_Amount;
+                end;
+                //Daily Sale
+
+                //Last year Sale
+                DateChange := GetLastYearDateRange(DateFilter);
+
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querry.SetFilter(TH_DateFilter, DateChange);
+                if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Last Year Sales" := querry.TSE_Quantity_Amount;
+                end;
+                //Last year Sale
+
+                Data.Insert();
+                //Quantity--------------------------------
+
+
+                //Amount--------------------------------
+                Clear(Data);
+                Data."Divison" := tbDivision.Description;
+                Data."TypeTemp" := 'Amount';
+
+                Data."Monthly Targe" := 1290000000;
+                Data."Daily Target Total" := 119000000;
+
+                //Month Sale
+                DateChange := GetDateRange(DateFilter);
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querry.SetFilter(TH_DateFilter, DateChange);
+                if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Sales Total" := querry.TSE_Total_Amount;
+                end;
+                //Month Sale
+
+                Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
+
+                //Daily Sale
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querry.SetRange(TH_DateFilter, DateFilter);
+                if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Daily Sales" := querry.TSE_Total_Amount;
+                end;
+                //Daily Sale
+
+                data."Daily Target" := 439500000;
+
+                //Last year Sale
+                DateChange := GetLastYearDateRange(DateFilter);
+
+                Clear(querry);
+                querry.SetFilter(TH_StoreFilter, StoreFilter);
+                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querry.SetFilter(TH_DateFilter, DateChange);
+                if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querry.Open;
+                while querry.Read do begin
+                    Data."Last Year Sales" := querry.TSE_Total_Amount;
+                end;
+                //Last year Sale
+
+                data."Acv Daily Target Total" := (data."Daily Sales" / data."Daily Target") * 100;
+
+                Data.Insert();
+                //Amount--------------------------------
+
+                //Custumer-----------------------------
+                Clear(Data);
+                Data."Divison" := tbDivision.Description;
+                Data."TypeTemp" := 'Customer';
+                Data."Monthly Targe" := 0;
+                Data."Daily Target Total" := 0;
+                Data."Balance(Sale-Target)" := Data."Daily Target Total" - Data."Sales Total";
+                data."Acv Daily Target Total" := 0;
+                data."Daily Target" := 0;
+
+                //Sale total
+                DateChange := GetDateRange(DateFilter);
+                Clear(querryCustomer);
+                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
+                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetFilter(TH_DateFilter, DateChange);
+                if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querryCustomer.Open;
+                while querryCustomer.Read do begin
+                    Data."Sales Total" := querryCustomer.TSE_Quantity_Custumer;
+                end;
+
+                Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
+
+                //Daily Sale
+                Clear(querryCustomer);
+                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
+                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetRange(TH_DateFilter, DateFilter);
+                if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querryCustomer.Open;
+                while querryCustomer.Read do begin
+                    Data."Daily Sales" := querryCustomer.TSE_Quantity_Custumer;
+                end;
+
+                data."Daily Target" := 0;
+
+
+                //Last year Sale
+                DateChange := GetLastYearDateRange(DateFilter);
+                Clear(querryCustomer);
+                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
+                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetFilter(TH_DateFilter, DateChange);
+                if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                querryCustomer.Open;
+                while querryCustomer.Read do begin
+                    Data."Last Year Sales" := querryCustomer.TSE_Quantity_Custumer;
+                end;
+
+                data."Acv Daily Target Total" := 0;
+
+                Data.Insert();
+            //Custumer-----------------------------
+            until tbDivision.Next() = 0;
+        end;
+    end;
+
+    trigger OnInitReport()
+    begin
+
+    end;
+
+    procedure GetDateRange(InputDate: Date): Text
+    var
+        StartDate: Date;
+        EndDate: Date;
+        YearOfInput: Integer;
+    begin
+        // Lấy năm từ ngày được nhập
+        YearOfInput := DATE2DMY(InputDate, 3); // part 3 = năm
+
+        // Tạo ngày bắt đầu là ngày 01/01 của năm đó
+        StartDate := DMY2DATE(1, 1, YearOfInput);
+
+        // Ngày kết thúc chính là ngày nhập
+        EndDate := InputDate;
+
+        // Trả về chuỗi định dạng "01/01/25..05/04/25"
+        exit(Format(StartDate) + '..' + Format(EndDate));
+    end;
+
+    procedure GetLastYearDateRange(InputDate: Date): Text
+    var
+        LastYear: Integer;
+        StartDate: Date;
+        EndDate: Date;
+    begin
+        // Lấy năm từ ngày nhập vào, sau đó trừ 1 để ra năm trước
+        LastYear := DATE2DMY(InputDate, 3) - 1;
+
+        // Tạo ngày đầu năm và cuối năm của năm trước
+        StartDate := DMY2DATE(1, 1, LastYear);       // 01/01/LastYear
+        EndDate := DMY2DATE(31, 12, LastYear);       // 31/12/LastYear
+
+        // Trả về chuỗi định dạng "01/01/24..31/12/24"
+        exit(Format(StartDate) + '..' + Format(EndDate));
+    end;
+
+
+    var
+        StatementNoFilter: Text;
+        DateFilter: Date;
+        StoreFilter: Text;
+        PosTerminalFilter: Text;
+        DivisionFilter: Text;
+        SpecialGroupFilter: Text;
+        ApplicationManagement: Codeunit "Filter Tokens";
+}

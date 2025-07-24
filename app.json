@@ -1,8 +1,8 @@
 {
   "id": "6dc7cd47-bf68-4031-88d2-04300818fac2",
   "name": "worldPOS-Report",
-  "publisher": "World POS Sdn. Bhd.",
-  "version": "24.1.0.0",
+  "publisher": "World POS Sdn. Bhd",
+  "version": "24.1.0.14",
   "brief": "",
   "description": "Rerpot list with RG",
   "privacyStatement": "",
@@ -16,7 +16,45 @@
       "publisher": "LS Retail",
       "name": "LS Central",
       "version": "24.1.0.306"
-    }    
+    },
+    {
+      "id": "02fda112-9381-4973-88c4-c92c3a6f340f",
+      "publisher": "World POS Sdn. Bhd.",
+      "name": "worldPOS-Consignment",
+      "version": "24.1.0.21"
+    } ,
+    {
+      "id": "7f23e19a-180a-42c2-bd78-49562a15c934",
+      "publisher": "World POS Sdn. Bhd.",
+      "name": "worldPOS-StaffAllowance",
+      "version": "1.0.0.27"
+    }    ,
+    {
+      "id": "cc11c22e-5ca3-423f-8804-88cac6d91983",
+      "publisher": "Microsoft",
+      "name": "Dynamics BC Excel Reports",
+      "version": "24.1.18927.19498"
+    },   
+    {
+      "id": "6b51a6c5-8dab-4c8d-ac1b-34d1e08086f4",
+      "publisher": "World POS Sdn. Bhd.",
+      "name": "worldPOS-MemberMgt",
+      "version": "24.1.0.22"
+    }  
+    ,   
+    {
+      "id": "206b7ebf-8143-47f8-993e-a653326399e0",
+      "publisher": "Be One Solutions",
+      "name": "Taka Another Extension",
+      "version": "1.0.0.3"
+    } 
+     ,   
+    {
+      "id": "da447427-42de-4320-bf10-9930392c9768",
+      "publisher": "Be One Solutions",
+      "name": "Taka MKS Extension",
+      "version": "1.0.0.5"
+    }  
   ],
   "screenshots": [],
   "platform": "24.0.0.0",
