@@ -1,4 +1,4 @@
-table 72107 "wp Import Budget. Data"
+table 58041 "wp Import Budget. Data"
 {
     Caption = 'wp Import Budget. Data';
     DataClassification = ToBeClassified;

@@ -199,6 +199,7 @@ report 70026 "Daily Sale Report"
         querry: Query "QueDailySaleReport";
         querryCustomer: Query "QueCustumerReportCount";
         tbTransHeader: Record "LSC Transaction Header";
+        tbBudget: Record "wp Import Budget. Data";
         DateChange: Text[100];
 
         Window: Dialog;
@@ -231,32 +232,35 @@ report 70026 "Daily Sale Report"
                 if (Counter mod 100) = 0 then
                     Window.Update(2, Counter);
 
+                //Quantity-------------------------------------------------------------------------------------------------------
                 Clear(Data);
                 Data."Divison" := tbDivision.Description;
                 Data."TypeTemp" := 'Quantity';
+                data."Acv Daily Target Total" := 0;
                 Data."Monthly Targe" := 0;
                 Data."Daily Target Total" := 0;
+                Data."Daily Target" := 0;
 
-                data."Acv Daily Target Total" := 0;
-                data."Daily Target" := 0;
-
-                //Month Sale
+                //Month Sale and Budget 
                 DateChange := GetDateRange(DateFilter);
                 Clear(querry);
                 querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TH_DateFilter, DateChange);
-                querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
-                querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
-                if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
+                if SpecialGroupFilter <> '' then
+                    querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if tbDivision.Code <> '' then
+                    querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                if PosTerminalFilter <> '' then
+                    querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
                     Data."Sales Total" := querry.TSE_Quantity_Amount;
                 end;
-                //Month Sale
+                //Month Sale and Budget 
 
                 Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
 
-                //Daily Sale
+                //Daily Sale & Target
                 Clear(querry);
                 querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetRange(TH_DateFilter, DateFilter);
@@ -267,11 +271,10 @@ report 70026 "Daily Sale Report"
                 while querry.Read do begin
                     Data."Daily Sales" := querry.TSE_Quantity_Amount;
                 end;
-                //Daily Sale
+                //Daily Sale & Target
 
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
-
                 Clear(querry);
                 querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
@@ -285,18 +288,27 @@ report 70026 "Daily Sale Report"
                 //Last year Sale
 
                 Data.Insert();
-                //Quantity--------------------------------
+                //Quantity-------------------------------------------------------------------------------------------------------
 
-
-                //Amount--------------------------------
+                //Amount---------------------------------------------------------------------------------------------------------
                 Clear(Data);
                 Data."Divison" := tbDivision.Description;
                 Data."TypeTemp" := 'Amount';
 
-                Data."Monthly Targe" := 1290000000;
-                Data."Daily Target Total" := 119000000;
+                //Target This Month 1 -> 31
+                DateChange := GetMonthRangeAsText(DateFilter);
+                Clear(tbBudget);
+                tbBudget.SetFilter(Date, DateChange);
+                if SpecialGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if tbDivision.Code <> '' then
+                    tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                tbBudget.CalcSums(TotalSales);
 
-                //Month Sale
+                Data."Monthly Targe" := tbBudget.TotalSales;
+                //Target This Month
+
+                //Month Sale total
                 DateChange := GetDateRange(DateFilter);
                 Clear(querry);
                 querry.SetFilter(TH_StoreFilter, StoreFilter);
@@ -308,7 +320,17 @@ report 70026 "Daily Sale Report"
                 while querry.Read do begin
                     Data."Sales Total" := querry.TSE_Total_Amount;
                 end;
-                //Month Sale
+
+                Clear(tbBudget);
+                tbBudget.SetFilter(Date, DateChange);
+                if SpecialGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if tbDivision.Code <> '' then
+                    tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                tbBudget.CalcSums(TotalSales);
+
+                Data."Daily Target Total" := tbBudget.TotalSales;
+                //Month Sale total
 
                 Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
 
@@ -323,13 +345,20 @@ report 70026 "Daily Sale Report"
                 while querry.Read do begin
                     Data."Daily Sales" := querry.TSE_Total_Amount;
                 end;
-                //Daily Sale
 
-                data."Daily Target" := 439500000;
+                Clear(tbBudget);
+                tbBudget.SetRange(Date, DateFilter);
+                if SpecialGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if tbDivision.Code <> '' then
+                    tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                tbBudget.CalcSums(TotalSales);
+
+                Data."Daily Target" := tbBudget.TotalSales;
+                //Daily Sale
 
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
-
                 Clear(querry);
                 querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
@@ -342,12 +371,13 @@ report 70026 "Daily Sale Report"
                 end;
                 //Last year Sale
 
-                data."Acv Daily Target Total" := (data."Daily Sales" / data."Daily Target") * 100;
+                if data."Daily Target" <> 0 then
+                    data."Acv Daily Target Total" := (data."Daily Sales" / data."Daily Target") * 100;
 
                 Data.Insert();
-                //Amount--------------------------------
+                //Amount-----------------------------------------------------------------------------------------------------------------------------
 
-                //Custumer-----------------------------
+                //Custumer--------------------------------------------------------------------------------------------------------------------------
                 Clear(Data);
                 Data."Divison" := tbDivision.Description;
                 Data."TypeTemp" := 'Customer';
@@ -384,9 +414,6 @@ report 70026 "Daily Sale Report"
                     Data."Daily Sales" := querryCustomer.TSE_Quantity_Custumer;
                 end;
 
-                data."Daily Target" := 0;
-
-
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
                 Clear(querryCustomer);
@@ -400,10 +427,8 @@ report 70026 "Daily Sale Report"
                     Data."Last Year Sales" := querryCustomer.TSE_Quantity_Custumer;
                 end;
 
-                data."Acv Daily Target Total" := 0;
-
                 Data.Insert();
-            //Custumer-----------------------------
+            //Custumer--------------------------------------------------------------------------------------------------------------------------
             until tbDivision.Next() = 0;
         end;
     end;
@@ -449,6 +474,20 @@ report 70026 "Daily Sale Report"
         exit(Format(StartDate) + '..' + Format(EndDate));
     end;
 
+    procedure GetMonthRangeAsText(InputDate: Date): Text
+    var
+        StartDate: Date;
+        EndDate: Date;
+    begin
+        GetMonthStartAndEndDate(InputDate, StartDate, EndDate);
+        exit(Format(StartDate) + '..' + Format(EndDate));
+    end;
+
+    procedure GetMonthStartAndEndDate(InputDate: Date; var StartDate: Date; var EndDate: Date)
+    begin
+        StartDate := DMY2Date(1, Date2DMY(InputDate, 2), Date2DMY(InputDate, 3));
+        EndDate := CalcDate('<CM>', StartDate);
+    end;
 
     var
         StatementNoFilter: Text;

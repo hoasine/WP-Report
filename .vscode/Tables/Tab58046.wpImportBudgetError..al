@@ -1,4 +1,4 @@
-table 72108 "wp Import Budget. Error"
+table 58046 "wp Import Budget. Error"
 {
     Caption = 'wp Import Budget. Error';
     LookupPageId = PurchError;

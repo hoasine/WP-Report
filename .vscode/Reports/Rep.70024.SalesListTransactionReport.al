@@ -214,6 +214,7 @@ report 70024 "Sales List Transaction Report"
         querQueSaleTransaction_staff: Query "QueSaleTransaction_staff";
         querSaleITem: Query "QueSaleProduct";
         querQueSaleTransaction_staffTotal: Query "QueSaleTransaction_staffTotal";
+        tbPostedSafeLine: Record "LSC Posted Safe Statement Line";
         querQueIncom: Query QueIncom;
         check: Decimal;
         CashTransfer: Decimal;
@@ -252,6 +253,7 @@ report 70024 "Sales List Transaction Report"
         tbPostedStatement.SetFilter("Trans. Ending Date", DateFilter);
         if tbPostedStatement.FindSet() then begin
             repeat
+                //Get Value posted statement line
                 clear(tbPostedStatementLine);
                 tbPostedStatementLine.SetRange("Statement No.", tbPostedStatement."No.");
                 if PosTerminalFilter <> '' then tbPostedStatementLine.SetRange("POS Terminal No.", PosTerminalFilter);
@@ -300,11 +302,6 @@ report 70024 "Sales List Transaction Report"
 
                                 Data.insert(true);
                             end;
-
-                            CashTransfer := CashTransfer + tbPostedStatementLine."Difference in LCY";
-
-                            if tbPostedStatementLine."Difference in LCY" <> 0 then
-                                QtyCashTransfer := QtyCashTransfer + 1;
                         end else begin
                             Clear(queryPayment);
                             queryPayment.SetFilter("TH_DateFilter", DateFilter);
@@ -328,15 +325,17 @@ report 70024 "Sales List Transaction Report"
 
                             if (tbPostedStatementLine."Tender Type" = '9') then
                                 TenderRemove := TenderRemove + tbPostedStatementLine."Added to Drawer";
-
-                            CashTransfer := CashTransfer + tbPostedStatementLine."Difference in LCY";
-
-                            if tbPostedStatementLine."Difference in LCY" <> 0 then
-                                QtyCashTransfer := QtyCashTransfer + 1;
                         end;
                     until tbPostedStatementLine.next = 0;
                 end;
 
+                //Get Cash Transfer Safe Statement Line
+                clear(tbPostedSafeLine);
+                tbPostedSafeLine.SetRange("Statement No.", tbPostedStatement."No.");
+                tbPostedSafeLine.SetRange("Transaction Type", tbPostedSafeLine."Transaction Type"::"Remove Tender");
+                tbPostedSafeLine.CalcSums(Amount);
+                CashTransfer := -tbPostedSafeLine.Amount;
+                QtyCashTransfer := tbPostedSafeLine.Count();
             until tbPostedStatement.next = 0;
 
             Clear(Data);
@@ -911,6 +910,10 @@ report 70024 "Sales List Transaction Report"
         Data.insert(true);
 
         //Cash Transfer
+
+
+
+
         Clear(Data);
         Data."Item" := 'Cash Transfer';
         Data."Qty" := QtyCashTransfer;
