@@ -33,6 +33,10 @@ table 58041 "wp Import Budget. Data"
         {
             Caption = 'StoreNo';
         }
+        field(41; "Pos Terminal No"; Text[500])
+        {
+            Caption = 'Pos Terminal No';
+        }
         field(55; "No. of Errors"; Integer)
         {
             Caption = 'No. of Errors';

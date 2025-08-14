@@ -207,6 +207,7 @@ report 70024 "Sales List Transaction Report"
         tbMemberSale: Record "LSC Member Sales Entry";
         tbTender: Record "LSC Tender Type Setup";
         queryPayment: Query "QueSaleTransactionList";
+        querySaleWithPayment: Query "QuerrySaleWithPayment";
         querySaleTransCancel: Query "QueSaleTransCancel";
         querySaleTransCancelDepUnused: Query "QueSaleTransCancelDepUnused";
         tbStaffAllowance: Record wpStaffAllowanceEntry;
@@ -244,18 +245,19 @@ report 70024 "Sales List Transaction Report"
 
         ParseDateRange(DateFilter);
 
-
         STTTemp := 1;
         KeyTemp := 1;
 
         Clear(tbPostedStatement);
         // tbPostedStatement.SetFilter("Posting Date", DateFilter);
         tbPostedStatement.SetFilter("Trans. Ending Date", DateFilter);
+        if StoreFilter <> '' then tbPostedStatement.SetRange("Store No.", StoreFilter);
         if tbPostedStatement.FindSet() then begin
             repeat
                 //Get Value posted statement line
                 clear(tbPostedStatementLine);
                 tbPostedStatementLine.SetRange("Statement No.", tbPostedStatement."No.");
+                if StoreFilter <> '' then tbPostedStatementLine.SetRange("Store No.", StoreFilter);
                 if PosTerminalFilter <> '' then tbPostedStatementLine.SetRange("POS Terminal No.", PosTerminalFilter);
                 if tbPostedStatementLine.FindSet() then begin
                     repeat
@@ -287,7 +289,9 @@ report 70024 "Sales List Transaction Report"
 
                             if (tbPostedStatementLine."Tender Type" = '1') then begin
                                 FloatEntry := FloatEntry + tbPostedStatementLine."Added to Drawer";
-                                QtyFloatRemove := QtyFloatRemove + 1;
+
+                                if tbPostedStatementLine."Added to Drawer" <> 0 then
+                                    QtyFloatRemove := QtyFloatRemove + 1;
                                 CashGap := CashGap + tbPostedStatementLine."Difference in LCY";
                             end;
 
@@ -319,7 +323,10 @@ report 70024 "Sales List Transaction Report"
 
                             if (tbPostedStatementLine."Tender Type" = '1') then begin
                                 FloatEntry := FloatEntry + tbPostedStatementLine."Added to Drawer";
-                                QtyFloatRemove := QtyFloatRemove + 1;
+
+                                if tbPostedStatementLine."Added to Drawer" <> 0 then
+                                    QtyFloatRemove := QtyFloatRemove + 1;
+
                                 CashGap := CashGap + tbPostedStatementLine."Difference in LCY";
                             end;
 
@@ -910,14 +917,27 @@ report 70024 "Sales List Transaction Report"
         Data.insert(true);
 
         //Cash Transfer
-
-
-
+        Amount := 0;
+        Quantity := 0;
+        Clear(querySaleWithPayment);
+        querySaleWithPayment.SetFilter("TH_DateFilter", DateFilter);
+        querySaleWithPayment.SetRange("TH_TransTypeFilter", tbTransHeader."Transaction Type"::"Remove Tender");
+        querySaleWithPayment.SetFilter("AmountFilter", '>0');
+        querySaleWithPayment.SetFilter("TenderFilter", '9');
+        if StoreFilter <> '' then querySaleWithPayment.SetRange("TH_StoreFilter", StoreFilter);
+        if PosTerminalFilter <> '' then querySaleWithPayment.SetRange("PosterminalFilter", PosTerminalFilter);
+        querySaleWithPayment.Open;
+        while querySaleWithPayment.Read do begin
+            Quantity := querySaleWithPayment.TSE_Quantity;
+            Amount := querySaleWithPayment.TSE_Amount;
+        end;
 
         Clear(Data);
         Data."Item" := 'Cash Transfer';
-        Data."Qty" := QtyCashTransfer;
-        Data."Amount" := CashTransfer;
+        // Data."Qty" := QtyCashTransfer;
+        // Data."Amount" := CashTransfer;
+        Data."Qty" := Quantity;
+        Data."Amount" := -Amount;
         STTTemp := STTTemp + 1;
         Data.STT := STTTemp;
         KeyTemp := KeyTemp + 1;
@@ -980,6 +1000,7 @@ report 70024 "Sales List Transaction Report"
         Clear(tbMemberPoint);
         tbMemberPoint.SetFilter("Points", '>0');
         tbMemberPoint.SetFilter("Date", DateFilter);
+        tbMemberPoint.SetRange("Entry Type", 0);
         if StoreFilter <> '' then tbMemberPoint.SetRange("Store No.", StoreFilter);
         if PosTerminalFilter <> '' then tbMemberPoint.SetRange("POS Terminal No.", PosTerminalFilter);
         tbMemberPoint.CalcSums(Points);

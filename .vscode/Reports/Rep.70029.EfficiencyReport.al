@@ -122,9 +122,9 @@ report 70029 "Efficiency Report"
                 tbTransHeader: Record "LSC Transaction Header";
                 tbTransSale: Record "Consignment Entries";
 
-                DivisionInt: Integer;
-                ProductGroupInt: Integer;
-                CategoryInt: Integer;
+                // DivisionInt: Integer;
+                // ProductGroupInt: Integer;
+                // CategoryInt: Integer;
 
                 InputYear: Integer;
                 StartDate: date;
@@ -135,15 +135,27 @@ report 70029 "Efficiency Report"
                 thangnamtruocText: text[100];
 
                 HasData: Boolean;
+                Window: Dialog;
+                TotalTrans: Integer;
+                Counter: Integer;
             begin
                 IF (DateFilter = '') THEN
                     ERROR('The report couldn’t be generated, because the DateFilter is empty.');
+
+                Window.Open(
+                    'Number of Transactions #1###########\' +
+                    'Processed              #2###########');
 
                 clear(tbDivision);
                 tbDivision.SetFilter(Code, '<>%1', '');
                 if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
                 if tbDivision.FindSet() then begin
                     repeat
+                        Counter += 1;
+                        if (Counter mod 100) = 0 then
+                            Window.Update(2, Counter);
+
+
                         clear(tbItemCate);
                         tbItemCate.SetRange("LSC Division Code", tbDivision.Code);
                         if tbItemCate.FindSet() then begin
@@ -157,16 +169,16 @@ report 70029 "Efficiency Report"
                                         EndDateFilter := FORMAT(EndDate, 0, '<Day,2>/<Month,2>/<Year4>');
                                         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
 
-                                        Evaluate(DivisionInt, tbDivision.Code);
-                                        Evaluate(CategoryInt, tbItemCate.Code);
-                                        Evaluate(ProductGroupInt, tbProuctGroup.Code);
+                                        // Evaluate(DivisionInt, tbDivision.Code);
+                                        // Evaluate(CategoryInt, tbItemCate.Code);
+                                        // Evaluate(ProductGroupInt, tbProuctGroup.Code);
 
                                         //Lay trong thanhg
                                         Clear(quEfficiency);
                                         quEfficiency.SetFilter(TH_DateFilter, DateFilter);
-                                        quEfficiency.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quEfficiency.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quEfficiency.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                        quEfficiency.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quEfficiency.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quEfficiency.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                         quEfficiency.Open;
 
                                         HasData := false;
@@ -188,9 +200,9 @@ report 70029 "Efficiency Report"
                                             thangnamtruocText := GetLastYearDateRange(DateFilter);
                                             Clear(quEfficiencyLY);
                                             quEfficiencyLY.SetFilter(TH_DateFilter, thangnamtruocText);
-                                            quEfficiencyLY.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                            quEfficiencyLY.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                            quEfficiencyLY.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                            quEfficiencyLY.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            quEfficiencyLY.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quEfficiencyLY.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                             quEfficiencyLY.SetFilter(TSE_BrandFilter, quEfficiency.Brand);
                                             quEfficiencyLY.Open;
 
@@ -222,7 +234,7 @@ report 70029 "Efficiency Report"
                                                 Data.AREASIZE := 0;
                                                 Data.PROFIT := 0;
                                                 Data.SALE := 0;
-                                                Data.MGP := quEfficiency.SumMGP;
+                                                Data.MGP := 0;
                                                 Data.Insert(true);
                                             End;
                                         end;

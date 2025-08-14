@@ -35,6 +35,10 @@ page 70033 "Import Budget. Data"
                 {
                     ToolTip = 'Specifies the value of the Description field.', Comment = '%';
                 }
+                field("Pos Terminal No"; Rec."Pos Terminal No")
+                {
+                    ToolTip = 'Specifies the value of the Description field.', Comment = '%';
+                }
                 field("Division Code"; Rec."DivisionCode")
                 {
                     ToolTip = 'Specifies the value of the Description 2 field.', Comment = '%';
@@ -157,7 +161,7 @@ page 70033 "Import Budget. Data"
         exit(return);
     end;
 
-    procedure GetExcelValueAsDecimal(var pRec_ExcelBuf: Record "Excel Buffer"; pRowID: Integer; pColumnID: Integer): Integer
+    procedure GetExcelValueAsDecimal(var pRec_ExcelBuf: Record "Excel Buffer"; pRowID: Integer; pColumnID: Integer): Decimal
     var
         returnValue: Decimal;
         cellText: Text;
@@ -224,8 +228,9 @@ page 70033 "Import Budget. Data"
             ImportBudgetData.DivisionCode := GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 2);
             ImportBudgetData.ClassCode := GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 3);
             ImportBudgetData.Level := GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 4);
-            Evaluate(ImportBudgetData.Date, GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 5));
-            ImportBudgetData.TotalSales := GetExcelValueAsDecimal(gRec_TempExcelBuffer, RowNo, 6);
+            ImportBudgetData."Pos Terminal No" := GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 5);
+            Evaluate(ImportBudgetData.Date, GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 6));
+            ImportBudgetData.TotalSales := GetExcelValueAsDecimal(gRec_TempExcelBuffer, RowNo, 7);
 
             // IF GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 9) <> '' THEN
             //     Evaluate(ImportBudgetData."Line Discount TotalSales", GetExcelValueAsText(gRec_TempExcelBuffer, RowNo, 9))
@@ -239,6 +244,7 @@ page 70033 "Import Budget. Data"
             IsImportBudgetDataCheck.SetRange(DivisionCode, ImportBudgetData.DivisionCode);
             IsImportBudgetDataCheck.SetRange(ClassCode, ImportBudgetData.ClassCode);
             IsImportBudgetDataCheck.SetRange(Level, ImportBudgetData.Level);
+            IsImportBudgetDataCheck.SetRange("Pos Terminal No", ImportBudgetData."Pos Terminal No");
             if not IsImportBudgetDataCheck.FindFirst() then begin
                 If ImportBudgetData.Insert() then
                     gInt_LastLineNo := ImportBudgetData."Line No.";

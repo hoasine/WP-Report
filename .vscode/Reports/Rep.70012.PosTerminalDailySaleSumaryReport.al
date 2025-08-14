@@ -60,15 +60,6 @@ report 70012 "P Daily Sale Sumary Report"
                 RecPostedStatement.SetRange("Tender Type", '1');
                 RecPostedStatement.SetFilter("Posted Date", "LSC POS Terminal".GetFilter("Date Filter"));
                 RecPostedStatement.CalcSums("Counted Amount in LCY", "Trans. Amount in LCY", "Added to Drawer", "Difference in LCY");
-                // CountAmount := RecPostedStatement."Counted Amount in LCY";
-                // SalesAmt := RecPostedStatement."Trans. Amount in LCY" + RecPostedStatement."Added to Drawer";
-                // DiffAmount := -RecPostedStatement."Difference in LCY";
-
-                // if SalesAmt <> 0 then
-                //     ProfitPercentage := (SalesAmt - (CountAmount + DiffAmount)) 
-                // else
-                //     ProfitPercentage := 0;
-
                 CountAmount := 0;
                 SalesAmt := RecPostedStatement."Trans. Amount in LCY" ;
                 DiffAmount := 0;

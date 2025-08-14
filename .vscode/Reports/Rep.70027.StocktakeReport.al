@@ -186,11 +186,16 @@ report 70027 "Stock Take Report"
         StartDate: date;
         EndDate: date;
         BrandName: text[100];
-
-
+        Window: Dialog;
+        Counter: Integer;
     begin
         clear(Data);
         Data.DeleteAll();
+
+        Counter := 0;
+        Window.Open(
+              'Number of Item #1###########\' +
+              'Processed              #2###########');
 
         clear(tbItem);
         if DateFilter <> 0D then tbItem.SetRange("Date Filter", DateFilter);
@@ -199,6 +204,10 @@ report 70027 "Stock Take Report"
         if ItemFilter <> '' then tbItem.SetFilter("No.", ItemFilter);
         if tbItem.FindSet() then begin
             repeat
+                Counter += 1;
+                if (Counter mod 100) = 0 then
+                    Window.Update(2, Counter);
+
                 Clear(InputYear);
                 Clear(DateFilterText);
                 Clear(lbTime);
@@ -269,7 +278,7 @@ report 70027 "Stock Take Report"
 
                 Clear(PriceListLineTemp);
                 // RetailPriceUtils.GetRetailSalesPrice(tbItem."No.", RetailSetup."Default Price Group", Today(), '', '', '', PriceListLineTemp);
-                RetailPriceUtils.GetItemPrice(RetailSetup."Default Price Group", tbItem."No.", '', Today(), '', PriceListLineTemp, '');
+                RetailPriceUtils.GetItemPrice(RetailSetup."Default Price Group", tbItem."No.", '', DateFilter, '', PriceListLineTemp, '');
                 Data."On system" := tbItem.Inventory * PriceListLineTemp."Unit Price";
                 Data."On hand" := 0;
                 Data."Variance" := 0;

@@ -2,7 +2,7 @@
   "id": "6dc7cd47-bf68-4031-88d2-04300818fac2",
   "name": "worldPOS-Report",
   "publisher": "World POS Sdn. Bhd",
-  "version": "24.1.0.14",
+  "version": "24.1.0.19",
   "brief": "",
   "description": "Rerpot list with RG",
   "privacyStatement": "",
@@ -46,15 +46,21 @@
       "id": "206b7ebf-8143-47f8-993e-a653326399e0",
       "publisher": "Be One Solutions",
       "name": "Taka Another Extension",
-      "version": "1.0.0.3"
+      "version": "1.0.0.9"
     } 
      ,   
     {
       "id": "da447427-42de-4320-bf10-9930392c9768",
       "publisher": "Be One Solutions",
       "name": "Taka MKS Extension",
-      "version": "1.0.0.5"
-    }  
+      "version": "1.0.0.11"
+    }  , 
+    {
+      "id": "14f0ce47-d2e9-4989-bf9e-5df0465d2c4d",
+      "publisher": "Be One Solutions",
+      "name": "Taka Einvoice Extension",
+      "version": "1.0.0.19"
+    } 
   ],
   "screenshots": [],
   "platform": "24.0.0.0",

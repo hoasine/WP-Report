@@ -385,7 +385,7 @@ report 70014 "HourlySaleReport"
         querSale: Query "Querry LSC Sale Total";
         tbDivision: Record "LSC Division";
 
-        DivisionInt: Integer;
+        //DivisionInt: Integer;
         ClassInt: Integer;
         DateChange: Text[100];
 
@@ -413,22 +413,17 @@ report 70014 "HourlySaleReport"
         tbDivision.SetFilter(Code, '<>%1', '');
         if tbDivision.FindSet() then begin
             repeat
-                Clear(DivisionInt);
-                Evaluate(DivisionInt, tbDivision.Code);
-
-                Clear(tbBudgetSale);
-                tbBudgetSale.Division := Format(DivisionInt);
-                tbBudgetSale.BudgetAmount := 2000000000;
-                tbBudgetSale.Insert();
+                // Clear(DivisionInt);
+                // Evaluate(DivisionInt, tbDivision.Code);
 
                 Clear(divSaleDetail);
-                divSaleDetail.Division := format(DivisionInt);
+                divSaleDetail.Division := tbDivision.Code;
 
                 //Sale to Day
                 divSaleDetail.SaleToDay := 0;
                 Clear(querSale);
                 querSale.SetRange(TH_DateFilter, DateFilter);
-                querSale.SetFilter(TSE_DivisonFilter, format(DivisionInt));
+                querSale.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
                 if StoreFilter <> '' then querSale.SetFilter(TH_StoreFilter, StoreFilter);
                 querSale.Open;
                 while querSale.Read do begin
@@ -468,7 +463,7 @@ report 70014 "HourlySaleReport"
                         tbHourlySaleReport."Store" := TransHeader."Store No.";
                         tbHourlySaleReport."Date" := TransHeader."Date";
                         tbHourlySaleReport."Division" := tbTransSale."Division Code";
-                        tbHourlySaleReport.Budget := 2000000000;//Cho 1 ngày
+                        tbHourlySaleReport.Budget := 0;//Cho 1 ngày
 
                         //divSaleDetail
                         Clear(divSaleDetail);
@@ -486,7 +481,7 @@ report 70014 "HourlySaleReport"
 
                         if not tbHourlySaleReport.Get(tbHourlySaleReport.Type, tbHourlySaleReport."Store", tbHourlySaleReport.Time, tbHourlySaleReport.Division) then begin
                             tbHourlySaleReport."Net Amount" := tbHourlySaleReport."Net Amount" + tbTransSale."Net Amount";
-                            tbHourlySaleReport."Sale" := (tbHourlySaleReport."Sale" + tbTransSale."Total Rounded Amt.");
+                            tbHourlySaleReport."Sale" := (tbHourlySaleReport."Sale" + tbTransSale."Net Amount");
                             tbHourlySaleReport."Gross Amount" := tbHourlySaleReport."Gross Amount" + tbTransSale."Total Rounded Amt.";
                             tbHourlySaleReport."No. of Items" := tbHourlySaleReport."No. of Items" + 1;
 
@@ -496,7 +491,7 @@ report 70014 "HourlySaleReport"
                             tbHourlySaleReport.Insert();
                         end else begin
                             tbHourlySaleReport."Net Amount" := tbHourlySaleReport."Net Amount" + tbTransSale."Net Amount";
-                            tbHourlySaleReport."Sale" := (tbHourlySaleReport."Sale" + tbTransSale."Total Rounded Amt.");
+                            tbHourlySaleReport."Sale" := (tbHourlySaleReport."Sale" + tbTransSale."Net Amount");
                             tbHourlySaleReport."Gross Amount" := tbHourlySaleReport."Gross Amount" + tbTransSale."Total Rounded Amt.";
                             tbHourlySaleReport."No. of Items" := tbHourlySaleReport."No. of Items" + 1;
 
@@ -516,18 +511,13 @@ report 70014 "HourlySaleReport"
     var
         amountCongDon: Decimal;
         tbDivision: Record "LSC Division";
-        DivisionInt: Decimal;
+        //DivisionInt: Decimal;
 
         BudgetValue: Decimal;
         BudgetTotalValue: Decimal;
     begin
         Clear(tbHourlySaleMatrixReport);
         tbHourlySaleMatrixReport.DeleteAll();
-
-        Clear(tbBudgetSale);
-        tbBudgetSale.SetFilter(Division, '<>%1', '');
-        tbBudgetSale.CalcSums(BudgetAmount);
-        BudgetTotalValue := tbBudgetSale.BudgetAmount;
 
         clear(StatisticsTimeSetup);
         if (StatisticsTimeSetup.Find('-')) then
@@ -537,25 +527,23 @@ report 70014 "HourlySaleReport"
                 if tbDivision.FindSet() then begin
                     repeat
                     begin
-                        //Get amount division
-                        Evaluate(DivisionInt, tbDivision.Code);
-
                         amountCongDon := 0;
 
                         Clear(tbHourlySaleMatrixReport);
-                        tbHourlySaleMatrixReport.SetRange(Division, Format(DivisionInt));
+                        tbHourlySaleMatrixReport.SetRange(Division, tbDivision.Code);
                         tbHourlySaleMatrixReport.SetRange("Store", StoreFilter);
                         tbHourlySaleMatrixReport.CalcSums(Sale);
                         amountCongDon := tbHourlySaleMatrixReport.Sale;
 
                         Clear(tbBudgetSale);
-                        tbBudgetSale.SetRange(Division, Format(DivisionInt));
-                        if tbBudgetSale.FindFirst() then
-                            BudgetValue := tbBudgetSale.BudgetAmount;
+                        tbBudgetSale.SetRange(Date, DateFilter);
+                        tbBudgetSale.SetFilter("DivisionCode", tbDivision.Code);
+                        tbBudgetSale.CalcSums(TotalSales);
+                        BudgetValue := tbBudgetSale.TotalSales;
 
                         tbHourlySaleReport.SetRange(Type, tbHourlySaleReport.Type::Store);
                         tbHourlySaleReport.SetRange("Store", StoreFilter);
-                        tbHourlySaleReport.SetRange("Division", Format(DivisionInt));
+                        tbHourlySaleReport.SetRange("Division", tbDivision.Code);
                         tbHourlySaleReport.SetRange(Time, StatisticsTimeSetup."Start Time");
                         if tbHourlySaleReport.FindSet then begin
                             repeat
@@ -568,7 +556,7 @@ report 70014 "HourlySaleReport"
                                 tbHourlySaleMatrixReport.Store := tbHourlySaleReport.Store;
                                 tbHourlySaleMatrixReport.Customer := tbHourlySaleReport.Customer;
                                 tbHourlySaleMatrixReport."Budget" := BudgetValue;
-                                tbHourlySaleMatrixReport."BudgetTotal" := BudgetTotalValue;
+                                tbHourlySaleMatrixReport."BudgetTotal" := 0;
                                 tbHourlySaleMatrixReport."Net Amount" := tbHourlySaleMatrixReport."Net Amount" + tbHourlySaleReport."Net Amount";
                                 tbHourlySaleMatrixReport."Sale" := -(tbHourlySaleMatrixReport."Sale" + tbHourlySaleReport."Sale");
 
@@ -591,9 +579,9 @@ report 70014 "HourlySaleReport"
                                + FORMAT(StatisticsTimeSetup."End Time", 0, '<Hours24,2>:<Minutes,2>');
                             tbHourlySaleMatrixReport.Date := tbHourlySaleReport.Date;
                             tbHourlySaleMatrixReport.Type := tbHourlySaleReport.Type;
-                            tbHourlySaleMatrixReport.Division := Format(DivisionInt);
+                            tbHourlySaleMatrixReport.Division := tbDivision.Code;
                             tbHourlySaleMatrixReport.Store := tbHourlySaleReport.Store;
-                            tbHourlySaleMatrixReport."BudgetTotal" := BudgetTotalValue;
+                            tbHourlySaleMatrixReport."BudgetTotal" := 0;
                             tbHourlySaleMatrixReport.Customer := 0;
                             tbHourlySaleMatrixReport."Budget" := BudgetValue;
                             tbHourlySaleMatrixReport."Net Amount" := 0;
@@ -616,8 +604,18 @@ report 70014 "HourlySaleReport"
                     until tbDivision.Next() = 0;
                 end;
             until StatisticsTimeSetup.Next = 0;
-
         Clear(tbHourlySaleMatrixReport);
+
+        Clear(tbBudgetSale);
+        tbBudgetSale.SetRange(Date, DateFilter);
+        tbBudgetSale.CalcSums(TotalSales);
+
+        if tbHourlySaleMatrixReport.FindSet() then begin
+            repeat
+                tbHourlySaleMatrixReport.BudgetTotal := tbBudgetSale.TotalSales;
+                tbHourlySaleMatrixReport.Modify();
+            until tbHourlySaleMatrixReport.Next = 0;
+        end;
     end;
 
 
@@ -663,6 +661,6 @@ report 70014 "HourlySaleReport"
         "DateFilter": Date;
         "StoreFilter": Text;
         divSaleDetail: Record "DivHourlySale";
-        tbBudgetSale: Record "BudgetSale";
+        tbBudgetSale: Record "wp Import Budget. Data";
 }
 

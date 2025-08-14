@@ -1,4 +1,4 @@
-table 58060 "Consignment Purchase Report 1"
+table 58060 "Consignment Purchase Report"
 {
     Access = Internal;
     Caption = 'Consignment Purchase Report';
@@ -93,10 +93,16 @@ table 58060 "Consignment Purchase Report 1"
             Caption = 'Line No.';
             DataClassification = ToBeClassified;
         }
+        field(18; "Class"; Text[100])
+        {
+            Caption = 'Class';
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {
-        key(PK; "VendorNo", "Brand", "Date", "Tax Rate", ProfitMargin, "Line No.")
+        // key(PK; "VendorNo", "Brand", "Date", "Tax Rate", ProfitMargin, "Line No.")
+        key(PK; "Line No.")
         {
             Clustered = true;
         }
@@ -104,15 +110,15 @@ table 58060 "Consignment Purchase Report 1"
 }
 
 
-report 70032 "Consignment Purchase Report 1"
+report 70032 "Consignment Purchase Report"
 {
     ApplicationArea = All;
-    Caption = 'Consignment Purchase Report 1';
+    Caption = 'Consignment Purchase Report';
     UsageCategory = ReportsAndAnalysis;
     RDLCLayout = '.vscode\ReportLayouts\\Rep.70032.ConsignmentPurchase.rdl';
     dataset
     {
-        dataitem(tbResuft; "Consignment Purchase Report 1")
+        dataitem(tbResuft; "Consignment Purchase Report")
         {
             column(Brand; "Brand") { }
             column(Class; "Class") { }
@@ -136,7 +142,7 @@ report 70032 "Consignment Purchase Report 1"
             trigger OnPreDataItem()
 
             var
-                tbResuft2: Record "Consignment Purchase Report 1";
+                tbResuft2: Record "Consignment Purchase Report";
                 tbConsHeader: Record "Consignment Header";
                 CE: Record "Consignment Entries";
                 LRecStore: Record "LSC Store";
@@ -179,10 +185,11 @@ report 70032 "Consignment Purchase Report 1"
 
                         cleaR(tbResuft);
                         tbResuft.setrange("VendorNo", ce."Vendor No.");
-                        tbResuft.SetRange("Date", ce."Date");
-                        tbResuft.setrange("Brand", ce."Special Group");
-                        tbResuft.setrange("ProfitMargin", ce."Consignment %");
-                        tbResuft.setrange("Tax Rate", TaxRate);
+                        // tbResuft.SetRange("Date", ce."Date");
+                        // tbResuft.setrange("Brand", ce."Special Group");
+                        tbResuft.setrange("Class", ce."Product Group");
+                        // tbResuft.setrange("ProfitMargin", ce."Consignment %");
+                        // tbResuft.setrange("Tax Rate", TaxRate);
 
                         //Check Memo
                         clear(lrecvendor);
@@ -208,7 +215,7 @@ report 70032 "Consignment Purchase Report 1"
                                 tbResuft."Line No." := nextlineno;
                                 tbResuft.Brand := ce."Special Group";
 
-                                Class := ce."Product Group";
+                                tbResuft.Class := ce."Product Group";
 
                                 clear(lrecBrand);
                                 if lrecBrand.Get(ce."Special Group") then
@@ -359,7 +366,6 @@ report 70032 "Consignment Purchase Report 1"
         VendorName: text;
         BrandName: text;
         DivisionName: text;
-        Class: Text;
         TaxPrice: Decimal;
         Memo1Filter: enum "Payment Type";
         PaymentDate: Date;

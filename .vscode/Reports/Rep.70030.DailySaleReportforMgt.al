@@ -16,7 +16,7 @@ report 70030 "DailySaleReportforMgt"
             DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 .. 365));
 
             column(Date; DayDate) { }
-            column(Actual; SalesAmount) { }
+            column(Actual; -SalesAmount) { }
             column(Budget; Budget) { }
             column(variance; variance) { }
             column(VsBudget; VsBudget) { }
@@ -32,6 +32,7 @@ report 70030 "DailySaleReportforMgt"
             var
                 quDailySaleReportMgt: Query "Daily Sale Report for Mgt";
                 quDailyMgtCustomer: Query "Daily Sale Mgt Customer";
+                tbBudget: Record "wp Import Budget. Data";
                 StartDate: Date;
             begin
                 clear(Budget);
@@ -65,12 +66,14 @@ report 70030 "DailySaleReportforMgt"
                     customers += quDailyMgtCustomer.TSE_Count_Customer;
                 end;
 
-                if SalesAmount <> 0 then
-                    Budget := 60000000
-                else
-                    Budget := 0;
+                Clear(tbBudget);
+                tbBudget.SetRange(Date, DayDate);
+                if StoreFilter <> '' then
+                    tbBudget.SetFilter("StoreNo", StoreFilter);
+                tbBudget.CalcSums(TotalSales);
+                Budget := tbBudget.TotalSales;
 
-                variance := SalesAmount - Budget;
+                variance := abs(SalesAmount) - Budget;
 
                 if Budget <> 0 then
                     VsBudget := +SalesAmount / Budget - 1

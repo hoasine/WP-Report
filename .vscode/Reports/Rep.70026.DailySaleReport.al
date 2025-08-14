@@ -184,6 +184,10 @@ report 70026 "Daily Sale Report"
                     {
                         TableRelation = "LSC Item Special Groups";
                     }
+                    field("Class"; ProductGroupFilter)
+                    {
+                        TableRelation = "LSC Retail Product Group"."Code";
+                    }
                 }
             }
         }
@@ -250,6 +254,8 @@ report 70026 "Daily Sale Report"
                     querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if tbDivision.Code <> '' then
                     querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                if ProductGroupFilter <> '' then
+                    querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then
                     querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
@@ -266,6 +272,7 @@ report 70026 "Daily Sale Report"
                 querry.SetRange(TH_DateFilter, DateFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
@@ -280,6 +287,7 @@ report 70026 "Daily Sale Report"
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
@@ -299,10 +307,12 @@ report 70026 "Daily Sale Report"
                 DateChange := GetMonthRangeAsText(DateFilter);
                 Clear(tbBudget);
                 tbBudget.SetFilter(Date, DateChange);
-                if SpecialGroupFilter <> '' then
-                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if ProductGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", ProductGroupFilter);
                 if tbDivision.Code <> '' then
                     tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                if StoreFilter <> '' then
+                    tbBudget.SetFilter("StoreNo", StoreFilter);
                 tbBudget.CalcSums(TotalSales);
 
                 Data."Monthly Targe" := tbBudget.TotalSales;
@@ -315,6 +325,7 @@ report 70026 "Daily Sale Report"
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
@@ -323,10 +334,12 @@ report 70026 "Daily Sale Report"
 
                 Clear(tbBudget);
                 tbBudget.SetFilter(Date, DateChange);
-                if SpecialGroupFilter <> '' then
-                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if ProductGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", ProductGroupFilter);
                 if tbDivision.Code <> '' then
                     tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                if StoreFilter <> '' then
+                    tbBudget.SetFilter("StoreNo", StoreFilter);
                 tbBudget.CalcSums(TotalSales);
 
                 Data."Daily Target Total" := tbBudget.TotalSales;
@@ -340,6 +353,7 @@ report 70026 "Daily Sale Report"
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetRange(TH_DateFilter, DateFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
@@ -348,10 +362,12 @@ report 70026 "Daily Sale Report"
 
                 Clear(tbBudget);
                 tbBudget.SetRange(Date, DateFilter);
-                if SpecialGroupFilter <> '' then
-                    tbBudget.SetFilter("ClassCode", SpecialGroupFilter);
+                if ProductGroupFilter <> '' then
+                    tbBudget.SetFilter("ClassCode", ProductGroupFilter);
                 if tbDivision.Code <> '' then
                     tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                if StoreFilter <> '' then
+                    tbBudget.SetFilter("StoreNo", StoreFilter);
                 tbBudget.CalcSums(TotalSales);
 
                 Data."Daily Target" := tbBudget.TotalSales;
@@ -364,6 +380,7 @@ report 70026 "Daily Sale Report"
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querry.Open;
                 while querry.Read do begin
@@ -394,6 +411,7 @@ report 70026 "Daily Sale Report"
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
@@ -408,6 +426,7 @@ report 70026 "Daily Sale Report"
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetRange(TH_DateFilter, DateFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
@@ -421,6 +440,7 @@ report 70026 "Daily Sale Report"
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
+                if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
@@ -496,5 +516,6 @@ report 70026 "Daily Sale Report"
         PosTerminalFilter: Text;
         DivisionFilter: Text;
         SpecialGroupFilter: Text;
+        ProductGroupFilter: Text;
         ApplicationManagement: Codeunit "Filter Tokens";
 }

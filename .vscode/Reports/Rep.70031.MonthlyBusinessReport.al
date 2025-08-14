@@ -132,10 +132,12 @@ report 70031 "Monthly Business Report"
                 tbItemCate: Record "Item Category";
                 tbProuctGroup: Record "LSC Retail Product Group";
                 tbTransHeader: Record "LSC Transaction Header";
+                tbBudget: Record "wp Import Budget. Data";
 
-                DivisionInt: Integer;
-                ProductGroupInt: Integer;
-                CategoryInt: Integer;
+
+                // DivisionInt: Integer;
+                // ProductGroupInt: Integer;
+                // CategoryInt: Integer;
 
                 InputYear: Integer;
                 StartDate: date;
@@ -179,9 +181,9 @@ report 70031 "Monthly Business Report"
                                         EndDateFilter := FORMAT(EndDate, 0, '<Day,2>/<Month,2>/<Year4>');
                                         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
 
-                                        Evaluate(DivisionInt, tbDivision.Code);
-                                        Evaluate(CategoryInt, tbItemCate.Code);
-                                        Evaluate(ProductGroupInt, tbProuctGroup.Code);
+                                        // Evaluate(DivisionInt, tbDivision.Code);
+                                        // Evaluate(CategoryInt, tbItemCate.Code);
+                                        // Evaluate(ProductGroupInt, tbProuctGroup.Code);
 
                                         CurrentDate := StartDate;
                                         while CurrentDate <= EndDate do begin
@@ -203,25 +205,30 @@ report 70031 "Monthly Business Report"
                                             //Lay trong thang
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
-                                            quSaleTotal.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                            quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                            quSaleTotal.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                             quSaleTotal.Open;
                                             while quSaleTotal.Read do begin
                                                 Data.Sale := quSaleTotal.TSE_Total_Amount;
                                             end;
 
-                                            if Data.Sale > 0 then
-                                                Data.Budget := 60000000
-                                            else
-                                                Data.Budget := 0;
+                                            //Target This Month 1 -> 31
+                                            Clear(tbBudget);
+                                            tbBudget.SetFilter(Date, RangeText);
+                                            if tbDivision.Code <> '' then
+                                                tbBudget.SetFilter("DivisionCode", tbDivision.Code);
+                                            if tbProuctGroup.Code <> '' then
+                                                tbBudget.SetFilter("ClassCode", tbProuctGroup.Code);
+                                            tbBudget.CalcSums(TotalSales);
+                                            Data.Budget := tbBudget.TotalSales;
 
                                             //quTotalMember
                                             Clear(quTotalMember);
                                             quTotalMember.SetFilter(TH_DateFilter, RangeText);
-                                            quTotalMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                            quTotalMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                            quTotalMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                            quTotalMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            quTotalMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quTotalMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                             quTotalMember.Open;
                                             while quTotalMember.Read do begin
                                                 Data.Cust := quTotalMember.TSE_Count_Customer;
@@ -231,9 +238,9 @@ report 70031 "Monthly Business Report"
                                             RangeText := GetPreviousYearDateRange(RangeText);
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
-                                            quSaleTotal.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                            quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                            quSaleTotal.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                             quSaleTotal.Open;
                                             while quSaleTotal.Read do begin
                                                 Data.SaleLY := quSaleTotal.TSE_Total_Amount;
