@@ -1,7 +1,7 @@
 table 58052 "AnP Report"
 {
     Access = Internal;
-    Caption = 'Stock Take Report';
+    Caption = 'AnP Table';
     DataClassification = CustomerContent;
     TableType = Temporary;
     ReplicateData = false;

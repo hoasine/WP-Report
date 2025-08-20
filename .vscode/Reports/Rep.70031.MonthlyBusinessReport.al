@@ -1,7 +1,7 @@
 table 58055 "Monthly Business Report"
 {
     Access = Internal;
-    Caption = 'Stock Take Report';
+    Caption = 'Monthly Business Table';
     DataClassification = CustomerContent;
     TableType = Temporary;
     ReplicateData = false;
