@@ -1,7 +1,7 @@
 table 58054 "Efficiency Report"
 {
     Access = Internal;
-    Caption = 'Stock Take Report';
+    Caption = 'Efficiency Table';
     DataClassification = CustomerContent;
     TableType = Temporary;
     ReplicateData = false;

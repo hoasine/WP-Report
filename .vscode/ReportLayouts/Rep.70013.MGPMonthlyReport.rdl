@@ -11,7 +11,11 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
+<<<<<<< HEAD
     <am:LastModifiedTimestamp>2025-08-14T10:43:33.2313712Z</am:LastModifiedTimestamp>
+=======
+    <am:LastModifiedTimestamp>2025-08-14T09:46:57.8389806Z</am:LastModifiedTimestamp>
+>>>>>>> 8450cfe8ba8265306117c861b67f957ff25dc2ff
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2410,7 +2414,7 @@ Gross Profit</Value>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value />
+                                    <Value>a</Value>
                                     <Style>
                                       <FontSize>7pt</FontSize>
                                       <FontWeight>Bold</FontWeight>

@@ -273,7 +273,6 @@ report 70027 "Stock Take Report"
                 Data.GroupField := 'Retail Price';
                 Data.ItemNo := tbItem."No.";
                 Data.BrandName := BrandName;
-                tbItem.CalcFields(Inventory);
                 Data."Total Sale" := tbItemTotalSale."Sales (LCY)";
 
                 Clear(PriceListLineTemp);
