@@ -9,9 +9,13 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.20318.47</am:Version>
+      <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
+<<<<<<< HEAD
+    <am:LastModifiedTimestamp>2025-08-14T10:43:33.2313712Z</am:LastModifiedTimestamp>
+=======
     <am:LastModifiedTimestamp>2025-08-14T09:46:57.8389806Z</am:LastModifiedTimestamp>
+>>>>>>> 8450cfe8ba8265306117c861b67f957ff25dc2ff
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -1690,7 +1694,7 @@ Gross Profit</Value>
                                   <Value>=Fields!Profit.Value</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2089,7 +2093,7 @@ Gross Profit</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2249,6 +2253,7 @@ Gross Profit</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Textbox Name="Textbox165">
