@@ -213,10 +213,6 @@ report 70026 "Daily Sale Report"
         IF (DateFilter = 0D) THEN
             ERROR('The report couldn’t be generated, because the Date is empty.');
 
-        IF (StoreFilter = '') THEN
-            ERROR('The report couldn’t be generated, because the Store is empty.');
-
-
         Clear(Data);
         Data.DeleteAll;
         Counter := 0;
@@ -226,7 +222,7 @@ report 70026 "Daily Sale Report"
           'Processed              #2###########');
 
         clear(tbDivision);
-        tbDivision.SetFilter(Code, '<>%1', '');
+        tbDivision.SetFilter(Code, '<>%1&<>%2', '04', '');
         if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
         TotalTrans := tbDivision.Count;
         Window.Update(1, TotalTrans);
@@ -248,8 +244,9 @@ report 70026 "Daily Sale Report"
                 //Month Sale and Budget 
                 DateChange := GetDateRange(DateFilter);
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then
+                    querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then
                     querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if tbDivision.Code <> '' then
@@ -268,9 +265,9 @@ report 70026 "Daily Sale Report"
 
                 //Daily Sale & Target
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetRange(TH_DateFilter, DateFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                if StoreFilter <> '' then querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -283,9 +280,9 @@ report 70026 "Daily Sale Report"
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -321,9 +318,9 @@ report 70026 "Daily Sale Report"
                 //Month Sale total
                 DateChange := GetDateRange(DateFilter);
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -349,9 +346,9 @@ report 70026 "Daily Sale Report"
 
                 //Daily Sale
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetRange(TH_DateFilter, DateFilter);
+                if StoreFilter <> '' then querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -376,9 +373,9 @@ report 70026 "Daily Sale Report"
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
                 Clear(querry);
-                querry.SetFilter(TH_StoreFilter, StoreFilter);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then querry.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querry.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querry.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querry.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -407,9 +404,9 @@ report 70026 "Daily Sale Report"
                 //Sale total
                 DateChange := GetDateRange(DateFilter);
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -422,9 +419,9 @@ report 70026 "Daily Sale Report"
 
                 //Daily Sale
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetRange(TH_DateFilter, DateFilter);
+                if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
@@ -436,9 +433,9 @@ report 70026 "Daily Sale Report"
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
+                if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
                 if ProductGroupFilter <> '' then querryCustomer.SetFilter(TSE_ProductGroupFilter, ProductGroupFilter);
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);

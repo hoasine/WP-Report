@@ -951,7 +951,7 @@ report 70024 "Sales List Transaction Report"
         queryPayment.SetFilter("TH_DateFilter", DateFilter);
         if StoreFilter <> '' then queryPayment.SetRange("TH_StoreFilter", StoreFilter);
         if PosTerminalFilter <> '' then queryPayment.SetRange("PosterminalFilter", PosTerminalFilter);
-        queryPayment.SetRange("TSE_TenderTypeFilter", '3');
+        queryPayment.SetFilter("TSE_TenderTypeFilter", '57|55|56|53|60|51|61|62|3|33|71|70');
         queryPayment.Open;
         while queryPayment.Read do begin
             Quantity := queryPayment.CountTender;
@@ -975,7 +975,7 @@ report 70024 "Sales List Transaction Report"
         queryPayment.SetFilter("TH_DateFilter", DateFilter);
         queryPayment.SetRange("SaleIsCancelFilter", false);
         queryPayment.SetRange("SaleIsReturnFilter", true);
-        queryPayment.SetRange("TSE_TenderTypeFilter", '3');
+        queryPayment.SetFilter("TSE_TenderTypeFilter", '57|55|56|53|60|51|61|62|3|33|71|70');
         if StoreFilter <> '' then queryPayment.SetRange("TH_StoreFilter", StoreFilter);
         if PosTerminalFilter <> '' then queryPayment.SetRange("PosterminalFilter", PosTerminalFilter);
         queryPayment.Open;
@@ -994,11 +994,11 @@ report 70024 "Sales List Transaction Report"
         Data."Key" := KeyTemp;
         Data.insert(true);
 
-        //Provied Points------------------------------------------ = sale point -  reutrn point
+        //Provided Points------------------------------------------ = sale point -  reutrn point
         Amount := 0;
         Quantity := 0;
         Clear(tbMemberPoint);
-        tbMemberPoint.SetFilter("Points", '>0');
+        // tbMemberPoint.SetFilter("Points", '>0'); lấy offset tất cả lại sale & cancel
         tbMemberPoint.SetFilter("Date", DateFilter);
         tbMemberPoint.SetRange("Entry Type", 0);
         if StoreFilter <> '' then tbMemberPoint.SetRange("Store No.", StoreFilter);
@@ -1008,7 +1008,7 @@ report 70024 "Sales List Transaction Report"
         Amount := Amount + tbMemberPoint.Points;
 
         Clear(Data);
-        Data."Item" := 'Provied Points';
+        Data."Item" := 'Provided Points';
         Data."Qty" := Quantity;
         Data."Amount" := -Amount;
         STTTemp := STTTemp + 1;
@@ -1108,26 +1108,6 @@ report 70024 "Sales List Transaction Report"
         end else begin
             Clear(Data);
             DAta.Item := 'JCB Taka Standard';
-            DAta.Code := '';
-            Data.Amount := 0;
-            Data.Qty := 0;
-            STTTemp := STTTemp + 1;
-            Data.STT := STTTemp;
-            KeyTemp := KeyTemp + 1;
-            Data."Key" := KeyTemp;
-            Data.Insert(true);
-        end;
-
-        //Taka Rose Gift Card
-        Clear(Data);
-        Data.SetRange(Code, '60');
-        if Data.FindFirst() then begin
-            STTTemp := STTTemp + 1;
-            Data.STT := STTTemp;
-            Data.Modify(true);
-        end else begin
-            Clear(Data);
-            DAta.Item := 'Taka Rose Gift Card';
             DAta.Code := '';
             Data.Amount := 0;
             Data.Qty := 0;

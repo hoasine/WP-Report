@@ -11,7 +11,7 @@ query 50114 "Daily Sale Report for Mgt"
             filter(StoreFilter; "Store No.")
             {
             }
-            column(TSE_Total_Sale; "Payment")
+            column(TSE_Total_Sale; "Net Amount")
             {
                 Method = Sum;
             }
@@ -25,7 +25,7 @@ query 50115 "Daily Sale Mgt Customer"
     {
         dataitem(tbData; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(<> ''), "Transaction Type" = const(2);
+            DataItemTableFilter = "Transaction Type" = const(2);
             filter(TH_DateFilter; Date)
             {
             }
@@ -46,7 +46,7 @@ query 50116 "Daily Customer With DCP"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(<> ''), "Transaction Type" = const(2);
+            DataItemTableFilter = "Transaction Type" = const(2);
 
             filter(TH_DateFilter; Date)
             {

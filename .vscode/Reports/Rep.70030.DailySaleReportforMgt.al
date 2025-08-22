@@ -30,8 +30,10 @@ report 70030 "DailySaleReportforMgt"
 
             trigger OnAfterGetRecord()
             var
-                quDailySaleReportMgt: Query "Daily Sale Report for Mgt";
-                quDailyMgtCustomer: Query "Daily Sale Mgt Customer";
+                // quDailySaleReportMgt: Query "Daily Sale Report for Mgt";// không dùng
+                quDailySaleReportMgt: Query "QueDailySaleReport";
+                // quDailyMgtCustomer: Query "Daily Sale Mgt Customer";
+                quDailyMgtCustomer: Query "QueCustumerReportCount";
                 tbBudget: Record "wp Import Budget. Data";
                 StartDate: Date;
             begin
@@ -48,10 +50,10 @@ report 70030 "DailySaleReportforMgt"
 
                 Clear(quDailySaleReportMgt);
                 quDailySaleReportMgt.SetRange(TH_DateFilter, DayDate);
-                quDailySaleReportMgt.SetFilter(StoreFilter, StoreFilter);
+                if StoreFilter <> '' then quDailySaleReportMgt.SetFilter(TH_StoreFilter, StoreFilter);
                 quDailySaleReportMgt.Open;
                 while quDailySaleReportMgt.Read do begin
-                    SalesAmount := -quDailySaleReportMgt."TSE_Total_Sale";
+                    SalesAmount := -quDailySaleReportMgt."TSE_Total_Amount";
                 end;
 
                 DayInt := Format(DayDate, 0, '<Day,2>');
@@ -60,10 +62,10 @@ report 70030 "DailySaleReportforMgt"
 
                 Clear(quDailyMgtCustomer);
                 quDailyMgtCustomer.SetRange(TH_DateFilter, DayDate);
-                quDailyMgtCustomer.SetFilter(StoreFilter, StoreFilter);
+                if StoreFilter <> '' then quDailySaleReportMgt.SetFilter(TH_StoreFilter, StoreFilter);
                 quDailyMgtCustomer.Open;
                 while quDailyMgtCustomer.Read do begin
-                    customers += quDailyMgtCustomer.TSE_Count_Customer;
+                    customers += quDailyMgtCustomer.TSE_Quantity_Custumer;
                 end;
 
                 Clear(tbBudget);
@@ -76,12 +78,12 @@ report 70030 "DailySaleReportforMgt"
                 variance := abs(SalesAmount) - Budget;
 
                 if Budget <> 0 then
-                    VsBudget := +SalesAmount / Budget - 1
+                    VsBudget := (abs(SalesAmount) / Budget) - 1
                 else
                     VsBudget := 0;
 
                 if customers <> 0 then
-                    cus := SalesAmount / customers
+                    cus := abs(SalesAmount) / customers
                 else
                     cus := 0;
 

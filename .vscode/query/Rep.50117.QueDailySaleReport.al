@@ -31,9 +31,10 @@ query 50117 "QueDailySaleReport"
                     Method = Sum;
                     ReverseSign = true;
                 }
-                column(TSE_Quantity_Amount)
+                column(TSE_Quantity_Amount; Quantity)
                 {
-                    Method = Count;
+                    Method = Sum;
+                    ReverseSign = true;
                 }
                 dataitem(items; "Item")
                 {
@@ -56,8 +57,8 @@ query 50118 "QueCustumerReportCount"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2);
-
+            // DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2);
+            DataItemTableFilter = "Transaction Type" = const(2);
 
             filter(TH_DateFilter; Date)
             {
