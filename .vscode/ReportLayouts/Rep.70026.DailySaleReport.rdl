@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.20318.47</am:Version>
+      <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-06T08:28:01.7883918Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-22T04:09:49.3910693Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,6 +24,85 @@
       <rd:DataSourceID>92ed21cd-92df-4c21-8b2b-527f357d98e7</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="StoreNo">
+          <DataField>StoreNo</DataField>
+        </Field>
+        <Field Name="Division">
+          <DataField>Division</DataField>
+        </Field>
+        <Field Name="TypeTemp">
+          <DataField>TypeTemp</DataField>
+        </Field>
+        <Field Name="AcvDailyTargetTotal_Data">
+          <DataField>AcvDailyTargetTotal_Data</DataField>
+        </Field>
+        <Field Name="AcvDailyTargetTotal_DataFormat">
+          <DataField>AcvDailyTargetTotal_DataFormat</DataField>
+        </Field>
+        <Field Name="BalanceSaleTarget_Data">
+          <DataField>BalanceSaleTarget_Data</DataField>
+        </Field>
+        <Field Name="BalanceSaleTarget_DataFormat">
+          <DataField>BalanceSaleTarget_DataFormat</DataField>
+        </Field>
+        <Field Name="DailySales_Data">
+          <DataField>DailySales_Data</DataField>
+        </Field>
+        <Field Name="DailySales_DataFormat">
+          <DataField>DailySales_DataFormat</DataField>
+        </Field>
+        <Field Name="DailyTarget_Data">
+          <DataField>DailyTarget_Data</DataField>
+        </Field>
+        <Field Name="DailyTarget_DataFormat">
+          <DataField>DailyTarget_DataFormat</DataField>
+        </Field>
+        <Field Name="DailyTargetTotal_Data">
+          <DataField>DailyTargetTotal_Data</DataField>
+        </Field>
+        <Field Name="DailyTargetTotal_DataFormat">
+          <DataField>DailyTargetTotal_DataFormat</DataField>
+        </Field>
+        <Field Name="LastYearSales_Data">
+          <DataField>LastYearSales_Data</DataField>
+        </Field>
+        <Field Name="LastYearSales_DataFormat">
+          <DataField>LastYearSales_DataFormat</DataField>
+        </Field>
+        <Field Name="MonthlyTarge_Data">
+          <DataField>MonthlyTarge_Data</DataField>
+        </Field>
+        <Field Name="MonthlyTarge_DataFormat">
+          <DataField>MonthlyTarge_DataFormat</DataField>
+        </Field>
+        <Field Name="SalesTotal_Data">
+          <DataField>SalesTotal_Data</DataField>
+        </Field>
+        <Field Name="SalesTotal_DataFormat">
+          <DataField>SalesTotal_DataFormat</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -61,7 +140,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.10397cm</Height>
+                  <Height>1.12161cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -75,9 +154,8 @@
                                 <TextRun>
                                   <Value>Amt/ Qty</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -88,31 +166,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -134,9 +211,8 @@
                                 <TextRun>
                                   <Value>Monthly Target</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -147,31 +223,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -193,9 +268,8 @@
                                 <TextRun>
                                   <Value>Daily Target Total</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -206,31 +280,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -252,9 +325,8 @@
                                 <TextRun>
                                   <Value>Sales Total</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -265,31 +337,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -311,9 +382,8 @@
                                 <TextRun>
                                   <Value>Balance Sale Target</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -324,31 +394,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -370,9 +439,8 @@
                                 <TextRun>
                                   <Value>Acv Daily Target Total </Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -383,31 +451,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -429,9 +496,8 @@
                                 <TextRun>
                                   <Value>Daily Target</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -442,31 +508,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -488,9 +553,8 @@
                                 <TextRun>
                                   <Value>Daily Sales</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -501,31 +565,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -547,9 +610,8 @@
                                 <TextRun>
                                   <Value>Last Year Sales</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -560,31 +622,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#3d6c9f</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -622,27 +683,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -679,27 +739,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -736,27 +795,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -793,27 +851,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -850,27 +907,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -907,27 +963,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -964,27 +1019,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1021,27 +1075,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1078,27 +1131,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1144,9 +1196,8 @@
                               <TextRun>
                                 <Value>Division</Value>
                                 <Style>
-                                  <FontSize>8pt</FontSize>
+                                  <FontSize>7pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>White</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1157,31 +1208,30 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Color>LightGrey</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </Border>
                           <TopBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </TopBorder>
                           <BottomBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </BottomBorder>
                           <LeftBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
                           <RightBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
-                          <BackgroundColor>#3d6c9f</BackgroundColor>
+                          <BackgroundColor>Silver</BackgroundColor>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -1231,27 +1281,26 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Color>LightGrey</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </Border>
                           <TopBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </TopBorder>
                           <BottomBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </BottomBorder>
                           <LeftBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
                           <RightBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
@@ -1273,14 +1322,35 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0.17639cm</Top>
+            <Top>0.21167cm</Top>
             <Left>0.31498cm</Left>
-            <Height>1.70397cm</Height>
+            <Height>1.72161cm</Height>
             <Width>26.28527cm</Width>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix4">
@@ -1341,27 +1411,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1399,27 +1468,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1457,27 +1525,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1515,27 +1582,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1573,27 +1639,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1631,27 +1696,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1689,27 +1753,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1747,27 +1810,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1805,27 +1867,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1883,20 +1944,26 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>None</Style>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
                           </Border>
                           <TopBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </TopBorder>
+                          <BottomBorder>
+                            <Color>Black</Color>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
+                          </BottomBorder>
                           <LeftBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
                           <RightBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
@@ -1929,8 +1996,29 @@
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix5">
@@ -1991,27 +2079,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2049,27 +2136,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2107,27 +2193,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2165,27 +2250,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2223,27 +2307,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2281,27 +2364,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2339,27 +2421,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2397,27 +2478,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2455,27 +2535,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2533,15 +2612,26 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>None</Style>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
                           </Border>
+                          <TopBorder>
+                            <Color>Black</Color>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
+                          </TopBorder>
+                          <BottomBorder>
+                            <Color>Black</Color>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
+                          </BottomBorder>
                           <LeftBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
                           <RightBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
@@ -2574,8 +2664,29 @@
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix6">
@@ -2636,27 +2747,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2694,27 +2804,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2752,27 +2861,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2810,27 +2918,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2868,27 +2975,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2926,27 +3032,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2984,27 +3089,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -3042,27 +3146,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -3100,27 +3203,26 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -3178,20 +3280,26 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>None</Style>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
                           </Border>
+                          <TopBorder>
+                            <Color>Black</Color>
+                            <Style>Solid</Style>
+                            <Width>0.25pt</Width>
+                          </TopBorder>
                           <BottomBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </BottomBorder>
                           <LeftBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
                           <RightBorder>
-                            <Color>LightGrey</Color>
+                            <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
@@ -3224,8 +3332,29 @@
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </RightBorder>
             </Style>
           </Tablix>
         </ReportItems>
@@ -3252,7 +3381,6 @@
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                         <TextDecoration>None</TextDecoration>
-                        <Color>#3d6c9f</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3285,7 +3413,7 @@
                     <TextRun>
                       <Value>Page No.</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3296,7 +3424,7 @@
                     <TextRun>
                       <Value>Printed On</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3307,15 +3435,15 @@
                     <TextRun>
                       <Value>Target Date</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.12497in</Top>
-              <Left>8.62023in</Left>
+              <Top>0.11108in</Top>
+              <Left>8.45443in</Left>
               <Height>0.48961in</Height>
               <Width>0.75in</Width>
               <ZIndex>1</ZIndex>
@@ -3368,8 +3496,8 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.13886in</Top>
-              <Left>9.38412in</Left>
+              <Top>0.12497in</Top>
+              <Left>9.23221in</Left>
               <Height>0.48961in</Height>
               <Width>0.10417in</Width>
               <ZIndex>2</ZIndex>
@@ -3393,7 +3521,7 @@
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3404,7 +3532,7 @@
                     <TextRun>
                       <Value>=Globals!ExecutionTime</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                         <Format>dd/MM/yyyy HH:mm</Format>
                       </Style>
                     </TextRun>
@@ -3416,7 +3544,7 @@
                     <TextRun>
                       <Value>=Fields!Date.Value</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                         <Format>dd/MM/yyyy</Format>
                       </Style>
                     </TextRun>
@@ -3424,8 +3552,8 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.13886in</Top>
-              <Left>9.54384in</Left>
+              <Top>0.11108in</Top>
+              <Left>9.36416in</Left>
               <Height>0.48961in</Height>
               <Width>1.07868in</Width>
               <ZIndex>3</ZIndex>
@@ -3472,6 +3600,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3680,83 +3814,4 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="StoreNo">
-          <DataField>StoreNo</DataField>
-        </Field>
-        <Field Name="Division">
-          <DataField>Division</DataField>
-        </Field>
-        <Field Name="TypeTemp">
-          <DataField>TypeTemp</DataField>
-        </Field>
-        <Field Name="AcvDailyTargetTotal_Data">
-          <DataField>AcvDailyTargetTotal_Data</DataField>
-        </Field>
-        <Field Name="AcvDailyTargetTotal_DataFormat">
-          <DataField>AcvDailyTargetTotal_DataFormat</DataField>
-        </Field>
-        <Field Name="BalanceSaleTarget_Data">
-          <DataField>BalanceSaleTarget_Data</DataField>
-        </Field>
-        <Field Name="BalanceSaleTarget_DataFormat">
-          <DataField>BalanceSaleTarget_DataFormat</DataField>
-        </Field>
-        <Field Name="DailySales_Data">
-          <DataField>DailySales_Data</DataField>
-        </Field>
-        <Field Name="DailySales_DataFormat">
-          <DataField>DailySales_DataFormat</DataField>
-        </Field>
-        <Field Name="DailyTarget_Data">
-          <DataField>DailyTarget_Data</DataField>
-        </Field>
-        <Field Name="DailyTarget_DataFormat">
-          <DataField>DailyTarget_DataFormat</DataField>
-        </Field>
-        <Field Name="DailyTargetTotal_Data">
-          <DataField>DailyTargetTotal_Data</DataField>
-        </Field>
-        <Field Name="DailyTargetTotal_DataFormat">
-          <DataField>DailyTargetTotal_DataFormat</DataField>
-        </Field>
-        <Field Name="LastYearSales_Data">
-          <DataField>LastYearSales_Data</DataField>
-        </Field>
-        <Field Name="LastYearSales_DataFormat">
-          <DataField>LastYearSales_DataFormat</DataField>
-        </Field>
-        <Field Name="MonthlyTarge_Data">
-          <DataField>MonthlyTarge_Data</DataField>
-        </Field>
-        <Field Name="MonthlyTarge_DataFormat">
-          <DataField>MonthlyTarge_DataFormat</DataField>
-        </Field>
-        <Field Name="SalesTotal_Data">
-          <DataField>SalesTotal_Data</DataField>
-        </Field>
-        <Field Name="SalesTotal_DataFormat">
-          <DataField>SalesTotal_DataFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>

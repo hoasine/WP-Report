@@ -11,11 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-<<<<<<< HEAD
-    <am:LastModifiedTimestamp>2025-08-14T10:43:33.2313712Z</am:LastModifiedTimestamp>
-=======
-    <am:LastModifiedTimestamp>2025-08-14T09:46:57.8389806Z</am:LastModifiedTimestamp>
->>>>>>> 8450cfe8ba8265306117c861b67f957ff25dc2ff
+    <am:LastModifiedTimestamp>2025-08-22T03:27:44.4098856Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -28,6 +24,100 @@
       <rd:DataSourceID>545e16f0-3043-41e0-afb4-4f564ac92ed3</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Contract_ID">
+          <DataField>Contract_ID</DataField>
+        </Field>
+        <Field Name="VendorNo">
+          <DataField>VendorNo</DataField>
+        </Field>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
+        </Field>
+        <Field Name="ProductGroupDescription">
+          <DataField>ProductGroupDescription</DataField>
+        </Field>
+        <Field Name="TotalExclTax">
+          <DataField>TotalExclTax</DataField>
+        </Field>
+        <Field Name="TotalExclTaxFormat">
+          <DataField>TotalExclTaxFormat</DataField>
+        </Field>
+        <Field Name="Profit">
+          <DataField>Profit</DataField>
+        </Field>
+        <Field Name="ProfitFormat">
+          <DataField>ProfitFormat</DataField>
+        </Field>
+        <Field Name="TransNo">
+          <DataField>TransNo</DataField>
+        </Field>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+        </Field>
+        <Field Name="Cost">
+          <DataField>Cost</DataField>
+        </Field>
+        <Field Name="CostFormat">
+          <DataField>CostFormat</DataField>
+        </Field>
+        <Field Name="Division">
+          <DataField>Division</DataField>
+        </Field>
+        <Field Name="Area">
+          <DataField>Area</DataField>
+        </Field>
+        <Field Name="AreaFormat">
+          <DataField>AreaFormat</DataField>
+        </Field>
+        <Field Name="ProfitMargin">
+          <DataField>ProfitMargin</DataField>
+        </Field>
+        <Field Name="ProfitMarginFormat">
+          <DataField>ProfitMarginFormat</DataField>
+        </Field>
+        <Field Name="ExpectedGrossProfit">
+          <DataField>ExpectedGrossProfit</DataField>
+        </Field>
+        <Field Name="ExpectedGrossProfitFormat">
+          <DataField>ExpectedGrossProfitFormat</DataField>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+        </Field>
+        <Field Name="SpecialGroupDescription">
+          <DataField>SpecialGroupDescription</DataField>
+        </Field>
+        <Field Name="ItemNo">
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Ratio">
+          <DataField>Ratio</DataField>
+        </Field>
+        <Field Name="RatioFormat">
+          <DataField>RatioFormat</DataField>
+        </Field>
+        <Field Name="ContractName">
+          <DataField>ContractName</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -45,7 +135,7 @@
                   <Width>0.88151in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.09332in</Width>
+                  <Width>0.98915in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.07943in</Width>
@@ -59,7 +149,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.27083in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -75,7 +165,6 @@
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -84,31 +173,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -133,9 +221,8 @@
                                 <TextRun>
                                   <Value>Month</Value>
                                   <Style>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -157,31 +244,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -203,10 +289,9 @@
                                 <TextRun>
                                   <Value>=Fields!Month.Value</Value>
                                   <Style>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>MM/yyyy</Format>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -215,11 +300,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -252,31 +356,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.1cm</PaddingRight>
@@ -309,31 +412,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.1cm</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -358,11 +460,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>SUPPLIER NAME </Value>
+                                  <Value>Supplier Name</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -371,31 +472,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -415,11 +515,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>CLASS</Value>
+                                  <Value>Class</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -428,31 +527,30 @@
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -477,9 +575,8 @@
                                   <Value>Expected 
 Gross Profit</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -488,31 +585,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -532,11 +628,10 @@ Gross Profit</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>PROFIT</Value>
+                                  <Value>Profit</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -545,31 +640,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.075cm</PaddingRight>
@@ -589,11 +683,10 @@ Gross Profit</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>VARIANCE</Value>
+                                  <Value>Variance</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -602,31 +695,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.075cm</PaddingLeft>
                             <PaddingRight>0.1cm</PaddingRight>
@@ -646,11 +738,10 @@ Gross Profit</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>NOTE</Value>
+                                  <Value>Note</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -659,31 +750,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>0.1cm</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -712,7 +802,6 @@ Gross Profit</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -723,31 +812,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#5f90c5</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -771,7 +859,6 @@ Gross Profit</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -782,31 +869,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#5f90c5</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -833,7 +919,6 @@ Gross Profit</Value>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>n0</Format>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -844,31 +929,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#5f90c5</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -893,7 +977,6 @@ Gross Profit</Value>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>n0</Format>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -904,31 +987,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#5f90c5</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -953,7 +1035,6 @@ Gross Profit</Value>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>n0</Format>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -964,31 +1045,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#5f90c5</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Top</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1012,7 +1092,6 @@ Gross Profit</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1023,31 +1102,30 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>#618dbd</BackgroundColor>
+                            <BackgroundColor>Silver</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1085,27 +1163,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1142,27 +1219,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1199,27 +1275,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1256,27 +1331,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1313,27 +1387,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1370,27 +1443,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1427,27 +1499,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1486,27 +1557,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1539,27 +1609,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1593,27 +1662,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1649,27 +1717,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1705,27 +1772,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1768,27 +1834,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1823,27 +1888,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1882,27 +1946,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1935,27 +1998,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -1990,27 +2052,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2047,27 +2108,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2104,27 +2164,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2159,27 +2218,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2214,27 +2272,26 @@ Gross Profit</Value>
                           </Paragraphs>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </Border>
                             <TopBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </TopBorder>
                             <BottomBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </BottomBorder>
                             <LeftBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </LeftBorder>
                             <RightBorder>
-                              <Color>LightGrey</Color>
+                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
@@ -2253,7 +2310,6 @@ Gross Profit</Value>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Rectangle Name="Rectangle1">
                           <ReportItems>
                             <Textbox Name="Textbox165">
@@ -2357,8 +2413,29 @@ Gross Profit</Value>
                           <KeepTogether>true</KeepTogether>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>0.25pt</Width>
+                            </RightBorder>
                           </Style>
                         </Rectangle>
                         <ColSpan>7</ColSpan>
@@ -2414,7 +2491,7 @@ Gross Profit</Value>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>a</Value>
+                                    <Value />
                                     <Style>
                                       <FontSize>7pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
@@ -2427,31 +2504,30 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
-                              <BackgroundColor>#618dbd</BackgroundColor>
+                              <BackgroundColor>Silver</BackgroundColor>
                               <VerticalAlign>Top</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
@@ -2474,11 +2550,10 @@ Gross Profit</Value>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>CONTRACT</Value>
+                                    <Value>Contract</Value>
                                     <Style>
-                                      <FontSize>8pt</FontSize>
+                                      <FontSize>7pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>White</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -2487,31 +2562,30 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
-                              <BackgroundColor>#618dbd</BackgroundColor>
+                              <BackgroundColor>Silver</BackgroundColor>
                               <VerticalAlign>Top</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
@@ -2538,7 +2612,6 @@ Gross Profit</Value>
                                     <Style>
                                       <FontSize>7pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>White</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -2547,31 +2620,30 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
-                              <BackgroundColor>#618dbd</BackgroundColor>
+                              <BackgroundColor>Silver</BackgroundColor>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
                               <PaddingTop>2pt</PaddingTop>
@@ -2608,27 +2680,26 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
@@ -2669,27 +2740,26 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
@@ -2732,27 +2802,26 @@ Gross Profit</Value>
                             </Paragraphs>
                             <Style>
                               <Border>
-                                <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </Border>
                               <TopBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </TopBorder>
                               <BottomBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </BottomBorder>
                               <LeftBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </LeftBorder>
                               <RightBorder>
-                                <Color>LightGrey</Color>
+                                <Color>Black</Color>
                                 <Style>Solid</Style>
                                 <Width>0.25pt</Width>
                               </RightBorder>
@@ -2777,8 +2846,29 @@ Gross Profit</Value>
                             <KeepTogether>true</KeepTogether>
                             <Style>
                               <Border>
-                                <Style>None</Style>
+                                <Style>Solid</Style>
+                                <Width>0.25pt</Width>
                               </Border>
+                              <TopBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>0.25pt</Width>
+                              </TopBorder>
+                              <BottomBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>0.25pt</Width>
+                              </BottomBorder>
+                              <LeftBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>0.25pt</Width>
+                              </LeftBorder>
+                              <RightBorder>
+                                <Color>Black</Color>
+                                <Style>Solid</Style>
+                                <Width>0.25pt</Width>
+                              </RightBorder>
                             </Style>
                           </Rectangle>
                         </CellContents>
@@ -2792,12 +2882,33 @@ Gross Profit</Value>
             <FixedRowHeaders>true</FixedRowHeaders>
             <DataSetName>DataSet_Result</DataSetName>
             <Left>0.07426in</Left>
-            <Height>2.85417in</Height>
-            <Width>9.83227in</Width>
+            <Height>2.875in</Height>
+            <Width>9.7281in</Width>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </RightBorder>
             </Style>
           </Tablix>
           <Textbox Name="Textbox23">
@@ -2840,7 +2951,7 @@ Gross Profit</Value>
       <Width>26.43453cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.54cm</Height>
+          <Height>2.57528cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2848,8 +2959,8 @@ Gross Profit</Value>
               <Source>Embedded</Source>
               <Value>logotaka</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.52954cm</Top>
-              <Left>0.30059cm</Left>
+              <Top>0.93058cm</Top>
+              <Left>0.18863cm</Left>
               <Height>0.72456cm</Height>
               <Width>3.13644cm</Width>
               <Style>
@@ -2870,7 +2981,6 @@ Gross Profit</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
-                        <Color>#607fbe</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2905,7 +3015,6 @@ Gross Profit</Value>
                         <FontSize>7pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                         <Format>g</Format>
-                        <Color>#607fbe</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2914,8 +3023,8 @@ Gross Profit</Value>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.20848in</Top>
-              <Left>22.01259cm</Left>
+              <Top>0.36637in</Top>
+              <Left>21.74801cm</Left>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
               <ZIndex>2</ZIndex>
@@ -2941,6 +3050,12 @@ Gross Profit</Value>
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3149,98 +3264,4 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Contract_ID">
-          <DataField>Contract_ID</DataField>
-        </Field>
-        <Field Name="VendorNo">
-          <DataField>VendorNo</DataField>
-        </Field>
-        <Field Name="VendorName">
-          <DataField>VendorName</DataField>
-        </Field>
-        <Field Name="ProductGroupDescription">
-          <DataField>ProductGroupDescription</DataField>
-        </Field>
-        <Field Name="TotalExclTax">
-          <DataField>TotalExclTax</DataField>
-        </Field>
-        <Field Name="TotalExclTaxFormat">
-          <DataField>TotalExclTaxFormat</DataField>
-        </Field>
-        <Field Name="Profit">
-          <DataField>Profit</DataField>
-        </Field>
-        <Field Name="ProfitFormat">
-          <DataField>ProfitFormat</DataField>
-        </Field>
-        <Field Name="TransNo">
-          <DataField>TransNo</DataField>
-        </Field>
-        <Field Name="Month">
-          <DataField>Month</DataField>
-        </Field>
-        <Field Name="Cost">
-          <DataField>Cost</DataField>
-        </Field>
-        <Field Name="CostFormat">
-          <DataField>CostFormat</DataField>
-        </Field>
-        <Field Name="Division">
-          <DataField>Division</DataField>
-        </Field>
-        <Field Name="Area">
-          <DataField>Area</DataField>
-        </Field>
-        <Field Name="AreaFormat">
-          <DataField>AreaFormat</DataField>
-        </Field>
-        <Field Name="ProfitMargin">
-          <DataField>ProfitMargin</DataField>
-        </Field>
-        <Field Name="ProfitMarginFormat">
-          <DataField>ProfitMarginFormat</DataField>
-        </Field>
-        <Field Name="ExpectedGrossProfit">
-          <DataField>ExpectedGrossProfit</DataField>
-        </Field>
-        <Field Name="ExpectedGrossProfitFormat">
-          <DataField>ExpectedGrossProfitFormat</DataField>
-        </Field>
-        <Field Name="Status">
-          <DataField>Status</DataField>
-        </Field>
-        <Field Name="SpecialGroupDescription">
-          <DataField>SpecialGroupDescription</DataField>
-        </Field>
-        <Field Name="ItemNo">
-          <DataField>ItemNo</DataField>
-        </Field>
-        <Field Name="Ratio">
-          <DataField>Ratio</DataField>
-        </Field>
-        <Field Name="RatioFormat">
-          <DataField>RatioFormat</DataField>
-        </Field>
-        <Field Name="ContractName">
-          <DataField>ContractName</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
