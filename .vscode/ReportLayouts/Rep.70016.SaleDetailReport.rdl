@@ -24,100 +24,6 @@
       <rd:DataSourceID>465cbf45-53e7-4803-b9a7-343da7614357</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Filter">
-          <DataField>Filter</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="Item_Description">
-          <DataField>Item_Description</DataField>
-        </Field>
-        <Field Name="Item__No__">
-          <DataField>Item__No__</DataField>
-        </Field>
-        <Field Name="SaleLCY">
-          <DataField>SaleLCY</DataField>
-        </Field>
-        <Field Name="SaleLCYFormat">
-          <DataField>SaleLCYFormat</DataField>
-        </Field>
-        <Field Name="SaleQTY">
-          <DataField>SaleQTY</DataField>
-        </Field>
-        <Field Name="SaleQTYFormat">
-          <DataField>SaleQTYFormat</DataField>
-        </Field>
-        <Field Name="SaleLCY_Control22">
-          <DataField>SaleLCY_Control22</DataField>
-        </Field>
-        <Field Name="SaleLCY_Control22Format">
-          <DataField>SaleLCY_Control22Format</DataField>
-        </Field>
-        <Field Name="SaleQTY_Control23">
-          <DataField>SaleQTY_Control23</DataField>
-        </Field>
-        <Field Name="SaleQTY_Control23Format">
-          <DataField>SaleQTY_Control23Format</DataField>
-        </Field>
-        <Field Name="Sale_LCYCaption">
-          <DataField>Sale_LCYCaption</DataField>
-        </Field>
-        <Field Name="QtyCaption">
-          <DataField>QtyCaption</DataField>
-        </Field>
-        <Field Name="NameCaption">
-          <DataField>NameCaption</DataField>
-        </Field>
-        <Field Name="Item_numberCaption">
-          <DataField>Item_numberCaption</DataField>
-        </Field>
-        <Field Name="PageCaption">
-          <DataField>PageCaption</DataField>
-        </Field>
-        <Field Name="Sale_by_item_number_sorted_by_dateCaption">
-          <DataField>Sale_by_item_number_sorted_by_dateCaption</DataField>
-        </Field>
-        <Field Name="TotalCaption">
-          <DataField>TotalCaption</DataField>
-        </Field>
-        <Field Name="TotalCaption_Control24">
-          <DataField>TotalCaption_Control24</DataField>
-        </Field>
-        <Field Name="SaleLCY_Control16">
-          <DataField>SaleLCY_Control16</DataField>
-        </Field>
-        <Field Name="SaleLCY_Control16Format">
-          <DataField>SaleLCY_Control16Format</DataField>
-        </Field>
-        <Field Name="SaleQTY_Control17">
-          <DataField>SaleQTY_Control17</DataField>
-        </Field>
-        <Field Name="SaleQTY_Control17Format">
-          <DataField>SaleQTY_Control17Format</DataField>
-        </Field>
-        <Field Name="Date_Date__Period_Start_">
-          <DataField>Date_Date__Period_Start_</DataField>
-        </Field>
-        <Field Name="Date_Period_Type">
-          <DataField>Date_Period_Type</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -3302,12 +3208,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3516,4 +3416,98 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Filter">
+          <DataField>Filter</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="Item_Description">
+          <DataField>Item_Description</DataField>
+        </Field>
+        <Field Name="Item__No__">
+          <DataField>Item__No__</DataField>
+        </Field>
+        <Field Name="SaleLCY">
+          <DataField>SaleLCY</DataField>
+        </Field>
+        <Field Name="SaleLCYFormat">
+          <DataField>SaleLCYFormat</DataField>
+        </Field>
+        <Field Name="SaleQTY">
+          <DataField>SaleQTY</DataField>
+        </Field>
+        <Field Name="SaleQTYFormat">
+          <DataField>SaleQTYFormat</DataField>
+        </Field>
+        <Field Name="SaleLCY_Control22">
+          <DataField>SaleLCY_Control22</DataField>
+        </Field>
+        <Field Name="SaleLCY_Control22Format">
+          <DataField>SaleLCY_Control22Format</DataField>
+        </Field>
+        <Field Name="SaleQTY_Control23">
+          <DataField>SaleQTY_Control23</DataField>
+        </Field>
+        <Field Name="SaleQTY_Control23Format">
+          <DataField>SaleQTY_Control23Format</DataField>
+        </Field>
+        <Field Name="Sale_LCYCaption">
+          <DataField>Sale_LCYCaption</DataField>
+        </Field>
+        <Field Name="QtyCaption">
+          <DataField>QtyCaption</DataField>
+        </Field>
+        <Field Name="NameCaption">
+          <DataField>NameCaption</DataField>
+        </Field>
+        <Field Name="Item_numberCaption">
+          <DataField>Item_numberCaption</DataField>
+        </Field>
+        <Field Name="PageCaption">
+          <DataField>PageCaption</DataField>
+        </Field>
+        <Field Name="Sale_by_item_number_sorted_by_dateCaption">
+          <DataField>Sale_by_item_number_sorted_by_dateCaption</DataField>
+        </Field>
+        <Field Name="TotalCaption">
+          <DataField>TotalCaption</DataField>
+        </Field>
+        <Field Name="TotalCaption_Control24">
+          <DataField>TotalCaption_Control24</DataField>
+        </Field>
+        <Field Name="SaleLCY_Control16">
+          <DataField>SaleLCY_Control16</DataField>
+        </Field>
+        <Field Name="SaleLCY_Control16Format">
+          <DataField>SaleLCY_Control16Format</DataField>
+        </Field>
+        <Field Name="SaleQTY_Control17">
+          <DataField>SaleQTY_Control17</DataField>
+        </Field>
+        <Field Name="SaleQTY_Control17Format">
+          <DataField>SaleQTY_Control17Format</DataField>
+        </Field>
+        <Field Name="Date_Date__Period_Start_">
+          <DataField>Date_Date__Period_Start_</DataField>
+        </Field>
+        <Field Name="Date_Period_Type">
+          <DataField>Date_Period_Type</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>f069131f-7f55-407f-b5c6-51856d1fa48a</rd:ReportID>
@@ -24,67 +24,6 @@
       <rd:DataSourceID>a19cbaec-694f-4d4a-ad1e-aa7992c01c85</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="POS_Terminal__GETFILTER__Store_No___">
-          <DataField>POS_Terminal__GETFILTER__Store_No___</DataField>
-        </Field>
-        <Field Name="POS_Terminal__GETFILTER__No___">
-          <DataField>POS_Terminal__GETFILTER__No___</DataField>
-        </Field>
-        <Field Name="POS_Terminal__GETFILTER__Date_Filter__">
-          <DataField>POS_Terminal__GETFILTER__Date_Filter__</DataField>
-        </Field>
-        <Field Name="POS_Terminal__No__">
-          <DataField>POS_Terminal__No__</DataField>
-        </Field>
-        <Field Name="CountAmount">
-          <DataField>CountAmount</DataField>
-        </Field>
-        <Field Name="CountAmountFormat">
-          <DataField>CountAmountFormat</DataField>
-        </Field>
-        <Field Name="SalesAmt">
-          <DataField>SalesAmt</DataField>
-        </Field>
-        <Field Name="SalesAmtFormat">
-          <DataField>SalesAmtFormat</DataField>
-        </Field>
-        <Field Name="DiffAmount">
-          <DataField>DiffAmount</DataField>
-        </Field>
-        <Field Name="DiffAmountFormat">
-          <DataField>DiffAmountFormat</DataField>
-        </Field>
-        <Field Name="ProfitPercentage">
-          <DataField>ProfitPercentage</DataField>
-        </Field>
-        <Field Name="ProfitPercentageFormat">
-          <DataField>ProfitPercentageFormat</DataField>
-        </Field>
-        <Field Name="Store_No_">
-          <DataField>Store_No_</DataField>
-        </Field>
-        <Field Name="Posted_Date">
-          <DataField>Posted_Date</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1736,12 +1675,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1950,4 +1883,65 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="POS_Terminal__GETFILTER__Store_No___">
+          <DataField>POS_Terminal__GETFILTER__Store_No___</DataField>
+        </Field>
+        <Field Name="POS_Terminal__GETFILTER__No___">
+          <DataField>POS_Terminal__GETFILTER__No___</DataField>
+        </Field>
+        <Field Name="POS_Terminal__GETFILTER__Date_Filter__">
+          <DataField>POS_Terminal__GETFILTER__Date_Filter__</DataField>
+        </Field>
+        <Field Name="POS_Terminal__No__">
+          <DataField>POS_Terminal__No__</DataField>
+        </Field>
+        <Field Name="CountAmount">
+          <DataField>CountAmount</DataField>
+        </Field>
+        <Field Name="CountAmountFormat">
+          <DataField>CountAmountFormat</DataField>
+        </Field>
+        <Field Name="SalesAmt">
+          <DataField>SalesAmt</DataField>
+        </Field>
+        <Field Name="SalesAmtFormat">
+          <DataField>SalesAmtFormat</DataField>
+        </Field>
+        <Field Name="DiffAmount">
+          <DataField>DiffAmount</DataField>
+        </Field>
+        <Field Name="DiffAmountFormat">
+          <DataField>DiffAmountFormat</DataField>
+        </Field>
+        <Field Name="ProfitPercentage">
+          <DataField>ProfitPercentage</DataField>
+        </Field>
+        <Field Name="ProfitPercentageFormat">
+          <DataField>ProfitPercentageFormat</DataField>
+        </Field>
+        <Field Name="Store_No_">
+          <DataField>Store_No_</DataField>
+        </Field>
+        <Field Name="Posted_Date">
+          <DataField>Posted_Date</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

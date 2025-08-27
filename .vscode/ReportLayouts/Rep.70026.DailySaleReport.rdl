@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
+      <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-22T04:09:49.3910693Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-22T10:04:46.3802663Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,85 +24,6 @@
       <rd:DataSourceID>92ed21cd-92df-4c21-8b2b-527f357d98e7</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="StoreNo">
-          <DataField>StoreNo</DataField>
-        </Field>
-        <Field Name="Division">
-          <DataField>Division</DataField>
-        </Field>
-        <Field Name="TypeTemp">
-          <DataField>TypeTemp</DataField>
-        </Field>
-        <Field Name="AcvDailyTargetTotal_Data">
-          <DataField>AcvDailyTargetTotal_Data</DataField>
-        </Field>
-        <Field Name="AcvDailyTargetTotal_DataFormat">
-          <DataField>AcvDailyTargetTotal_DataFormat</DataField>
-        </Field>
-        <Field Name="BalanceSaleTarget_Data">
-          <DataField>BalanceSaleTarget_Data</DataField>
-        </Field>
-        <Field Name="BalanceSaleTarget_DataFormat">
-          <DataField>BalanceSaleTarget_DataFormat</DataField>
-        </Field>
-        <Field Name="DailySales_Data">
-          <DataField>DailySales_Data</DataField>
-        </Field>
-        <Field Name="DailySales_DataFormat">
-          <DataField>DailySales_DataFormat</DataField>
-        </Field>
-        <Field Name="DailyTarget_Data">
-          <DataField>DailyTarget_Data</DataField>
-        </Field>
-        <Field Name="DailyTarget_DataFormat">
-          <DataField>DailyTarget_DataFormat</DataField>
-        </Field>
-        <Field Name="DailyTargetTotal_Data">
-          <DataField>DailyTargetTotal_Data</DataField>
-        </Field>
-        <Field Name="DailyTargetTotal_DataFormat">
-          <DataField>DailyTargetTotal_DataFormat</DataField>
-        </Field>
-        <Field Name="LastYearSales_Data">
-          <DataField>LastYearSales_Data</DataField>
-        </Field>
-        <Field Name="LastYearSales_DataFormat">
-          <DataField>LastYearSales_DataFormat</DataField>
-        </Field>
-        <Field Name="MonthlyTarge_Data">
-          <DataField>MonthlyTarge_Data</DataField>
-        </Field>
-        <Field Name="MonthlyTarge_DataFormat">
-          <DataField>MonthlyTarge_DataFormat</DataField>
-        </Field>
-        <Field Name="SalesTotal_Data">
-          <DataField>SalesTotal_Data</DataField>
-        </Field>
-        <Field Name="SalesTotal_DataFormat">
-          <DataField>SalesTotal_DataFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -140,7 +61,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.12161cm</Height>
+                  <Height>1.10397cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -189,7 +110,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -246,7 +167,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -303,7 +224,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -360,7 +281,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -417,7 +338,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -474,7 +395,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -531,7 +452,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -588,7 +509,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -645,7 +566,7 @@
                               <Style>Solid</Style>
                               <Width>0.25pt</Width>
                             </RightBorder>
-                            <BackgroundColor>Silver</BackgroundColor>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1231,7 +1152,7 @@
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </RightBorder>
-                          <BackgroundColor>Silver</BackgroundColor>
+                          <BackgroundColor>LightGrey</BackgroundColor>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -1322,35 +1243,14 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0.21167cm</Top>
+            <Top>0.17639cm</Top>
             <Left>0.31498cm</Left>
-            <Height>1.72161cm</Height>
+            <Height>1.70397cm</Height>
             <Width>26.28527cm</Width>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix4">
@@ -1681,7 +1581,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!DailyTargetTotal_Data.Value)</Value>
+                                  <Value>=Sum(Fields!AcvDailyTargetTotal_Data.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -1944,29 +1844,18 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
+                            <Style>None</Style>
                           </Border>
                           <TopBorder>
                             <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </TopBorder>
-                          <BottomBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </BottomBorder>
                           <LeftBorder>
                             <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
-                          <RightBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </RightBorder>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -1996,29 +1885,8 @@
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix5">
@@ -2349,7 +2217,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!DailyTargetTotal_Data.Value)</Value>
+                                  <Value>=Sum(Fields!AcvDailyTargetTotal_Data.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -2612,29 +2480,13 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
+                            <Style>None</Style>
                           </Border>
-                          <TopBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </TopBorder>
-                          <BottomBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </BottomBorder>
                           <LeftBorder>
                             <Color>Black</Color>
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
-                          <RightBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </RightBorder>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -2664,29 +2516,8 @@
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
             </Style>
           </Tablix>
           <Tablix Name="Tablix6">
@@ -3017,7 +2848,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!DailyTargetTotal_Data.Value)</Value>
+                                  <Value>=Sum(Fields!AcvDailyTargetTotal_Data.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -3280,14 +3111,8 @@
                         </Paragraphs>
                         <Style>
                           <Border>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
+                            <Style>None</Style>
                           </Border>
-                          <TopBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </TopBorder>
                           <BottomBorder>
                             <Color>Black</Color>
                             <Style>Solid</Style>
@@ -3298,11 +3123,6 @@
                             <Style>Solid</Style>
                             <Width>0.25pt</Width>
                           </LeftBorder>
-                          <RightBorder>
-                            <Color>Black</Color>
-                            <Style>Solid</Style>
-                            <Width>0.25pt</Width>
-                          </RightBorder>
                           <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
@@ -3332,29 +3152,8 @@
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
             </Style>
           </Tablix>
         </ReportItems>
@@ -3389,10 +3188,10 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.29515in</Top>
+              <Top>0.13886in</Top>
               <Left>0.12401in</Left>
-              <Height>0.29165in</Height>
-              <Width>10.49851in</Width>
+              <Height>0.44794in</Height>
+              <Width>10.34853in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3442,8 +3241,8 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.11108in</Top>
-              <Left>8.45443in</Left>
+              <Top>0.12497in</Top>
+              <Left>8.62023in</Left>
               <Height>0.48961in</Height>
               <Width>0.75in</Width>
               <ZIndex>1</ZIndex>
@@ -3467,7 +3266,7 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3478,7 +3277,7 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3489,15 +3288,15 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.12497in</Top>
-              <Left>9.23221in</Left>
+              <Top>0.13886in</Top>
+              <Left>9.38412in</Left>
               <Height>0.48961in</Height>
               <Width>0.10417in</Width>
               <ZIndex>2</ZIndex>
@@ -3552,10 +3351,10 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.11108in</Top>
-              <Left>9.36416in</Left>
+              <Top>0.13886in</Top>
+              <Left>9.54384in</Left>
               <Height>0.48961in</Height>
-              <Width>1.07868in</Width>
+              <Width>0.9287in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -3571,7 +3370,7 @@
               <Source>Embedded</Source>
               <Value>logotaka</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.69607cm</Top>
+              <Top>0.3527cm</Top>
               <Left>0.31498cm</Left>
               <Height>0.68861cm</Height>
               <Width>4.10285cm</Width>
@@ -3600,12 +3399,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3814,4 +3607,83 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="StoreNo">
+          <DataField>StoreNo</DataField>
+        </Field>
+        <Field Name="Division">
+          <DataField>Division</DataField>
+        </Field>
+        <Field Name="TypeTemp">
+          <DataField>TypeTemp</DataField>
+        </Field>
+        <Field Name="AcvDailyTargetTotal_Data">
+          <DataField>AcvDailyTargetTotal_Data</DataField>
+        </Field>
+        <Field Name="AcvDailyTargetTotal_DataFormat">
+          <DataField>AcvDailyTargetTotal_DataFormat</DataField>
+        </Field>
+        <Field Name="BalanceSaleTarget_Data">
+          <DataField>BalanceSaleTarget_Data</DataField>
+        </Field>
+        <Field Name="BalanceSaleTarget_DataFormat">
+          <DataField>BalanceSaleTarget_DataFormat</DataField>
+        </Field>
+        <Field Name="DailySales_Data">
+          <DataField>DailySales_Data</DataField>
+        </Field>
+        <Field Name="DailySales_DataFormat">
+          <DataField>DailySales_DataFormat</DataField>
+        </Field>
+        <Field Name="DailyTarget_Data">
+          <DataField>DailyTarget_Data</DataField>
+        </Field>
+        <Field Name="DailyTarget_DataFormat">
+          <DataField>DailyTarget_DataFormat</DataField>
+        </Field>
+        <Field Name="DailyTargetTotal_Data">
+          <DataField>DailyTargetTotal_Data</DataField>
+        </Field>
+        <Field Name="DailyTargetTotal_DataFormat">
+          <DataField>DailyTargetTotal_DataFormat</DataField>
+        </Field>
+        <Field Name="LastYearSales_Data">
+          <DataField>LastYearSales_Data</DataField>
+        </Field>
+        <Field Name="LastYearSales_DataFormat">
+          <DataField>LastYearSales_DataFormat</DataField>
+        </Field>
+        <Field Name="MonthlyTarge_Data">
+          <DataField>MonthlyTarge_Data</DataField>
+        </Field>
+        <Field Name="MonthlyTarge_DataFormat">
+          <DataField>MonthlyTarge_DataFormat</DataField>
+        </Field>
+        <Field Name="SalesTotal_Data">
+          <DataField>SalesTotal_Data</DataField>
+        </Field>
+        <Field Name="SalesTotal_DataFormat">
+          <DataField>SalesTotal_DataFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

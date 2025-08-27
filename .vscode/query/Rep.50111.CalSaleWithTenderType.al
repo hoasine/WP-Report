@@ -4,7 +4,8 @@ query 50111 "CalSaleWithTenderTypeMember"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(<> ''), "Transaction Type" = const(2);
+            DataItemTableFilter = "Member Card No." = filter(<> ''), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            ;
             filter(TH_DateFilter; Date)
             {
             }
@@ -39,7 +40,8 @@ query 50112 "CalSaleWithTenderTypeNonMember"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2);
+            DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            ;
 
             filter(TH_DateFilter; Date)
             {

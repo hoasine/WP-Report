@@ -36,6 +36,8 @@ report 70030 "DailySaleReportforMgt"
                 quDailyMgtCustomer: Query "QueCustumerReportCount";
                 tbBudget: Record "wp Import Budget. Data";
                 StartDate: Date;
+
+                LastReceipt: text;
             begin
                 clear(Budget);
                 clear(variance);
@@ -60,12 +62,17 @@ report 70030 "DailySaleReportforMgt"
                 DayText := GetDayName(Date2DWY(DayDate, 1));
                 MonthText := FORMAT(DayDate, 0, '<Month Text>');
 
+                customers := 0;
+                LastReceipt := '';
                 Clear(quDailyMgtCustomer);
                 quDailyMgtCustomer.SetRange(TH_DateFilter, DayDate);
-                if StoreFilter <> '' then quDailySaleReportMgt.SetFilter(TH_StoreFilter, StoreFilter);
+                if StoreFilter <> '' then quDailyMgtCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 quDailyMgtCustomer.Open;
                 while quDailyMgtCustomer.Read do begin
-                    customers += quDailyMgtCustomer.TSE_Quantity_Custumer;
+                    if (quDailyMgtCustomer.Receipt_No_ <> LastReceipt) then begin
+                        customers += 1;
+                        LastReceipt := quDailyMgtCustomer.Receipt_No_;
+                    end;
                 end;
 
                 Clear(tbBudget);

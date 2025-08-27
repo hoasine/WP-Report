@@ -409,6 +409,10 @@ report 70015 "MGP Monthly Master Report"
         BE2: Record "Cons Billing Entries Report";
         ConsContract: Record "WP Consignment Contracts";
         nextlineno: Integer;
+
+        Window: Dialog;
+        TotalTrans: Integer;
+        Counter: Integer;
     begin
         clear(be);
         be.DeleteAll();
@@ -418,6 +422,10 @@ report 70015 "MGP Monthly Master Report"
             ERROR('The report couldn’t be generated, because it was empty. Input data for the Period field.');
 
         ParseDateRange(DateFilter, StartDate, EndDate);
+
+        Window.Open(
+                 'Number of Transactions #1###########\' +
+                 'Processed              #2###########');
 
         Clear(CEHeader);
         CEHeader.SetRange("Status", CEHeader.Status::Posted);
@@ -430,9 +438,13 @@ report 70015 "MGP Monthly Master Report"
                 ce.SetRange("Billing Period ID", CEHeader."Billing Period ID");
                 if ProductGroupFilter <> '' then ce.SetRange("Product Group", ProductGroupFilter);
                 if DivisionFilter <> '' then ce.SetRange("Division", DivisionFilter);
+                Window.Update(1, ce.Count);
+                Counter := 0;
                 if ce.FindSet() then begin
                     repeat
-
+                        Counter += 1;
+                        if (Counter mod 100) = 0 then
+                            Window.Update(2, Counter);
 
                         cleaR(be);
                         be.setrange("Store No.", ce."Store No.");

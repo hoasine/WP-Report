@@ -24,64 +24,6 @@
       <rd:DataSourceID>10f56a49-09b5-4ad3-ae5d-19ea2899d41d</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Store">
-          <DataField>Store</DataField>
-        </Field>
-        <Field Name="Division">
-          <DataField>Division</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="Time">
-          <DataField>Time</DataField>
-        </Field>
-        <Field Name="Customer">
-          <DataField>Customer</DataField>
-        </Field>
-        <Field Name="Sale">
-          <DataField>Sale</DataField>
-        </Field>
-        <Field Name="SaleFormat">
-          <DataField>SaleFormat</DataField>
-        </Field>
-        <Field Name="Budget">
-          <DataField>Budget</DataField>
-        </Field>
-        <Field Name="BudgetFormat">
-          <DataField>BudgetFormat</DataField>
-        </Field>
-        <Field Name="DateFilter">
-          <DataField>DateFilter</DataField>
-        </Field>
-        <Field Name="SalevsBudget">
-          <DataField>SalevsBudget</DataField>
-        </Field>
-        <Field Name="SalevsBudgetFormat">
-          <DataField>SalevsBudgetFormat</DataField>
-        </Field>
-        <Field Name="AmountCongDon">
-          <DataField>AmountCongDon</DataField>
-        </Field>
-        <Field Name="AmountCongDonFormat">
-          <DataField>AmountCongDonFormat</DataField>
-        </Field>
-        <Field Name="BudgetTotal">
-          <DataField>BudgetTotal</DataField>
-        </Field>
-        <Field Name="BudgetTotalFormat">
-          <DataField>BudgetTotalFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -2554,12 +2496,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -2857,4 +2793,62 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Store">
+          <DataField>Store</DataField>
+        </Field>
+        <Field Name="Division">
+          <DataField>Division</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="Time">
+          <DataField>Time</DataField>
+        </Field>
+        <Field Name="Customer">
+          <DataField>Customer</DataField>
+        </Field>
+        <Field Name="Sale">
+          <DataField>Sale</DataField>
+        </Field>
+        <Field Name="SaleFormat">
+          <DataField>SaleFormat</DataField>
+        </Field>
+        <Field Name="Budget">
+          <DataField>Budget</DataField>
+        </Field>
+        <Field Name="BudgetFormat">
+          <DataField>BudgetFormat</DataField>
+        </Field>
+        <Field Name="DateFilter">
+          <DataField>DateFilter</DataField>
+        </Field>
+        <Field Name="SalevsBudget">
+          <DataField>SalevsBudget</DataField>
+        </Field>
+        <Field Name="SalevsBudgetFormat">
+          <DataField>SalevsBudgetFormat</DataField>
+        </Field>
+        <Field Name="AmountCongDon">
+          <DataField>AmountCongDon</DataField>
+        </Field>
+        <Field Name="AmountCongDonFormat">
+          <DataField>AmountCongDonFormat</DataField>
+        </Field>
+        <Field Name="BudgetTotal">
+          <DataField>BudgetTotal</DataField>
+        </Field>
+        <Field Name="BudgetTotalFormat">
+          <DataField>BudgetTotalFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

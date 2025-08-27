@@ -382,7 +382,7 @@ report 70014 "HourlySaleReport"
     var
         TransHeader: Record "LSC Transaction Header";
         tbTransSale: Record "LSC Trans. Sales Entry";
-        querSale: Query "Querry LSC Sale Total";
+        querSale: Query "QueDailySaleReport";
         tbDivision: Record "LSC Division";
 
         //DivisionInt: Integer;

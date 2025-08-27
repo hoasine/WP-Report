@@ -4,8 +4,7 @@ query 50120 "QueCheckConsignment"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Transaction Type" = const(2);
-
+            DataItemTableFilter = "Transaction Type" = const(2), "Entry Status" = filter('<>2');
 
             filter(TH_DateFilter; Date)
             {
@@ -20,6 +19,8 @@ query 50120 "QueCheckConsignment"
             {
                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
                 SqlJoinType = InnerJoin;
+                DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
+
                 filter(TSE_DivisonFilter; "Division Code")
                 {
                 }

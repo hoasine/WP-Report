@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
@@ -24,118 +24,6 @@
       <rd:DataSourceID>483240a3-a554-46f0-949c-7e1f943c87dd</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-        </Field>
-        <Field Name="CustomerUnitAggregate_tbResuft">
-          <DataField>CustomerUnitAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="CustomerUnitAggregate_tbResuftFormat">
-          <DataField>CustomerUnitAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="CustomersAggregate_tbResuft">
-          <DataField>CustomersAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="CustomersAggregate_tbResuftFormat">
-          <DataField>CustomersAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="DiscountAggregate_tbResuft">
-          <DataField>DiscountAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="DiscountAggregate_tbResuftFormat">
-          <DataField>DiscountAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GPRatioAggregate_tbResuft">
-          <DataField>GPRatioAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="GPRatioAggregate_tbResuftFormat">
-          <DataField>GPRatioAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GPRatioPSConsignment_tbResuft">
-          <DataField>GPRatioPSConsignment_tbResuft</DataField>
-        </Field>
-        <Field Name="GPRatioPSConsignment_tbResuftFormat">
-          <DataField>GPRatioPSConsignment_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GPRatioPSPurchase_tbResuft">
-          <DataField>GPRatioPSPurchase_tbResuft</DataField>
-        </Field>
-        <Field Name="GPRatioPSPurchase_tbResuftFormat">
-          <DataField>GPRatioPSPurchase_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GrossProfitAggregate_tbResuft">
-          <DataField>GrossProfitAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="GrossProfitAggregate_tbResuftFormat">
-          <DataField>GrossProfitAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GrossProfitPSConsignment_tbResuft">
-          <DataField>GrossProfitPSConsignment_tbResuft</DataField>
-        </Field>
-        <Field Name="GrossProfitPSConsignment_tbResuftFormat">
-          <DataField>GrossProfitPSConsignment_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="GrossProfitPSPurchase_tbResuft">
-          <DataField>GrossProfitPSPurchase_tbResuft</DataField>
-        </Field>
-        <Field Name="GrossProfitPSPurchase_tbResuftFormat">
-          <DataField>GrossProfitPSPurchase_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="QuantityAggregate_tbResuft">
-          <DataField>QuantityAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="QuantityAggregate_tbResuftFormat">
-          <DataField>QuantityAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="SalesCostAggregate_tbResuft">
-          <DataField>SalesCostAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="SalesCostAggregate_tbResuftFormat">
-          <DataField>SalesCostAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="SalesPriceAggregate_tbResuft">
-          <DataField>SalesPriceAggregate_tbResuft</DataField>
-        </Field>
-        <Field Name="SalesPriceAggregate_tbResuftFormat">
-          <DataField>SalesPriceAggregate_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="SalesPricePSConsignment_tbResuft">
-          <DataField>SalesPricePSConsignment_tbResuft</DataField>
-        </Field>
-        <Field Name="SalesPricePSConsignment_tbResuftFormat">
-          <DataField>SalesPricePSConsignment_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="SalesPricePSPurchase_tbResuft">
-          <DataField>SalesPricePSPurchase_tbResuft</DataField>
-        </Field>
-        <Field Name="SalesPricePSPurchase_tbResuftFormat">
-          <DataField>SalesPricePSPurchase_tbResuftFormat</DataField>
-        </Field>
-        <Field Name="SystemCreatedAt_tbResuft">
-          <DataField>SystemCreatedAt_tbResuft</DataField>
-        </Field>
-        <Field Name="SystemCreatedBy_tbResuft">
-          <DataField>SystemCreatedBy_tbResuft</DataField>
-        </Field>
-        <Field Name="SystemId_tbResuft">
-          <DataField>SystemId_tbResuft</DataField>
-        </Field>
-        <Field Name="SystemModifiedAt_tbResuft">
-          <DataField>SystemModifiedAt_tbResuft</DataField>
-        </Field>
-        <Field Name="SystemModifiedBy_tbResuft">
-          <DataField>SystemModifiedBy_tbResuft</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1332,12 +1220,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1375,4 +1257,116 @@ End Function
 </Code>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="CustomerUnitAggregate_tbResuft">
+          <DataField>CustomerUnitAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="CustomerUnitAggregate_tbResuftFormat">
+          <DataField>CustomerUnitAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="CustomersAggregate_tbResuft">
+          <DataField>CustomersAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="CustomersAggregate_tbResuftFormat">
+          <DataField>CustomersAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="DiscountAggregate_tbResuft">
+          <DataField>DiscountAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="DiscountAggregate_tbResuftFormat">
+          <DataField>DiscountAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GPRatioAggregate_tbResuft">
+          <DataField>GPRatioAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="GPRatioAggregate_tbResuftFormat">
+          <DataField>GPRatioAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GPRatioPSConsignment_tbResuft">
+          <DataField>GPRatioPSConsignment_tbResuft</DataField>
+        </Field>
+        <Field Name="GPRatioPSConsignment_tbResuftFormat">
+          <DataField>GPRatioPSConsignment_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GPRatioPSPurchase_tbResuft">
+          <DataField>GPRatioPSPurchase_tbResuft</DataField>
+        </Field>
+        <Field Name="GPRatioPSPurchase_tbResuftFormat">
+          <DataField>GPRatioPSPurchase_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GrossProfitAggregate_tbResuft">
+          <DataField>GrossProfitAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="GrossProfitAggregate_tbResuftFormat">
+          <DataField>GrossProfitAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GrossProfitPSConsignment_tbResuft">
+          <DataField>GrossProfitPSConsignment_tbResuft</DataField>
+        </Field>
+        <Field Name="GrossProfitPSConsignment_tbResuftFormat">
+          <DataField>GrossProfitPSConsignment_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="GrossProfitPSPurchase_tbResuft">
+          <DataField>GrossProfitPSPurchase_tbResuft</DataField>
+        </Field>
+        <Field Name="GrossProfitPSPurchase_tbResuftFormat">
+          <DataField>GrossProfitPSPurchase_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="QuantityAggregate_tbResuft">
+          <DataField>QuantityAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="QuantityAggregate_tbResuftFormat">
+          <DataField>QuantityAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="SalesCostAggregate_tbResuft">
+          <DataField>SalesCostAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="SalesCostAggregate_tbResuftFormat">
+          <DataField>SalesCostAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="SalesPriceAggregate_tbResuft">
+          <DataField>SalesPriceAggregate_tbResuft</DataField>
+        </Field>
+        <Field Name="SalesPriceAggregate_tbResuftFormat">
+          <DataField>SalesPriceAggregate_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="SalesPricePSConsignment_tbResuft">
+          <DataField>SalesPricePSConsignment_tbResuft</DataField>
+        </Field>
+        <Field Name="SalesPricePSConsignment_tbResuftFormat">
+          <DataField>SalesPricePSConsignment_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="SalesPricePSPurchase_tbResuft">
+          <DataField>SalesPricePSPurchase_tbResuft</DataField>
+        </Field>
+        <Field Name="SalesPricePSPurchase_tbResuftFormat">
+          <DataField>SalesPricePSPurchase_tbResuftFormat</DataField>
+        </Field>
+        <Field Name="SystemCreatedAt_tbResuft">
+          <DataField>SystemCreatedAt_tbResuft</DataField>
+        </Field>
+        <Field Name="SystemCreatedBy_tbResuft">
+          <DataField>SystemCreatedBy_tbResuft</DataField>
+        </Field>
+        <Field Name="SystemId_tbResuft">
+          <DataField>SystemId_tbResuft</DataField>
+        </Field>
+        <Field Name="SystemModifiedAt_tbResuft">
+          <DataField>SystemModifiedAt_tbResuft</DataField>
+        </Field>
+        <Field Name="SystemModifiedBy_tbResuft">
+          <DataField>SystemModifiedBy_tbResuft</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

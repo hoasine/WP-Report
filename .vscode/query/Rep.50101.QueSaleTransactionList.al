@@ -4,7 +4,8 @@ query 50102 "QueSaleProduct"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2);
+            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            ;
 
             filter(TH_DateFilter; Date)
             {
@@ -33,6 +34,8 @@ query 50102 "QueSaleProduct"
             dataitem(trans; "LSC Trans. Sales Entry")
             {
                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
+                DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
+
                 SqlJoinType = InnerJoin;
 
                 column(SumNetAmount; "Net Amount")
@@ -70,7 +73,7 @@ query 50101 "QueSaleTransactionList"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2);
+            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
 
             filter(TH_DateFilter; Date)
             {
@@ -129,7 +132,8 @@ query 50103 "QueSaleTransCancel"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2);
+            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            ;
 
             filter(TH_DateFilter; Date)
             {
@@ -170,7 +174,7 @@ query 50104 "QueSaleTransCancelDepUnused"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2);
+            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
 
             filter(TH_DateFilter; Date)
             {

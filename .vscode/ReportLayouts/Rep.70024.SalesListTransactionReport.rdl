@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
+      <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-22T03:56:49.4102092Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-26T03:21:32.9892063Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,58 +24,6 @@
       <rd:DataSourceID>f36d6b03-2ab8-4706-adea-44380082abdf</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="FORMAT_TODAY_0_4_">
-          <DataField>FORMAT_TODAY_0_4_</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="USERID">
-          <DataField>USERID</DataField>
-        </Field>
-        <Field Name="Item">
-          <DataField>Item</DataField>
-        </Field>
-        <Field Name="Qty">
-          <DataField>Qty</DataField>
-        </Field>
-        <Field Name="QtyFormat">
-          <DataField>QtyFormat</DataField>
-        </Field>
-        <Field Name="STT">
-          <DataField>STT</DataField>
-        </Field>
-        <Field Name="STTFormat">
-          <DataField>STTFormat</DataField>
-        </Field>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="DateFormatText">
-          <DataField>DateFormatText</DataField>
-        </Field>
-        <Field Name="StoreNo">
-          <DataField>StoreNo</DataField>
-        </Field>
-        <Field Name="Posterminal">
-          <DataField>Posterminal</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -810,8 +758,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0.06944in</Top>
-            <Left>0.80506in</Left>
+            <Top>0.04167in</Top>
+            <Left>0.83979in</Left>
             <Height>0.81955in</Height>
             <Width>6.65447in</Width>
             <Style>
@@ -845,10 +793,10 @@
         <Height>8.28145cm</Height>
         <Style />
       </Body>
-      <Width>20.97016cm</Width>
+      <Width>20.80534cm</Width>
       <Page>
         <PageHeader>
-          <Height>3.11325cm</Height>
+          <Height>3.06698cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -856,8 +804,8 @@
               <Source>Embedded</Source>
               <Value>logotaka</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.79408cm</Top>
-              <Left>0.78186cm</Left>
+              <Top>1.08642cm</Top>
+              <Left>0.54555cm</Left>
               <Height>0.68861cm</Height>
               <Width>4.45712cm</Width>
               <Style>
@@ -874,7 +822,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Sales List Transaction Report</Value>
+                      <Value>SALES LIST TRANSACTION REPORT</Value>
                       <Style>
                         <FontSize>13pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -887,14 +835,15 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.82312in</Top>
-              <Height>0.25in</Height>
-              <Width>8.25597in</Width>
+              <Top>0.42773in</Top>
+              <Height>0.75196in</Height>
+              <Width>8.17264in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -940,10 +889,10 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.59621in</Top>
-              <Left>6.5012in</Left>
-              <Height>0.49727in</Height>
-              <Width>0.69445in</Width>
+              <Top>0.42773in</Top>
+              <Left>6.53591in</Left>
+              <Height>0.41299in</Height>
+              <Width>0.63195in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -965,7 +914,7 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -976,7 +925,7 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -987,16 +936,16 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.59621in</Top>
-              <Left>7.22342in</Left>
-              <Height>0.51763in</Height>
+              <Top>0.42773in</Top>
+              <Left>7.18175in</Left>
+              <Height>0.41299in</Height>
               <Width>0.10417in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -1050,9 +999,9 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.59621in</Top>
-              <Left>7.38314in</Left>
-              <Height>0.51763in</Height>
+              <Top>0.42773in</Top>
+              <Left>7.29981in</Left>
+              <Height>0.3991in</Height>
               <Width>0.87283in</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -1084,7 +1033,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Pos terminal</Value>
+                      <Value>Pos Terminal</Value>
                       <Style>
                         <FontSize>7pt</FontSize>
                       </Style>
@@ -1093,10 +1042,10 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.63929in</Top>
-              <Left>0.30782in</Left>
-              <Height>0.39311in</Height>
-              <Width>0.69445in</Width>
+              <Top>0.90702in</Top>
+              <Left>0.83979in</Left>
+              <Height>0.28894in</Height>
+              <Width>0.6389in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1118,7 +1067,7 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1129,16 +1078,16 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.63929in</Top>
-              <Left>1.01616in</Left>
-              <Height>0.41347in</Height>
+              <Top>0.91853in</Top>
+              <Left>1.4648in</Left>
+              <Height>0.28894in</Height>
               <Width>0.10417in</Width>
               <ZIndex>6</ZIndex>
               <Style>
@@ -1179,9 +1128,9 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.63929in</Top>
-              <Left>1.18976in</Left>
-              <Height>0.41347in</Height>
+              <Top>0.91853in</Top>
+              <Left>1.58286in</Left>
+              <Height>0.28894in</Height>
               <Width>0.87283in</Width>
               <ZIndex>7</ZIndex>
               <Style>
@@ -1212,12 +1161,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1426,4 +1369,56 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Item">
+          <DataField>Item</DataField>
+        </Field>
+        <Field Name="Qty">
+          <DataField>Qty</DataField>
+        </Field>
+        <Field Name="QtyFormat">
+          <DataField>QtyFormat</DataField>
+        </Field>
+        <Field Name="STT">
+          <DataField>STT</DataField>
+        </Field>
+        <Field Name="STTFormat">
+          <DataField>STTFormat</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="DateFormatText">
+          <DataField>DateFormatText</DataField>
+        </Field>
+        <Field Name="StoreNo">
+          <DataField>StoreNo</DataField>
+        </Field>
+        <Field Name="Posterminal">
+          <DataField>Posterminal</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

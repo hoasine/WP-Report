@@ -4,7 +4,8 @@ query 50117 "QueDailySaleReport"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Transaction Type" = const(2);
+            DataItemTableFilter = "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            ;
 
 
             filter(TH_DateFilter; Date)
@@ -20,10 +21,15 @@ query 50117 "QueDailySaleReport"
             {
                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
                 SqlJoinType = InnerJoin;
+                DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
+
                 filter(TSE_DivisonFilter; "Division Code")
                 {
                 }
                 filter(TSE_ProductGroupFilter; "Retail Product Code")
+                {
+                }
+                filter(TSE_CategoryFilter; "Item Category Code")
                 {
                 }
                 column(TSE_Total_Amount; "Net Amount")
@@ -51,39 +57,84 @@ query 50117 "QueDailySaleReport"
     }
 }
 
+
+// query 50118 "QueCustumerReportCount"
+// {
+//     elements
+//     {
+//         dataitem(Transaction_Header; "LSC Transaction Header")
+//         {
+//             // DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2);
+//             DataItemTableFilter = "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+
+//             filter(TH_DateFilter; Date)
+//             {
+//             }
+//             filter(TH_StoreFilter; "Store No.")
+//             {
+//             }
+//             filter(PosterminalFilter; "POS Terminal No.")
+//             {
+//             }
+//             column(TSE_Quantity_Custumer)
+//             {
+//                 Method = Count;
+//             }
+//             dataitem(PaymentValue; "LSC Trans. Sales Entry")
+//             {
+//                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
+//                 SqlJoinType = InnerJoin;
+//                 DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
+
+//                 filter(TSE_DivisonFilter; "Division Code")
+//                 {
+//                 }
+//                 filter(TSE_ProductGroupFilter; "Retail Product Code")
+//                 {
+//                 }
+//                 dataitem(itemsDetail; "Item")
+//                 {
+//                     DataItemLink = "No." = PaymentValue."Item No.";
+//                     SqlJoinType = InnerJoin;
+
+//                     filter(TSE_SpecialGroupFilter; "LSC Special Group Code")
+//                     {
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
 query 50118 "QueCustumerReportCount"
 {
     elements
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            // DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2);
-            DataItemTableFilter = "Transaction Type" = const(2);
+            DataItemTableFilter =
+                "Transaction Type" = const(2),
+                "Entry Status" = filter('<>2');
 
-            filter(TH_DateFilter; Date)
+            filter(TH_DateFilter; Date) { }
+            filter(TH_StoreFilter; "Store No.") { }
+            filter(PosterminalFilter; "POS Terminal No.") { }
+            column(Receipt_No_; "Receipt No.")
             {
-            }
-            filter(TH_StoreFilter; "Store No.")
-            {
-            }
-            filter(PosterminalFilter; "POS Terminal No.")
-            {
-            }
-            column(TSE_Quantity_Custumer)
-            {
-                Method = Count;
             }
             dataitem(PaymentValue; "LSC Trans. Sales Entry")
             {
-                DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
+                DataItemLink =
+                    "Transaction No." = Transaction_Header."Transaction No.",
+                    "Store No." = Transaction_Header."Store No.",
+                    "POS Terminal No." = Transaction_Header."POS Terminal No.";
                 SqlJoinType = InnerJoin;
+                DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
 
-                filter(TSE_DivisonFilter; "Division Code")
-                {
-                }
-                filter(TSE_ProductGroupFilter; "Retail Product Code")
-                {
-                }
+                filter(TSE_DivisionFilter; "Division Code") { }
+                filter(TSE_ProductGroupFilter; "Retail Product Code") { }
+                filter(TSE_CategoryFilter; "Item Category Code") { }
                 dataitem(itemsDetail; "Item")
                 {
                     DataItemLink = "No." = PaymentValue."Item No.";
@@ -100,15 +151,12 @@ query 50118 "QueCustumerReportCount"
 
 
 
-
 query 50119 "QuerrySaleWithPayment"
 {
     elements
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            // DataItemTableFilter = "Transaction Type" = const(2);
-
             filter(TH_TransTypeFilter; "Transaction Type")
             {
             }

@@ -143,6 +143,18 @@ report 70018 "Credit Fee Detail"
                     {
                         TableRelation = "LSC POS Terminal"."No.";
                     }
+                    field("Division"; DivisionFilter)
+                    {
+                        TableRelation = "LSC Division";
+                    }
+                    field("Special Groups (Brand)"; SpecialGroupFilter)
+                    {
+                        TableRelation = "LSC Item Special Groups";
+                    }
+                    field("Product Group (Class)"; ProductGroupFilter)
+                    {
+                        TableRelation = "LSC Retail Product Group"."Code";
+                    }
                     field("Trans"; TransactionFilter)
                     {
 
@@ -177,12 +189,14 @@ report 70018 "Credit Fee Detail"
         totalAmount: Decimal;
         TransSaleEntry: Record "LSC Trans. Sales Entry";
         TransSaleEntryReturn: Record "LSC Trans. Sales Entry";
+        tbItem: Record "Item";
         nextlineno: Integer;
         tenderTypeSetup: Record "LSC Tender Type Setup";
         AmountTenderTotal: Decimal;
         tenderTypeList: Text[200];
         CheckReturnAmount: Decimal;
         CheckReturnCREDIT: Decimal;
+        Isfilter: Boolean;
     begin
         DateTarget := ParseDateRangeOfFilter(DateFilter);
         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
@@ -208,131 +222,146 @@ report 70018 "Credit Fee Detail"
         if StoreFilter <> '' then TransSaleEntry.SetRange("Store No.", StoreFilter);
         if PosterminalFilter <> '' then TransSaleEntry.SetRange("POS Terminal No.", PosterminalFilter);
         if TransactionFilter > 0 then TransSaleEntry.SetRange("Transaction No.", TransactionFilter);
+        if ProductGroupFilter <> '' then TransSaleEntry.SetRange("Retail Product Code", ProductGroupFilter);
+        if DivisionFilter <> '' then TransSaleEntry.SetRange("Division Code", DivisionFilter);
         if TransSaleEntry.FindSet() then begin
             repeat
-                clear(CreditFeeDetail);
+                //Check brand(Special Group)
+                if SpecialGroupFilter <> '' then begin
+                    Clear(tbItem);
+                    tbItem.SetRange("No.", TransSaleEntry."Item No.");
+                    if tbItem.FindFirst() then begin
+                        if tbItem."LSC Special Group Code" = SpecialGroupFilter then
+                            Isfilter := true else
+                            Isfilter := false;
+                    end;
+                end;
 
-                Clear(transPayment);
-                transPayment.SetRange("Receipt No.", TransSaleEntry."Receipt No.");
-                transPayment.SetRange("POS Terminal No.", TransSaleEntry."POS Terminal No.");
-                transPayment.SetRange("Store No.", TransSaleEntry."Store No.");
-                transPayment.SetRange("Transaction No.", TransSaleEntry."Transaction No.");
-                transPayment.SetFilter("Tender Type", tenderTypeList);
-                transPayment.CalcSums("Amount Tendered");
-                AmountTenderTotal := transPayment."Amount Tendered";
+                if Isfilter = true then begin
+                    clear(CreditFeeDetail);
 
-                if transPayment.FindFirst() then begin
-                    //Phieu goc
-                    Clear(transHeader);
-                    transHeader.SetRange("Receipt No.", TransSaleEntry."Receipt No.");
-                    transHeader.SetRange("POS Terminal No.", TransSaleEntry."POS Terminal No.");
-                    transHeader.SetRange("Store No.", TransSaleEntry."Store No.");
-                    transHeader.SetRange("Transaction No.", TransSaleEntry."Transaction No.");
-                    if transHeader.FindFirst() then
-                        totalAmount := transHeader.Payment - transHeader."Discount Amount";
+                    Clear(transPayment);
+                    transPayment.SetRange("Receipt No.", TransSaleEntry."Receipt No.");
+                    transPayment.SetRange("POS Terminal No.", TransSaleEntry."POS Terminal No.");
+                    transPayment.SetRange("Store No.", TransSaleEntry."Store No.");
+                    transPayment.SetRange("Transaction No.", TransSaleEntry."Transaction No.");
+                    transPayment.SetFilter("Tender Type", tenderTypeList);
+                    transPayment.CalcSums("Amount Tendered");
+                    AmountTenderTotal := transPayment."Amount Tendered";
 
-                    if totalAmount > 0 then begin
-                        nextlineno := nextlineno + 1;
+                    if transPayment.FindFirst() then begin
+                        //Phieu goc
+                        Clear(transHeader);
+                        transHeader.SetRange("Receipt No.", TransSaleEntry."Receipt No.");
+                        transHeader.SetRange("POS Terminal No.", TransSaleEntry."POS Terminal No.");
+                        transHeader.SetRange("Store No.", TransSaleEntry."Store No.");
+                        transHeader.SetRange("Transaction No.", TransSaleEntry."Transaction No.");
+                        if transHeader.FindFirst() then
+                            totalAmount := transHeader.Payment - transHeader."Discount Amount";
 
-                        CreditFeeDetail.CRPAYMENT := ((-TransSaleEntry."Total Rounded Amt." - TransSaleEntry."Discount Amount") / totalAmount) * AmountTenderTotal;
-                        CheckReturnAmount := CreditFeeDetail.CRPAYMENT;
+                        if totalAmount > 0 then begin
+                            nextlineno := nextlineno + 1;
 
-                        CreditFeeDetail."POS Terminal No." := TransSaleEntry."POS Terminal No.";
-                        CreditFeeDetail."Date" := FORMAT(TransSaleEntry."Date", 0, '<Day,2>/<Month,2>/<Year4>');
-                        CreditFeeDetail."Transaction No." := TransSaleEntry."Transaction No.";
-                        CreditFeeDetail."Line No." := nextlineno;
+                            CreditFeeDetail.CRPAYMENT := ((-TransSaleEntry."Total Rounded Amt." - TransSaleEntry."Discount Amount") / totalAmount) * AmountTenderTotal;
+                            CheckReturnAmount := CreditFeeDetail.CRPAYMENT;
 
-                        Clear(tenderType);
-                        tenderType.SetRange(Code, '3');
-                        if (tenderType.FindFirst()) then begin
-                            CreditFeeDetail.CREDIT := CreditFeeDetail.CRPAYMENT * tenderType."Integration MDR Rate";
-                            CheckReturnCREDIT := CreditFeeDetail.CREDIT;
-                        end;
+                            CreditFeeDetail."POS Terminal No." := TransSaleEntry."POS Terminal No.";
+                            CreditFeeDetail."Date" := FORMAT(TransSaleEntry."Date", 0, '<Day,2>/<Month,2>/<Year4>');
+                            CreditFeeDetail."Transaction No." := TransSaleEntry."Transaction No.";
+                            CreditFeeDetail."Line No." := nextlineno;
 
-                        item.Reset();
-                        if item.get(TransSaleEntry."Item No.") then begin
-                            CreditFeeDetail.suppliercd := item."Vendor No.";
-
-                            vendor.Reset();
-                            if vendor.get(item."Vendor No.") then begin
-                                CreditFeeDetail.supplierName := vendor.Name;
+                            Clear(tenderType);
+                            tenderType.SetRange(Code, '3');
+                            if (tenderType.FindFirst()) then begin
+                                CreditFeeDetail.CREDIT := CreditFeeDetail.CRPAYMENT * tenderType."Integration MDR Rate";
+                                CheckReturnCREDIT := CreditFeeDetail.CREDIT;
                             end;
 
-                            itemSpecialGrpLink.Reset();
-                            itemSpecialGrpLink.SetRange("Item No.", item."No.");
-                            itemSpecialGrpLink.SetAutoCalcFields("Special Group Name");
-                            if itemSpecialGrpLink.FindFirst() then
-                                CreditFeeDetail.BRDNM := itemSpecialGrpLink."Special Group Name";
-                        end;
+                            item.Reset();
+                            if item.get(TransSaleEntry."Item No.") then begin
+                                CreditFeeDetail.suppliercd := item."Vendor No.";
 
-                        CreditFeeDetail.Insert();
-                        // Phieu goc
+                                vendor.Reset();
+                                if vendor.get(item."Vendor No.") then begin
+                                    CreditFeeDetail.supplierName := vendor.Name;
+                                end;
 
-                        //Return
-                        if TransSaleEntry."Refunded Trans. No." <> 0 then begin
-                            clear(TransSaleEntryReturn);
-                            TransSaleEntryReturn.SetRange("Transaction No.", TransSaleEntry."Refunded Trans. No.");
-                            TransSaleEntryReturn.SetRange("Store No.", TransSaleEntry."Refunded Store No.");
-                            TransSaleEntryReturn.SetRange("POS Terminal No.", TransSaleEntry."Refunded POS No.");
-                            TransSaleEntryReturn.SetRange("Item No.", TransSaleEntry."Item No.");
-                            if TransSaleEntryReturn.FindFirst() then begin
-                                clear(CreditFeeDetail);
+                                itemSpecialGrpLink.Reset();
+                                itemSpecialGrpLink.SetRange("Item No.", item."No.");
+                                itemSpecialGrpLink.SetAutoCalcFields("Special Group Name");
+                                if itemSpecialGrpLink.FindFirst() then
+                                    CreditFeeDetail.BRDNM := itemSpecialGrpLink."Special Group Name";
+                            end;
 
-                                Clear(transPayment);
-                                transPayment.SetRange("Receipt No.", TransSaleEntryReturn."Receipt No.");
-                                transPayment.SetRange("POS Terminal No.", TransSaleEntryReturn."POS Terminal No.");
-                                transPayment.SetRange("Store No.", TransSaleEntryReturn."Store No.");
-                                transPayment.SetRange("Transaction No.", TransSaleEntryReturn."Transaction No.");
-                                transPayment.CalcSums("Amount Tendered");
-                                AmountTenderTotal := transPayment."Amount Tendered";
+                            CreditFeeDetail.Insert();
+                            // Phieu goc
 
-                                if transPayment.FindFirst() then begin
-                                    //Phieu goc
-                                    Clear(transHeader);
-                                    transHeader.SetRange("Receipt No.", TransSaleEntryReturn."Receipt No.");
-                                    transHeader.SetRange("POS Terminal No.", TransSaleEntryReturn."POS Terminal No.");
-                                    transHeader.SetRange("Store No.", TransSaleEntryReturn."Store No.");
-                                    transHeader.SetRange("Transaction No.", TransSaleEntryReturn."Transaction No.");
-                                    if transHeader.FindFirst() then
-                                        totalAmount := transHeader.Payment - transHeader."Discount Amount";
+                            //Return
+                            if TransSaleEntry."Refunded Trans. No." <> 0 then begin
+                                clear(TransSaleEntryReturn);
+                                TransSaleEntryReturn.SetRange("Transaction No.", TransSaleEntry."Refunded Trans. No.");
+                                TransSaleEntryReturn.SetRange("Store No.", TransSaleEntry."Refunded Store No.");
+                                TransSaleEntryReturn.SetRange("POS Terminal No.", TransSaleEntry."Refunded POS No.");
+                                TransSaleEntryReturn.SetRange("Item No.", TransSaleEntry."Item No.");
+                                if TransSaleEntryReturn.FindFirst() then begin
+                                    clear(CreditFeeDetail);
 
-                                    nextlineno := nextlineno + 1;
+                                    Clear(transPayment);
+                                    transPayment.SetRange("Receipt No.", TransSaleEntryReturn."Receipt No.");
+                                    transPayment.SetRange("POS Terminal No.", TransSaleEntryReturn."POS Terminal No.");
+                                    transPayment.SetRange("Store No.", TransSaleEntryReturn."Store No.");
+                                    transPayment.SetRange("Transaction No.", TransSaleEntryReturn."Transaction No.");
+                                    transPayment.CalcSums("Amount Tendered");
+                                    AmountTenderTotal := transPayment."Amount Tendered";
 
-                                    CreditFeeDetail.CRPAYMENT := 0;
-                                    // CreditFeeDetail.CRPAYMENT := -CheckReturnAmount;
-                                    CreditFeeDetail."POS Terminal No." := TransSaleEntryReturn."POS Terminal No.";
-                                    CreditFeeDetail."Date" := FORMAT(TransSaleEntryReturn."Date", 0, '<Day,2>/<Month,2>/<Year4>');
-                                    CreditFeeDetail."Transaction No." := TransSaleEntryReturn."Transaction No.";
-                                    CreditFeeDetail."Line No." := nextlineno;
+                                    if transPayment.FindFirst() then begin
+                                        //Phieu goc
+                                        Clear(transHeader);
+                                        transHeader.SetRange("Receipt No.", TransSaleEntryReturn."Receipt No.");
+                                        transHeader.SetRange("POS Terminal No.", TransSaleEntryReturn."POS Terminal No.");
+                                        transHeader.SetRange("Store No.", TransSaleEntryReturn."Store No.");
+                                        transHeader.SetRange("Transaction No.", TransSaleEntryReturn."Transaction No.");
+                                        if transHeader.FindFirst() then
+                                            totalAmount := transHeader.Payment - transHeader."Discount Amount";
 
-                                    // CreditFeeDetail.CREDIT := -CheckReturnCREDIT;
-                                    CreditFeeDetail.CREDIT := 0;
+                                        nextlineno := nextlineno + 1;
 
-                                    item.Reset();
-                                    if item.get(TransSaleEntryReturn."Item No.") then begin
-                                        CreditFeeDetail.suppliercd := item."Vendor No.";
+                                        CreditFeeDetail.CRPAYMENT := 0;
+                                        // CreditFeeDetail.CRPAYMENT := -CheckReturnAmount;
+                                        CreditFeeDetail."POS Terminal No." := TransSaleEntryReturn."POS Terminal No.";
+                                        CreditFeeDetail."Date" := FORMAT(TransSaleEntryReturn."Date", 0, '<Day,2>/<Month,2>/<Year4>');
+                                        CreditFeeDetail."Transaction No." := TransSaleEntryReturn."Transaction No.";
+                                        CreditFeeDetail."Line No." := nextlineno;
 
-                                        vendor.Reset();
-                                        if vendor.get(item."Vendor No.") then begin
-                                            CreditFeeDetail.supplierName := vendor.Name;
+                                        // CreditFeeDetail.CREDIT := -CheckReturnCREDIT;
+                                        CreditFeeDetail.CREDIT := 0;
+
+                                        item.Reset();
+                                        if item.get(TransSaleEntryReturn."Item No.") then begin
+                                            CreditFeeDetail.suppliercd := item."Vendor No.";
+
+                                            vendor.Reset();
+                                            if vendor.get(item."Vendor No.") then begin
+                                                CreditFeeDetail.supplierName := vendor.Name;
+                                            end;
+
+                                            itemSpecialGrpLink.Reset();
+                                            itemSpecialGrpLink.SetRange("Item No.", item."No.");
+                                            itemSpecialGrpLink.SetAutoCalcFields("Special Group Name");
+                                            if itemSpecialGrpLink.FindFirst() then
+                                                CreditFeeDetail.BRDNM := itemSpecialGrpLink."Special Group Name";
                                         end;
 
-                                        itemSpecialGrpLink.Reset();
-                                        itemSpecialGrpLink.SetRange("Item No.", item."No.");
-                                        itemSpecialGrpLink.SetAutoCalcFields("Special Group Name");
-                                        if itemSpecialGrpLink.FindFirst() then
-                                            CreditFeeDetail.BRDNM := itemSpecialGrpLink."Special Group Name";
+                                        CreditFeeDetail.Insert();
                                     end;
-
-                                    CreditFeeDetail.Insert();
                                 end;
                             end;
+                            //Return
+
                         end;
-                        //Return
+                    end else begin
 
                     end;
-                end else begin
-
                 end;
             until TransSaleEntry.next = 0;
         end;
@@ -387,4 +416,7 @@ report 70018 "Credit Fee Detail"
 
         DatePrint: text[100];
         DateTarget: text[100];
+        DivisionFilter: Text;
+        SpecialGroupFilter: Text;
+        ProductGroupFilter: Text;
 }

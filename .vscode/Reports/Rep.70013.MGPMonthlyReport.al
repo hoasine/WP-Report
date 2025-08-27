@@ -1,3 +1,4 @@
+
 report 70013 "MGP Monthly Report"
 {
     DefaultLayout = RDLC;
@@ -106,7 +107,6 @@ report 70013 "MGP Monthly Report"
 
             }
 
-
             trigger OnAfterGetRecord()
             begin
 
@@ -116,6 +116,16 @@ report 70013 "MGP Monthly Report"
             trigger OnPreDataItem()
             begin
                 CreateBillingEntries();
+
+                if StatusFilter <> 0 then begin
+                    Clear(ConsignmentBilling);
+                    case StatusFilter of
+                        StatusFilter::Yes:
+                            ConsignmentBilling.SETFILTER("StatusTemp", 'Yes');
+                        StatusFilter::No:
+                            ConsignmentBilling.SETFILTER("StatusTemp", 'No');
+                    end;
+                end;
             end;
         }
     }
@@ -186,6 +196,11 @@ report 70013 "MGP Monthly Report"
                     {
                         TableRelation = "LSC Retail Product Group"."Code";
                     }
+                    field("Status MGP"; StatusFilter)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = '';
+                    }
 
                 }
             }
@@ -209,6 +224,10 @@ report 70013 "MGP Monthly Report"
         EndDate: Date;
         LRecVendor: Record "Vendor";
         memoFilter: Text;
+
+        Window: Dialog;
+        TotalTrans: Integer;
+        Counter: Integer;
     begin
         clear(be);
         be.DeleteAll();
@@ -217,6 +236,10 @@ report 70013 "MGP Monthly Report"
             ERROR('The report couldn’t be generated, because it was empty. Input data for the Period field.');
 
         ParseDateRange(DateFilter, StartDate, EndDate);
+
+        Window.Open(
+              'Number of Transactions #1###########\' +
+              'Processed              #2###########');
 
         Clear(CEHeader);
         CEHeader.SetRange("Status", CEHeader.Status::Posted);
@@ -239,8 +262,14 @@ report 70013 "MGP Monthly Report"
                     ce.SetRange("Billing Period ID", CEHeader."Billing Period ID");
                     if ProductGroupFilter <> '' then ce.SetRange("Product Group", ProductGroupFilter);
                     if DivisionFilter <> '' then ce.SetRange("Division", DivisionFilter);
+                    Window.Update(1, ce.Count);
+                    Counter := 0;
                     if ce.FindSet() then begin
                         repeat
+                            Counter += 1;
+                            if (Counter mod 100) = 0 then
+                                Window.Update(2, Counter);
+
                             cleaR(be);
                             be.setrange("Store No.", ce."Store No.");
                             be.SetRange("Vendor No.", ce."Vendor No.");
@@ -330,6 +359,16 @@ report 70013 "MGP Monthly Report"
                                 be."MDR Weight" := ce."MDR Weight";
                                 be."Sales Date" := ce.Date;
                                 be.Quantity := ce.Quantity;
+
+                                CountGMP := be."Expected Gross Profit" - be.Profit;
+                                if CountGMP > 0 then begin
+                                    be.GPMAmount := round(CountGMP);
+                                    be.StatusTemp := 'Yes';
+                                end else begin
+                                    be.GPMAmount := 0;
+                                    be.StatusTemp := 'No';
+                                end;
+
                                 be.insert(true);
                             end else begin
                                 //do modify
@@ -350,6 +389,16 @@ report 70013 "MGP Monthly Report"
 
                                 be."MDR Amount" += ce."MDR Amount";
                                 be.Quantity += ce.Quantity;
+
+                                CountGMP := be."Expected Gross Profit" - be.Profit;
+                                if CountGMP > 0 then begin
+                                    be.GPMAmount := round(CountGMP);
+                                    be.StatusTemp := 'Yes';
+                                end else begin
+                                    be.GPMAmount := 0;
+                                    be.StatusTemp := 'No';
+                                end;
+
                                 be.modify(true);
                             end;
 
@@ -505,6 +554,7 @@ report 70013 "MGP Monthly Report"
         ToDate: Date;
         DateFilter: Text;
         ApplicationManagement: Codeunit "Filter Tokens";
+        StatusFilter: Option " ",Yes,No;
 
 }
 

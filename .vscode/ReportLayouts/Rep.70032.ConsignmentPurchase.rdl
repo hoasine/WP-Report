@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
+      <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-22T04:14:46.2952002Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-25T09:26:34.9981747Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -24,94 +24,6 @@
       <rd:DataSourceID>b43ac6de-0cfa-4366-b9b3-3332d0363b55</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="Brand">
-          <DataField>Brand</DataField>
-        </Field>
-        <Field Name="Class">
-          <DataField>Class</DataField>
-        </Field>
-        <Field Name="BrandName">
-          <DataField>BrandName</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="TaxRate">
-          <DataField>TaxRate</DataField>
-        </Field>
-        <Field Name="TaxRateFormat">
-          <DataField>TaxRateFormat</DataField>
-        </Field>
-        <Field Name="Tax">
-          <DataField>Tax</DataField>
-        </Field>
-        <Field Name="TaxFormat">
-          <DataField>TaxFormat</DataField>
-        </Field>
-        <Field Name="Cost">
-          <DataField>Cost</DataField>
-        </Field>
-        <Field Name="CostFormat">
-          <DataField>CostFormat</DataField>
-        </Field>
-        <Field Name="Store_No_">
-          <DataField>Store_No_</DataField>
-        </Field>
-        <Field Name="StoreName">
-          <DataField>StoreName</DataField>
-        </Field>
-        <Field Name="VendorNo">
-          <DataField>VendorNo</DataField>
-        </Field>
-        <Field Name="VendorName">
-          <DataField>VendorName</DataField>
-        </Field>
-        <Field Name="FromDateFilter">
-          <DataField>FromDateFilter</DataField>
-        </Field>
-        <Field Name="ToDateFilter">
-          <DataField>ToDateFilter</DataField>
-        </Field>
-        <Field Name="Date">
-          <DataField>Date</DataField>
-        </Field>
-        <Field Name="Tax_Rate">
-          <DataField>Tax_Rate</DataField>
-        </Field>
-        <Field Name="Tax_RateFormat">
-          <DataField>Tax_RateFormat</DataField>
-        </Field>
-        <Field Name="ProfitMargin">
-          <DataField>ProfitMargin</DataField>
-        </Field>
-        <Field Name="ProfitMarginFormat">
-          <DataField>ProfitMarginFormat</DataField>
-        </Field>
-        <Field Name="TotalExclTax">
-          <DataField>TotalExclTax</DataField>
-        </Field>
-        <Field Name="TotalExclTaxFormat">
-          <DataField>TotalExclTaxFormat</DataField>
-        </Field>
-        <Field Name="TotalCost">
-          <DataField>TotalCost</DataField>
-        </Field>
-        <Field Name="TotalCostFormat">
-          <DataField>TotalCostFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -436,7 +348,7 @@
                                   <Value>=sum(Fields!TotalExclTax.Value)- sum(Fields!Cost.Value)</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -612,7 +524,7 @@
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -899,7 +811,7 @@
       <Width>20.9939cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.29658cm</Height>
+          <Height>2.22349cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -925,7 +837,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.24418in</Top>
-              <Height>0.59054in</Height>
+              <Height>0.55555in</Height>
               <Width>8.25084in</Width>
               <Style>
                 <Border>
@@ -977,7 +889,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.265in</Top>
-              <Left>5.57839in</Left>
+              <Left>6.08357in</Left>
               <Height>0.53473in</Height>
               <Width>0.70833in</Width>
               <ZIndex>1</ZIndex>
@@ -1031,7 +943,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.265in</Top>
-              <Left>6.30061in</Left>
+              <Left>6.80579in</Left>
               <Height>0.53473in</Height>
               <Width>0.10417in</Width>
               <ZIndex>2</ZIndex>
@@ -1101,9 +1013,9 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.265in</Top>
-              <Left>6.41867in</Left>
+              <Left>6.92385in</Left>
               <Height>0.53473in</Height>
-              <Width>1.73438in</Width>
+              <Width>1.30093in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1125,38 +1037,16 @@
                     <TextRun>
                       <Value>:</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value />
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value />
-                      <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.60527in</Top>
+              <Top>0.59139in</Top>
               <Left>0.44791in</Left>
-              <Height>0.19446in</Height>
+              <Height>0.20834in</Height>
               <Width>0.10417in</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -1200,7 +1090,7 @@
               <Top>0.59139in</Top>
               <Left>0.13195in</Left>
               <Height>0.20834in</Height>
-              <Width>0.36458in</Width>
+              <Width>0.28818in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1248,7 +1138,7 @@
               <Source>Embedded</Source>
               <Value>logotaka</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.53134cm</Top>
+              <Top>0.62022cm</Top>
               <Left>0.33515cm</Left>
               <Height>0.68861cm</Height>
               <Width>4.10285cm</Width>
@@ -1277,12 +1167,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1491,4 +1375,92 @@ u0q0PSWHJweclsFpCU4CMqD670Wp+nX1i+qHiof+rO511SJBQCU9WDZ5IqUg8gTVV/RuD9IOyL4D8eM9
   </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Brand">
+          <DataField>Brand</DataField>
+        </Field>
+        <Field Name="Class">
+          <DataField>Class</DataField>
+        </Field>
+        <Field Name="BrandName">
+          <DataField>BrandName</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="TaxRate">
+          <DataField>TaxRate</DataField>
+        </Field>
+        <Field Name="TaxRateFormat">
+          <DataField>TaxRateFormat</DataField>
+        </Field>
+        <Field Name="Tax">
+          <DataField>Tax</DataField>
+        </Field>
+        <Field Name="TaxFormat">
+          <DataField>TaxFormat</DataField>
+        </Field>
+        <Field Name="Cost">
+          <DataField>Cost</DataField>
+        </Field>
+        <Field Name="CostFormat">
+          <DataField>CostFormat</DataField>
+        </Field>
+        <Field Name="Store_No_">
+          <DataField>Store_No_</DataField>
+        </Field>
+        <Field Name="StoreName">
+          <DataField>StoreName</DataField>
+        </Field>
+        <Field Name="VendorNo">
+          <DataField>VendorNo</DataField>
+        </Field>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
+        </Field>
+        <Field Name="FromDateFilter">
+          <DataField>FromDateFilter</DataField>
+        </Field>
+        <Field Name="ToDateFilter">
+          <DataField>ToDateFilter</DataField>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+        </Field>
+        <Field Name="Tax_Rate">
+          <DataField>Tax_Rate</DataField>
+        </Field>
+        <Field Name="Tax_RateFormat">
+          <DataField>Tax_RateFormat</DataField>
+        </Field>
+        <Field Name="ProfitMargin">
+          <DataField>ProfitMargin</DataField>
+        </Field>
+        <Field Name="ProfitMarginFormat">
+          <DataField>ProfitMarginFormat</DataField>
+        </Field>
+        <Field Name="TotalExclTax">
+          <DataField>TotalExclTax</DataField>
+        </Field>
+        <Field Name="TotalExclTaxFormat">
+          <DataField>TotalExclTaxFormat</DataField>
+        </Field>
+        <Field Name="TotalCost">
+          <DataField>TotalCost</DataField>
+        </Field>
+        <Field Name="TotalCostFormat">
+          <DataField>TotalCostFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

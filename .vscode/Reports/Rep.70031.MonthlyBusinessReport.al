@@ -63,6 +63,11 @@ table 58055 "Monthly Business Report"
             Caption = 'Month';
             DataClassification = ToBeClassified;
         }
+        field(12; "MonthDate"; Date)
+        {
+            Caption = 'MonthDate';
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {
@@ -105,6 +110,7 @@ report 70031 "Monthly Business Report"
             column(EndDateFilter; EndDateFilter) { }
             column(MonthFilter; lbTime) { }
             column(Month; Month) { }
+            column(MonthDate; MonthDate) { }
             column(Division; "Division") { }
             column(Class; "Product Group") { }
             column(Department; "Category") { }
@@ -126,8 +132,8 @@ report 70031 "Monthly Business Report"
             trigger OnPreDataItem()
 
             var
-                quSaleTotal: Query "Querry LSC Sale Total";
-                quTotalMember: Query "Daily Customer With DCP";
+                quSaleTotal: Query "QueDailySaleReport";
+                quTotalMember: Query "QueCustumerReportCount";
                 tbDivision: Record "LSC Division";
                 tbItemCate: Record "Item Category";
                 tbProuctGroup: Record "LSC Retail Product Group";
@@ -156,11 +162,21 @@ report 70031 "Monthly Business Report"
                 RangeText: Text;
 
                 NumberMonth: Decimal;
+
+                Window: Dialog;
+                Counter: Integer;
+
+                BillCount: Integer;
+                LastReceipt: text;
             begin
                 IF (DateFilter = '') THEN
                     ERROR('The report couldn’t be generated, because the DateFilter is empty.');
 
                 NumberMonth := 0;
+                Counter := 0;
+                Window.Open(
+                'Number of #1###########\' +
+                'Processed              #2###########');
 
                 clear(tbDivision);
                 tbDivision.SetFilter(Code, '<>%1', '');
@@ -173,6 +189,7 @@ report 70031 "Monthly Business Report"
                             repeat
                                 clear(tbProuctGroup);
                                 tbProuctGroup.SetRange("Item Category Code", tbItemCate.Code);
+                                Window.Update(1, tbProuctGroup.Description);
                                 if tbProuctGroup.FindSet() then begin
                                     repeat
                                         ParseDateRange(DateFilter, StartDate, EndDate);
@@ -181,12 +198,12 @@ report 70031 "Monthly Business Report"
                                         EndDateFilter := FORMAT(EndDate, 0, '<Day,2>/<Month,2>/<Year4>');
                                         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
 
-                                        // Evaluate(DivisionInt, tbDivision.Code);
-                                        // Evaluate(CategoryInt, tbItemCate.Code);
-                                        // Evaluate(ProductGroupInt, tbProuctGroup.Code);
-
                                         CurrentDate := StartDate;
                                         while CurrentDate <= EndDate do begin
+                                            Counter += 1;
+                                            if (Counter mod 100) = 0 then
+                                                Window.Update(2, Counter);
+
                                             FirstDayOfMonth := DMY2Date(1, Date2DMY(CurrentDate, 2), Date2DMY(CurrentDate, 3));
                                             NextMonthDate := CalcDate('<1M>', FirstDayOfMonth);
                                             LastDayOfMonth := NextMonthDate - 1;
@@ -197,6 +214,7 @@ report 70031 "Monthly Business Report"
                                             RangeText := FromDateText + '..' + ToDateText;
 
                                             Clear(Data);
+                                            Data.MonthDate := FirstDayOfMonth;
                                             Data.Month := FORMAT(FirstDayOfMonth, 0, '<Month,2>') + '. ' + FORMAT(FirstDayOfMonth, 0, '<Month Text>').ToUpper() + '.' + format(Date2DMY(CurrentDate, 3));
                                             Data."Division" := tbDivision.Code + ' - ' + tbDivision.Description;
                                             Data."Category" := tbItemCate.Code + ' - ' + tbItemCate.Description;
@@ -206,8 +224,9 @@ report 70031 "Monthly Business Report"
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
                                             quSaleTotal.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
-                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quSaleTotal.SetFilter(TSE_CategoryFilter, format(tbItemCate.Code));
                                             quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                            if StoreFilter <> '' then quSaleTotal.SetFilter(TH_StoreFilter, StoreFilter);
                                             quSaleTotal.Open;
                                             while quSaleTotal.Read do begin
                                                 Data.Sale := quSaleTotal.TSE_Total_Amount;
@@ -220,18 +239,26 @@ report 70031 "Monthly Business Report"
                                                 tbBudget.SetFilter("DivisionCode", tbDivision.Code);
                                             if tbProuctGroup.Code <> '' then
                                                 tbBudget.SetFilter("ClassCode", tbProuctGroup.Code);
+                                            if StoreFilter <> '' then
+                                                tbBudget.SetFilter("StoreNo", StoreFilter);
                                             tbBudget.CalcSums(TotalSales);
                                             Data.Budget := tbBudget.TotalSales;
 
                                             //quTotalMember
+                                            Data.Cust := 0;
+                                            LastReceipt := '';
                                             Clear(quTotalMember);
                                             quTotalMember.SetFilter(TH_DateFilter, RangeText);
-                                            quTotalMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
-                                            quTotalMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quTotalMember.SetFilter(TSE_DivisionFilter, format(tbDivision.Code));
+                                            quTotalMember.SetFilter(TSE_CategoryFilter, format(tbItemCate.Code));
                                             quTotalMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                            if StoreFilter <> '' then quTotalMember.SetFilter(TH_StoreFilter, StoreFilter);
                                             quTotalMember.Open;
                                             while quTotalMember.Read do begin
-                                                Data.Cust := quTotalMember.TSE_Count_Customer;
+                                                if quTotalMember.Receipt_No_ <> LastReceipt then begin
+                                                    Data.Cust += 1;
+                                                    LastReceipt := quTotalMember.Receipt_No_;
+                                                end;
                                             end;
 
                                             //Lay Last year
@@ -239,8 +266,9 @@ report 70031 "Monthly Business Report"
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
                                             quSaleTotal.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
-                                            quSaleTotal.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quSaleTotal.SetFilter(TSE_CategoryFilter, format(tbItemCate.Code));
                                             quSaleTotal.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                            if StoreFilter <> '' then quSaleTotal.SetFilter(TH_StoreFilter, StoreFilter);
                                             quSaleTotal.Open;
                                             while quSaleTotal.Read do begin
                                                 Data.SaleLY := quSaleTotal.TSE_Total_Amount;
@@ -282,6 +310,10 @@ report 70031 "Monthly Business Report"
                         begin
                             ApplicationManagement.MakeDateFilter(DateFilter);
                         end;
+                    }
+                    field("Store"; StoreFilter)
+                    {
+                        TableRelation = "LSC Store";
                     }
                     field("Division"; DivisionFilter)
                     {
@@ -405,4 +437,5 @@ report 70031 "Monthly Business Report"
         lbTime: text[100];
         DateFilterText: text[100];
         DatePrint: text[100];
+        StoreFilter: text[100];
 }

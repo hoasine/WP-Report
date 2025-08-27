@@ -150,6 +150,8 @@ report 70029 "Efficiency Report"
                 tbDivision.SetFilter(Code, '<>%1', '');
                 if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
                 if tbDivision.FindSet() then begin
+                    Window.Update(1, tbDivision.Count);
+                    Counter := 0;
                     repeat
                         Counter += 1;
                         if (Counter mod 100) = 0 then

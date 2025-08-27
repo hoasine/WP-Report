@@ -209,6 +209,9 @@ report 70026 "Daily Sale Report"
         Window: Dialog;
         TotalTrans: Integer;
         Counter: Integer;
+
+        BillCount: Integer;
+        LastReceipt: text;
     begin
         IF (DateFilter = 0D) THEN
             ERROR('The report couldn’t be generated, because the Date is empty.');
@@ -242,7 +245,7 @@ report 70026 "Daily Sale Report"
                 Data."Daily Target" := 0;
 
                 //Month Sale and Budget 
-                DateChange := GetDateRange(DateFilter);
+                DateChange := GetFirstDateToDatFilterRange(DateFilter);
                 Clear(querry);
                 querry.SetFilter(TH_DateFilter, DateChange);
                 if StoreFilter <> '' then
@@ -316,7 +319,7 @@ report 70026 "Daily Sale Report"
                 //Target This Month
 
                 //Month Sale total
-                DateChange := GetDateRange(DateFilter);
+                DateChange := GetFirstDateToDatFilterRange(DateFilter);
                 Clear(querry);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);
                 querry.SetFilter(TH_DateFilter, DateChange);
@@ -402,9 +405,12 @@ report 70026 "Daily Sale Report"
                 data."Daily Target" := 0;
 
                 //Sale total
-                DateChange := GetDateRange(DateFilter);
+                DateChange := GetFirstDateToDatFilterRange(DateFilter);
+
+                Data."Sales Total" := 0;
+                LastReceipt := '';
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetFilter(TSE_DivisionFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
                 if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
@@ -412,14 +418,19 @@ report 70026 "Daily Sale Report"
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
-                    Data."Sales Total" := querryCustomer.TSE_Quantity_Custumer;
+                    if querryCustomer.Receipt_No_ <> LastReceipt then begin
+                        Data."Sales Total" += 1;
+                        LastReceipt := querryCustomer.Receipt_No_;
+                    end;
                 end;
 
                 Data."Balance(Sale-Target)" := Data."Sales Total" - Data."Daily Target Total";
 
                 //Daily Sale
+                Data."Daily Sales" := 0;
+                LastReceipt := '';
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetFilter(TSE_DivisionFilter, tbDivision.Code);
                 querryCustomer.SetRange(TH_DateFilter, DateFilter);
                 if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
@@ -427,13 +438,18 @@ report 70026 "Daily Sale Report"
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
-                    Data."Daily Sales" := querryCustomer.TSE_Quantity_Custumer;
+                    if querryCustomer.Receipt_No_ <> LastReceipt then begin
+                        Data."Daily Sales" += 1;
+                        LastReceipt := querryCustomer.Receipt_No_;
+                    end;
                 end;
 
                 //Last year Sale
                 DateChange := GetLastYearDateRange(DateFilter);
+                Data."Last Year Sales" := 0;
+                LastReceipt := '';
                 Clear(querryCustomer);
-                querryCustomer.SetFilter(TSE_DivisonFilter, tbDivision.Code);
+                querryCustomer.SetFilter(TSE_DivisionFilter, tbDivision.Code);
                 querryCustomer.SetFilter(TH_DateFilter, DateChange);
                 if StoreFilter <> '' then querryCustomer.SetFilter(TH_StoreFilter, StoreFilter);
                 if SpecialGroupFilter <> '' then querryCustomer.SetFilter(TSE_SpecialGroupFilter, SpecialGroupFilter);
@@ -441,7 +457,10 @@ report 70026 "Daily Sale Report"
                 if PosTerminalFilter <> '' then querryCustomer.SetFilter(PosTerminalFilter, PosTerminalFilter);
                 querryCustomer.Open;
                 while querryCustomer.Read do begin
-                    Data."Last Year Sales" := querryCustomer.TSE_Quantity_Custumer;
+                    if querryCustomer.Receipt_No_ <> LastReceipt then begin
+                        Data."Last Year Sales" += 1;
+                        LastReceipt := querryCustomer.Receipt_No_;
+                    end;
                 end;
 
                 Data.Insert();
@@ -455,22 +474,24 @@ report 70026 "Daily Sale Report"
 
     end;
 
-    procedure GetDateRange(InputDate: Date): Text
+    procedure GetFirstDateToDatFilterRange(InputDate: Date): Text
     var
         StartDate: Date;
         EndDate: Date;
+        MonthOfInput: Integer;
         YearOfInput: Integer;
     begin
-        // Lấy năm từ ngày được nhập
-        YearOfInput := DATE2DMY(InputDate, 3); // part 3 = năm
+        // Lấy tháng và năm từ ngày được nhập
+        MonthOfInput := DATE2DMY(InputDate, 2); // part 2 = tháng
+        YearOfInput := DATE2DMY(InputDate, 3);  // part 3 = năm
 
-        // Tạo ngày bắt đầu là ngày 01/01 của năm đó
-        StartDate := DMY2DATE(1, 1, YearOfInput);
+        // Ngày bắt đầu là 01/tháng/năm
+        StartDate := DMY2DATE(1, MonthOfInput, YearOfInput);
 
-        // Ngày kết thúc chính là ngày nhập
+        // Ngày kết thúc là ngày nhập
         EndDate := InputDate;
 
-        // Trả về chuỗi định dạng "01/01/25..05/04/25"
+        // Trả về chuỗi định dạng "01/04/25..22/04/25"
         exit(Format(StartDate) + '..' + Format(EndDate));
     end;
 
