@@ -149,16 +149,11 @@ report 70028 "AnP Report"
 
             var
                 quTotalSaleMember: Query "LSC Sale With Member";
-                quTotalSaleMemberNonMember: Query "LSC Sale With Non Member";
                 tbDivision: Record "LSC Division";
                 tbItemCate: Record "Item Category";
                 tbProuctGroup: Record "LSC Retail Product Group";
                 tbTransHeader: Record "LSC Transaction Header";
                 tbTransSale: Record "LSC Trans. Sales Entry";
-
-                DivisionInt: Integer;
-                ProductGroupInt: Integer;
-                CategoryInt: Integer;
 
                 InputYear: Integer;
                 StartDate: date;
@@ -172,7 +167,7 @@ report 70028 "AnP Report"
                     ERROR('The report couldn’t be generated, because the DateFilter is empty.');
 
                 clear(tbDivision);
-                tbDivision.SetFilter(Code, '<>%1', '');
+                tbDivision.SetFilter(Code, '<>%1&<>%2', '04', '');
                 if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
                 if tbDivision.FindSet() then begin
                     repeat
@@ -190,10 +185,6 @@ report 70028 "AnP Report"
                                         EndDateFilter := FORMAT(EndDate, 0, '<Day,2>/<Month,2>/<Year4>');
                                         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
 
-                                        Evaluate(DivisionInt, tbDivision.Code);
-                                        Evaluate(CategoryInt, tbItemCate.Code);
-                                        Evaluate(ProductGroupInt, tbProuctGroup.Code);
-
                                         //-------------MEMBER-------------------------
                                         Clear(Data);
                                         Data.Type := 'Total Member Sale';
@@ -203,10 +194,11 @@ report 70028 "AnP Report"
 
                                         //Lay trong thanhg
                                         Clear(quTotalSaleMember);
-                                        quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);
-                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                        quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);//01/08/2025 - 31/08/2025
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
                                         quTotalSaleMember.Open;
@@ -216,13 +208,14 @@ report 70028 "AnP Report"
                                         //Lay trong thanhg
 
                                         //Lay trong thang năm truoc
-                                        thangnamtruocText := GetLastYearDateRange(DateFilter);
+                                        thangnamtruocText := GetLastYearDateRange(DateFilter);//01/08/2024 - 31/08/2024
 
                                         Clear(quTotalSaleMember);
                                         quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
                                         quTotalSaleMember.Open;
@@ -232,13 +225,14 @@ report 70028 "AnP Report"
                                         //Lay trong thang năm truoc
 
                                         //Lay last nam
-                                        thangnamtruocText := GetYearStartToGivenEndDate(DateFilter);
+                                        thangnamtruocText := GetYearStartToGivenEndDate(DateFilter);//01/01/2025 - 31/08/2025
 
                                         Clear(quTotalSaleMember);
                                         quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
                                         quTotalSaleMember.Open;
@@ -248,13 +242,14 @@ report 70028 "AnP Report"
                                         //Lay last nam
 
                                         //Lay last nam ngoái
-                                        thangnamtruocText := GetLastYearDateRangeYear(thangnamtruocText);
+                                        thangnamtruocText := GetLastYearDateRangeYear(thangnamtruocText);//01/01/2024 - 31/08/2024
 
                                         Clear(quTotalSaleMember);
                                         quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
                                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
                                         quTotalSaleMember.Open;
@@ -274,64 +269,68 @@ report 70028 "AnP Report"
                                         Data."Product Group" := tbProuctGroup.Code + ' - ' + tbProuctGroup.Description;
 
                                         //Lay trong thanhg
-                                        Clear(quTotalSaleMemberNonMember);
-                                        quTotalSaleMemberNonMember.SetFilter(TH_DateFilter, DateFilter);
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
-                                        if StoreFilter <> '' then quTotalSaleMemberNonMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                        Clear(quTotalSaleMember);
+                                        quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                                        quTotalSaleMemberNonMember.Open;
-                                        while quTotalSaleMemberNonMember.Read do begin
-                                            Data.SaleTMTY := quTotalSaleMemberNonMember.TSE_Total_Amount;
+                                        quTotalSaleMember.Open;
+                                        while quTotalSaleMember.Read do begin
+                                            Data.SaleTMTY := quTotalSaleMember.TSE_Total_Amount;
                                         end;
                                         //Lay trong thanhg
 
                                         //Lay trong thang năm truoc
                                         thangnamtruocText := GetLastYearDateRange(DateFilter);
 
-                                        Clear(quTotalSaleMemberNonMember);
-                                        quTotalSaleMemberNonMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
-                                        if StoreFilter <> '' then quTotalSaleMemberNonMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                        Clear(quTotalSaleMember);
+                                        quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                                        quTotalSaleMemberNonMember.Open;
-                                        while quTotalSaleMemberNonMember.Read do begin
-                                            Data.SaleTMLY := quTotalSaleMemberNonMember.TSE_Total_Amount;
+                                        quTotalSaleMember.Open;
+                                        while quTotalSaleMember.Read do begin
+                                            Data.SaleTMLY := quTotalSaleMember.TSE_Total_Amount;
                                         end;
                                         //Lay trong thang năm truoc
 
                                         //Lay last nam
                                         thangnamtruocText := GetYearStartToGivenEndDate(DateFilter);
 
-                                        Clear(quTotalSaleMemberNonMember);
-                                        quTotalSaleMemberNonMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
-                                        if StoreFilter <> '' then quTotalSaleMemberNonMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                        Clear(quTotalSaleMember);
+                                        quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                                        quTotalSaleMemberNonMember.Open;
-                                        while quTotalSaleMemberNonMember.Read do begin
-                                            Data.SaleTYMTD := quTotalSaleMemberNonMember.TSE_Total_Amount;
+                                        quTotalSaleMember.Open;
+                                        while quTotalSaleMember.Read do begin
+                                            Data.SaleTYMTD := quTotalSaleMember.TSE_Total_Amount;
                                         end;
                                         //Lay last nam
 
                                         //Lay last nam ngoái
                                         thangnamtruocText := GetLastYearDateRangeYear(thangnamtruocText);
 
-                                        Clear(quTotalSaleMemberNonMember);
-                                        quTotalSaleMemberNonMember.SetFilter(TH_DateFilter, thangnamtruocText);
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_DivisonFilter, format(DivisionInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_CateagoryFilter, format(CategoryInt));
-                                        quTotalSaleMemberNonMember.SetFilter(TSE_ProductGroupFilter, format(ProductGroupInt));
-                                        if StoreFilter <> '' then quTotalSaleMemberNonMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                        Clear(quTotalSaleMember);
+                                        quTotalSaleMember.SetFilter(TH_DateFilter, thangnamtruocText);
+                                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                                        quTotalSaleMember.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                        quTotalSaleMember.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                        quTotalSaleMember.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                                        quTotalSaleMemberNonMember.Open;
-                                        while quTotalSaleMemberNonMember.Read do begin
-                                            Data.SaleLYMTD := quTotalSaleMemberNonMember.TSE_Total_Amount;
+                                        quTotalSaleMember.Open;
+                                        while quTotalSaleMember.Read do begin
+                                            Data.SaleLYMTD := quTotalSaleMember.TSE_Total_Amount;
                                         end;
                                         //Lay last nam ngoái
 
@@ -362,9 +361,9 @@ report 70028 "AnP Report"
 
             trigger OnPreDataItem()
             var
+                queryCardEntry: Query "QuePosCardEntry";
                 tbTender: Record "LSC Tender Type Setup";
                 quTotalSaleMember: Query "CalSaleWithTenderTypeMember";
-                quTotalSaleNonMember: Query "CalSaleWithTenderTypeNonMember";
                 timeChange: Text[100];
             begin
                 clear(tbTender);
@@ -379,14 +378,38 @@ report 70028 "AnP Report"
                         Detail."Type" := 'Member Type';
                         Detail."Periods" := '1. TMTY';
 
-                        Clear(quTotalSaleMember);
-                        quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);
-                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
-                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                        if (tbTender."Code" <> '3') then begin
+                            Clear(quTotalSaleMember);
+                            quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                            quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);
+                            quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
+                            if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                            quTotalSaleMember.Open;
+                            while quTotalSaleMember.Read do begin
+                                Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
+                            end;
 
-                        quTotalSaleMember.Open;
-                        while quTotalSaleMember.Read do begin
-                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
+                            Clear(queryCardEntry);
+                            queryCardEntry.SetFilter("TH_DateFilter", DateFilter);
+                            queryCardEntry.SetRange("TSE_Tender", '3');
+                            queryCardEntry.SetRange("TSE_Tender_PointFilter", tbTender."Code");
+                            if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                            queryCardEntry.Open;
+                            while queryCardEntry.Read do begin
+                                Detail.Amount += queryCardEntry.TSE_Amount_Card_Entry;
+                            end;
+                        end else begin
+                            Clear(queryCardEntry);
+                            queryCardEntry.SetFilter("TH_DateFilter", DateFilter);
+                            queryCardEntry.SetRange("TSE_Tender", '3');
+                            queryCardEntry.SetRange("TSE_Tender_PointFilter", '');
+                            if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                            queryCardEntry.Open;
+                            while queryCardEntry.Read do begin
+                                Detail.Amount += queryCardEntry.TSE_Amount_Card_Entry;
+                            end;
+
+                            Detail."Tender Type" := 'No Name';
                         end;
 
                         Detail.Insert();
@@ -400,14 +423,39 @@ report 70028 "AnP Report"
                         Detail."Type" := 'Member Type';
                         Detail."Periods" := '2. TMLY';
 
-                        Clear(quTotalSaleMember);
-                        quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
-                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
-                        if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
+                        if (tbTender."Code" <> '3') then begin
+                            Clear(quTotalSaleMember);
+                            quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                            quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
+                            quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
+                            if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                        quTotalSaleMember.Open;
-                        while quTotalSaleMember.Read do begin
-                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
+                            quTotalSaleMember.Open;
+                            while quTotalSaleMember.Read do begin
+                                Detail.Amount := quTotalSaleMember.TSE_Total_Amount;
+                            end;
+
+                            Clear(queryCardEntry);
+                            queryCardEntry.SetFilter("TH_DateFilter", timeChange);
+                            queryCardEntry.SetRange("TSE_Tender", '3');
+                            queryCardEntry.SetRange("TSE_Tender_PointFilter", tbTender."Code");
+                            if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                            queryCardEntry.Open;
+                            while queryCardEntry.Read do begin
+                                Detail.Amount += queryCardEntry.TSE_Amount_Card_Entry;
+                            end;
+                        end else begin
+                            Clear(queryCardEntry);
+                            queryCardEntry.SetFilter("TH_DateFilter", timeChange);
+                            queryCardEntry.SetRange("TSE_Tender", '3');
+                            queryCardEntry.SetRange("TSE_Tender_PointFilter", '');
+                            if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                            queryCardEntry.Open;
+                            while queryCardEntry.Read do begin
+                                Detail.Amount += queryCardEntry.TSE_Amount_Card_Entry;
+                            end;
+
+                            Detail."Tender Type" := 'No Name';
                         end;
 
                         Detail.Insert();
@@ -423,6 +471,7 @@ report 70028 "AnP Report"
 
                         Clear(quTotalSaleMember);
                         quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
                         quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
@@ -444,6 +493,7 @@ report 70028 "AnP Report"
 
                         Clear(quTotalSaleMember);
                         quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '<>%1', '');
                         quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
@@ -463,14 +513,15 @@ report 70028 "AnP Report"
                         Detail."Type" := 'Non Member Type';
                         Detail."Periods" := '1. TMTY';
 
-                        Clear(quTotalSaleNonMember);
-                        quTotalSaleNonMember.SetFilter(TH_DateFilter, DateFilter);
-                        quTotalSaleNonMember.SetFilter(TenderFilter, tbTender.Code);
+                        Clear(quTotalSaleMember);
+                        quTotalSaleMember.SetFilter(TH_DateFilter, DateFilter);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                        quTotalSaleNonMember.Open;
-                        while quTotalSaleNonMember.Read do begin
-                            Detail.Amount := -quTotalSaleNonMember.TSE_Total_Amount;
+                        quTotalSaleMember.Open;
+                        while quTotalSaleMember.Read do begin
+                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
                         end;
 
                         Detail.Insert();
@@ -484,14 +535,15 @@ report 70028 "AnP Report"
                         Detail."Type" := 'Non Member Type';
                         Detail."Periods" := '2. TMLY';
 
-                        Clear(quTotalSaleNonMember);
-                        quTotalSaleNonMember.SetFilter(TH_DateFilter, timeChange);
-                        quTotalSaleNonMember.SetFilter(TenderFilter, tbTender.Code);
+                        Clear(quTotalSaleMember);
+                        quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                        quTotalSaleNonMember.Open;
-                        while quTotalSaleNonMember.Read do begin
-                            Detail.Amount := -quTotalSaleNonMember.TSE_Total_Amount;
+                        quTotalSaleMember.Open;
+                        while quTotalSaleMember.Read do begin
+                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
                         end;
 
                         Detail.Insert();
@@ -505,14 +557,15 @@ report 70028 "AnP Report"
                         Detail."Type" := 'Non Member Type';
                         Detail."Periods" := '3. TYMTD';
 
-                        Clear(quTotalSaleNonMember);
-                        quTotalSaleNonMember.SetFilter(TH_DateFilter, timeChange);
-                        quTotalSaleNonMember.SetFilter(TenderFilter, tbTender.Code);
+                        Clear(quTotalSaleMember);
+                        quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                        quTotalSaleNonMember.Open;
-                        while quTotalSaleNonMember.Read do begin
-                            Detail.Amount := -quTotalSaleNonMember.TSE_Total_Amount;
+                        quTotalSaleMember.Open;
+                        while quTotalSaleMember.Read do begin
+                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
                         end;
 
                         Detail.Insert();
@@ -526,14 +579,15 @@ report 70028 "AnP Report"
                         Detail."Periods" := '4. LYMTD';
                         Detail."Type" := 'Non Member Type';
 
-                        Clear(quTotalSaleNonMember);
-                        quTotalSaleNonMember.SetFilter(TH_DateFilter, timeChange);
-                        quTotalSaleNonMember.SetFilter(TenderFilter, tbTender.Code);
+                        Clear(quTotalSaleMember);
+                        quTotalSaleMember.SetFilter(TH_DateFilter, timeChange);
+                        quTotalSaleMember.SetFilter(TH_Member_Card_No_Filter, '=%1', '');
+                        quTotalSaleMember.SetFilter(TenderFilter, tbTender.Code);
                         if StoreFilter <> '' then quTotalSaleMember.SetFilter(TH_StoreFilter, format(StoreFilter));
 
-                        quTotalSaleNonMember.Open;
-                        while quTotalSaleNonMember.Read do begin
-                            Detail.Amount := -quTotalSaleNonMember.TSE_Total_Amount;
+                        quTotalSaleMember.Open;
+                        while quTotalSaleMember.Read do begin
+                            Detail.Amount := -quTotalSaleMember.TSE_Total_Amount;
                         end;
 
                         Detail.Insert();

@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
+      <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-22T03:21:31.7268478Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-27T10:32:03.7087917Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -45,7 +45,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>0.17639cm</Top>
-            <Left>0.2051in</Left>
+            <Left>0.36487in</Left>
             <Height>0.423cm</Height>
             <Width>1.99417cm</Width>
             <Visibility>
@@ -53,29 +53,8 @@
             </Visibility>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
               <VerticalAlign>Middle</VerticalAlign>
             </Style>
           </Textbox>
@@ -97,7 +76,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>0.17639cm</Top>
-            <Left>2.58567cm</Left>
+            <Left>2.99148cm</Left>
             <Height>0.423cm</Height>
             <Width>5.5675cm</Width>
             <ZIndex>1</ZIndex>
@@ -106,29 +85,8 @@
             </Visibility>
             <Style>
               <Border>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
+                <Style>None</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>0.25pt</Width>
-              </RightBorder>
               <VerticalAlign>Middle</VerticalAlign>
             </Style>
           </Textbox>
@@ -151,7 +109,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>3.91809cm</Top>
-            <Left>3.94458cm</Left>
+            <Left>4.35039cm</Left>
             <Height>0.6cm</Height>
             <Width>1.60585cm</Width>
             <ZIndex>2</ZIndex>
@@ -184,7 +142,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>3.91809cm</Top>
-            <Left>13.24587cm</Left>
+            <Left>13.65168cm</Left>
             <Height>0.6cm</Height>
             <Width>1.60585cm</Width>
             <ZIndex>3</ZIndex>
@@ -1460,7 +1418,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0.77578cm</Top>
-            <Left>0.56969cm</Left>
+            <Left>0.9755cm</Left>
             <Height>1.96631cm</Height>
             <Width>19.15541cm</Width>
             <ZIndex>4</ZIndex>
@@ -1492,13 +1450,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.83485cm</Height>
+        <Height>7.47275cm</Height>
         <Style />
       </Body>
       <Width>20.97217cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.80709cm</Height>
+          <Height>3.38421cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1520,8 +1478,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.09569in</Top>
-              <Left>16.57511cm</Left>
+              <Top>0.32637in</Top>
+              <Left>16.93687cm</Left>
               <Height>0.423cm</Height>
               <Width>3.15cm</Width>
               <Style>
@@ -1539,7 +1497,6 @@
                       <Value>DAILY SALE SUMMARY REPORT</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
-                        <Color>#4b68ba</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1548,8 +1505,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.39093cm</Top>
-              <Left>0.57858cm</Left>
+              <Top>1.97687cm</Top>
+              <Left>0.94034cm</Left>
               <Height>0.61858cm</Height>
               <Width>19.14653cm</Width>
               <ZIndex>1</ZIndex>
@@ -1583,8 +1540,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.95333cm</Top>
-              <Left>0.61374cm</Left>
+              <Top>2.53927cm</Top>
+              <Left>0.9755cm</Left>
               <Height>0.5574cm</Height>
               <Width>19.11137cm</Width>
               <ZIndex>2</ZIndex>
@@ -1602,8 +1559,8 @@
               <Source>Embedded</Source>
               <Value>logotaka</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.24304cm</Top>
-              <Left>0.56969cm</Left>
+              <Top>0.82898cm</Top>
+              <Left>0.93145cm</Left>
               <Height>0.72456cm</Height>
               <Width>3.13644cm</Width>
               <ZIndex>3</ZIndex>
@@ -1647,8 +1604,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>2.33434cm</Top>
-              <Left>0.56969cm</Left>
+              <Top>2.92028cm</Top>
+              <Left>0.93145cm</Left>
               <Height>0.46393cm</Height>
               <Width>19.15542cm</Width>
               <ZIndex>4</ZIndex>
@@ -1669,8 +1626,8 @@
         <PageWidth>21cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

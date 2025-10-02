@@ -14,42 +14,88 @@ report 70025 "Payment Monthly Report"
         dataitem(DayLoop; Integer)
         {
             DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 .. 365));
+
             dataitem(TenderLoop; "LSC Tender Type Setup")
             {
                 DataItemLinkReference = DayLoop;
-                // DataItemLink = "Default Function" = field(Number);
-                DataItemTableView =
-                WHERE("Default Function" = FILTER(
-                    Normal
-                ));
-                // WHERE("Default Function" = FILTER(
-                //     Normal | Card | Check | Customer | "Tender Remove/Float" | Coupons | Voucher | Member
-                // ));
 
                 column(Date; DayDate) { }
-                column(TenderCode; TenderLoop.Code) { }
+                column(TenderCode; TenderLoop."Code") { }
                 column(TenderType; TenderLoop.Description) { }
                 column(SalesAmount; SalesAmount) { }
 
+                trigger OnPreDataItem()
+                begin
+                    TenderLoop.SetFilter("Code", '<>9');
+                end;
+
                 trigger OnAfterGetRecord()
                 var
-                    tbPayment: Record "LSC Trans. Payment Entry";
+                    queryPayment: Query "QueSaleTransactionList";
+                    queryCardEntry: Query "QuePosCardEntry";
+                    tbPosCardEntry: Record "LSC POS Card Entry";
+                    tbTenderSetup: Record "LSC Tender Type Card Setup";
                     StartDate: Date;
+                    StartDateFilter: Date;
+                    EndDateFilter: Date;
                 begin
-                    StartDate := DMY2DATE(1, 1, SelectedYear);
-                    DayDate := CalcDate('+' + Format(DayLoop.Number - 1) + 'D', StartDate);
+                    ParseDateRange(DateFilter, StartDateFilter, EndDateFilter);
+
+                    DayDate := CalcDate('+' + Format(DayLoop.Number - 1) + 'D', StartDateFilter);
+                    if (DayDate > EndDateFilter) then
+                        CurrReport.Break;
+
+
                     SalesAmount := 0;
 
-                    tbPayment.SetRange("Tender Type", TenderLoop.Code);
-                    tbPayment.SetRange("Date", DayDate, DayDate);
-                    if PosTerminalFilter <> '' then tbPayment.SetRange("POS Terminal No.", PosTerminalFilter);
-                    if StoreFilter <> '' then tbPayment.SetRange("Store No.", StoreFilter);
-                    if tbPayment.FindSet() then
-                        repeat
-                            SalesAmount += tbPayment."Amount Tendered";
-                        until tbPayment.Next() = 0;
+
+                    if (TenderLoop."Code" <> '3') then begin
+                        Clear(queryPayment);
+                        queryPayment.SetRange("TH_DateFilter", DayDate);
+                        if StoreFilter <> '' then queryPayment.SetRange("TH_StoreFilter", StoreFilter);
+                        if PosTerminalFilter <> '' then queryPayment.SetRange("PosterminalFilter", PosTerminalFilter);
+                        queryPayment.SetRange("TSE_TenderTypeFilter", TenderLoop."Code");
+                        queryPayment.Open;
+                        while queryPayment.Read do begin
+                            SalesAmount := -queryPayment.SumAmountTender;
+                        end;
+
+                        Clear(queryCardEntry);
+                        queryCardEntry.SetRange("TH_DateFilter", DayDate);
+                        queryCardEntry.SetRange("TSE_Tender", '3');
+                        queryCardEntry.SetRange("TSE_Tender_PointFilter", TenderLoop."Code");
+                        if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                        if PosTerminalFilter <> '' then queryCardEntry.SetRange("PosterminalFilter", PosTerminalFilter);
+                        queryCardEntry.Open;
+                        while queryCardEntry.Read do begin
+                            SalesAmount += queryCardEntry.TSE_Amount_Card_Entry;
+                        end;
+                    end else begin
+                        Clear(queryCardEntry);
+                        queryCardEntry.SetRange("TH_DateFilter", DayDate);
+                        queryCardEntry.SetRange("TSE_Tender", '3');
+                        queryCardEntry.SetRange("TSE_Tender_PointFilter", '');
+                        if StoreFilter <> '' then queryCardEntry.SetRange("TH_StoreFilter", StoreFilter);
+                        if PosTerminalFilter <> '' then queryCardEntry.SetRange("PosterminalFilter", PosTerminalFilter);
+                        queryCardEntry.Open;
+                        while queryCardEntry.Read do begin
+                            SalesAmount += queryCardEntry.TSE_Amount_Card_Entry;
+                        end;
+
+                        TenderType := 'No Name';
+                    end;
                 end;
             }
+
+            trigger OnPreDataItem()
+            begin
+
+            end;
+
+            trigger OnAfterGetRecord()
+            begin
+
+            end;
         }
     }
 
@@ -61,9 +107,12 @@ report 70025 "Payment Monthly Report"
             {
                 group(Option)
                 {
-                    field("Selected year"; SelectedYear)
+                    field("Date"; DateFilter)
                     {
-                        ApplicationArea = All;
+                        trigger OnValidate()
+                        begin
+                            ApplicationManagement.MakeDateFilter(DateFilter);
+                        end;
                     }
                     field("Store"; StoreFilter)
                     {
@@ -89,92 +138,32 @@ report 70025 "Payment Monthly Report"
         }
     }
 
+    procedure ParseDateRange(DateRange: Text; var StartDate: Date; var EndDate: Date)
+    var
+        StartStr: Text[20];
+        EndStr: Text[20];
+        SeparatorPos: Integer;
+    begin
+        // Tìm vị trí dấu ".."
+        SeparatorPos := StrPos(DateRange, '..');
+        if SeparatorPos > 0 then begin
+            StartStr := CopyStr(DateRange, 1, SeparatorPos - 1);
+            EndStr := CopyStr(DateRange, SeparatorPos + 2);
+
+            // Chuyển đổi chuỗi thành ngày
+            Evaluate(StartDate, StartStr);
+            Evaluate(EndDate, EndStr);
+        end else
+            Error('Định dạng không hợp lệ. Phải có dạng dd/MM/yy..dd/MM/yy');
+    end;
+
     var
         SelectedYear: Integer;
         DayDate: Date;
         SalesAmount: Decimal;
         TenderType: Text[100];
+        DateFilter: Text;
         StoreFilter: Text[100];
+        ApplicationManagement: Codeunit "Filter Tokens";
         PosTerminalFilter: Text[100];
 }
-
-
-// theo thangs 
-// report 70025 "Payment Monthly Report"
-// {
-//     ApplicationArea = All;
-//     Caption = 'Payment Monthly Report';
-//     DataAccessIntent = ReadOnly;
-//     DefaultRenderingLayout = PaymentMonthlyReportExcel;
-//     ExcelLayoutMultipleDataSheets = true;
-//     PreviewMode = PrintLayout;
-//     UsageCategory = ReportsAndAnalysis;
-//     MaximumDatasetSize = 1000000;
-
-//     dataset
-//     {
-//         dataitem(MonthLoop; Integer)
-//         {
-//             DataItemTableView = SORTING(Number) WHERE(Number = FILTER(1 .. 12));
-
-//             dataitem(TenderLoop; "LSC Tender Type Setup")
-//             {
-//                 DataItemLinkReference = MonthLoop;
-//                 DataItemLink = "Default Function" = const(Normal);
-
-//                 column(MonthName; Format(WorkDate, 0, '<Month Text>') + ' ' + Format(SelectedYear)) { }
-//                 column(MonthNumber; MonthLoop.Number) { }
-//                 column(TenderType; TenderLoop.Code) { }
-//                 column(SalesAmount; SalesAmount) { }
-
-//                 trigger OnAfterGetRecord()
-//                 var
-//                     tbPayment: Record "LSC Trans. Payment Entry";
-//                     StartDate: Date;
-//                     EndDate: Date;
-//                 begin
-//                     StartDate := DMY2DATE(1, MonthLoop.Number, SelectedYear);
-//                     EndDate := CALCDATE('<CM>', StartDate) - 1;
-//                     SalesAmount := 0;
-
-//                     tbPayment.SetRange("Tender Type", TenderLoop.Code);
-//                     tbPayment.SetRange("Date", StartDate, EndDate);
-
-//                     if tbPayment.FindSet() then
-//                         repeat
-//                             SalesAmount += tbPayment."Amount Tendered";
-//                         until tbPayment.Next() = 0;
-//                 end;
-//             }
-//         }
-//     }
-
-//     requestpage
-//     {
-//         layout
-//         {
-//             area(content)
-//             {
-//                 field("Selected year"; SelectedYear)
-//                 {
-//                     ApplicationArea = All;
-//                 }
-//             }
-//         }
-//     }
-
-//     rendering
-//     {
-//         layout(PaymentMonthlyReportExcel)
-//         {
-//             Type = Excel;
-//             LayoutFile = '.vscode/ReportLayouts/Excel/Rep.70025.PaymentMonthlyReportExcel.xlsx';
-//             Caption = 'Supplier Voucher Report';
-//             Summary = '.vscode/ReportLayouts/Excel/Rep.70025.PaymentMonthlyReportExcel.xlsx';
-//         }
-//     }
-
-//     var
-//         SelectedYear: Integer;
-//         SalesAmount: Decimal;
-// }

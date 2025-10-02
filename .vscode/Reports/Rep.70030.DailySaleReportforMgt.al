@@ -32,7 +32,6 @@ report 70030 "DailySaleReportforMgt"
             var
                 // quDailySaleReportMgt: Query "Daily Sale Report for Mgt";// không dùng
                 quDailySaleReportMgt: Query "QueDailySaleReport";
-                // quDailyMgtCustomer: Query "Daily Sale Mgt Customer";
                 quDailyMgtCustomer: Query "QueCustumerReportCount";
                 tbBudget: Record "wp Import Budget. Data";
                 StartDate: Date;

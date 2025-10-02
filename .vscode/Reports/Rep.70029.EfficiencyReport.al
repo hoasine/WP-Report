@@ -147,16 +147,14 @@ report 70029 "Efficiency Report"
                     'Processed              #2###########');
 
                 clear(tbDivision);
-                tbDivision.SetFilter(Code, '<>%1', '');
+                tbDivision.SetFilter(Code, '<>%1&<>%2', '04', '');
                 if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
                 if tbDivision.FindSet() then begin
                     Window.Update(1, tbDivision.Count);
                     Counter := 0;
                     repeat
                         Counter += 1;
-                        if (Counter mod 100) = 0 then
-                            Window.Update(2, Counter);
-
+                        Window.Update(2, Counter);
 
                         clear(tbItemCate);
                         tbItemCate.SetRange("LSC Division Code", tbDivision.Code);

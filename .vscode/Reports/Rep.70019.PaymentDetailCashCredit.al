@@ -187,9 +187,22 @@ report 70019 "Payment Detail Cash Credit"
         TransSaleEntryReturn: Record "LSC Trans. Sales Entry";
         CreditFeeDetailReturn: Record "Payment Detail Cash Credit";
         nextlineno: Integer;
+
+        Window: Dialog;
+        TotalTrans: Integer;
+        Counter: Integer;
     begin
         clear(CreditFeeDetail);
         CreditFeeDetail.DeleteAll();
+
+        Counter := 0;
+
+        Window.Open(
+          'Number of Transactions #1###########\' +
+          'Processed              #2###########');
+
+        if DateFilter = '' then
+            Error('Please input Date !');
 
         clear(TransSaleEntry);
         if DateFilter <> '' then TransSaleEntry.SetFilter(Date, DateFilter);
@@ -197,8 +210,12 @@ report 70019 "Payment Detail Cash Credit"
         if PosterminalFilter <> '' then TransSaleEntry.SetRange("POS Terminal No.", PosterminalFilter);
         if TransactionFilter > 0 then TransSaleEntry.SetRange("Transaction No.", TransactionFilter);
         TransSaleEntry.SetRange("Orig Trans No.", 0);
+        Window.Update(1, TransSaleEntry.Counter);
         if TransSaleEntry.FindSet() then begin
             repeat
+                Counter += 1;
+                Window.Update(2, Counter);
+
                 clear(CreditFeeDetail);
 
                 Clear(transPayment);

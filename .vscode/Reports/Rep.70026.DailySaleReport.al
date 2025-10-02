@@ -280,7 +280,7 @@ report 70026 "Daily Sale Report"
                 end;
                 //Daily Sale & Target
 
-                //Last year Sale
+                //Last year Sale 01/01/2025-31/12/2025
                 DateChange := GetLastYearDateRange(DateFilter);
                 Clear(querry);
                 querry.SetFilter(TSE_DivisonFilter, tbDivision.Code);

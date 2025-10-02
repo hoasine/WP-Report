@@ -53,8 +53,10 @@ report 70017 "Memberday Allowance Detail"
                     if Data."Applicable For" = Data."Applicable For"::Staff then
                         SetRange("wp Staff Allowance ID", Data.ID);
 
-                    if DateFilter <> '' then
-                        SetFilter(Date, DateFilter);
+                    if DateFilter = '' then
+                        Error('Please input Date!');
+
+                    LSCTranSalesEntry.SetFilter(Date, DateFilter);
                 end;
 
                 trigger OnAfterGetRecord()
@@ -111,6 +113,21 @@ report 70017 "Memberday Allowance Detail"
 
                     item.Reset();
                     if item.get("Item No.") then begin
+                        // ✅ Kiểm tra vendor filter: nếu có filter mà vendor hiện tại không match thì bỏ qua record
+                        item.CalcFields("LSC Special Group Code");
+
+                        if VendorFilter <> '' then begin
+                            if (VendorFilter <> item."Vendor No.") then begin
+                                CurrReport.Skip();
+                            end;
+                        end;
+
+                        if SpecialGroupFilter <> '' then begin
+                            if (SpecialGroupFilter <> item."LSC Special Group Code") then begin
+                                CurrReport.Skip();
+                            end;
+                        end;
+
                         suppliercd := item."Vendor No.";
 
                         ExcludeVATAmount := "Total Rounded Amt." - "VAT Amount";
@@ -146,6 +163,14 @@ report 70017 "Memberday Allowance Detail"
                         begin
                             ApplicationManagement.MakeDateFilter(DateFilter);
                         end;
+                    }
+                    field("Vendor"; VendorFilter)
+                    {
+                        TableRelation = "Vendor";
+                    }
+                    field("Special Group (Brand)"; SpecialGroupFilter)
+                    {
+                        TableRelation = "LSC Item Special Groups";
                     }
                 }
             }
@@ -218,7 +243,9 @@ report 70017 "Memberday Allowance Detail"
         DatePrint: text[100];
         DateTarget: text[100];
         DateFormat: text[100];
+        SpecialGroupFilter: text[100];
         transNo: text[100];
+        VendorFilter: text[100];
 
 }
 

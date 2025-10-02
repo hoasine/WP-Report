@@ -196,11 +196,10 @@ report 70013 "MGP Monthly Report"
                     {
                         TableRelation = "LSC Retail Product Group"."Code";
                     }
-                    field("Status MGP"; StatusFilter)
-                    {
-                        ApplicationArea = Basic;
-                        Caption = '';
-                    }
+                    // field("Status MGP"; StatusFilter)
+                    // {
+                    //     ApplicationArea = All;
+                    // }
 
                 }
             }
@@ -260,6 +259,8 @@ report 70013 "MGP Monthly Report"
                     clear(ce);
                     ce.SetRange("Document No.", CEHeader."Document No.");
                     ce.SetRange("Billing Period ID", CEHeader."Billing Period ID");
+                    // ce.SetRange("Contract ID", 'CA1013_2024_MD_B1');
+
                     if ProductGroupFilter <> '' then ce.SetRange("Product Group", ProductGroupFilter);
                     if DivisionFilter <> '' then ce.SetRange("Division", DivisionFilter);
                     Window.Update(1, ce.Count);
@@ -281,7 +282,7 @@ report 70013 "MGP Monthly Report"
                             be.setrange("VAT Code", ce."VAT Code");
                             be.setrange("Contract ID", ce."Contract ID");
 
-                            if (not be.FindFirst()) or (ce."Consignment Amount" < 0) then begin
+                            if (not be.FindFirst()) then begin
                                 clear(be2);
                                 if be2.FindLast() then
                                     nextlineno := be2."Line No." + 100
@@ -300,6 +301,8 @@ report 70013 "MGP Monthly Report"
                                 RecMPG.SETCURRENTKEY("Expected Gross Profit");
                                 RecMPG.SetRange("Vendor No.", CEHeader."Vendor No.");
                                 RecMPG.SetRange("Contract ID", CEHeader."Contract ID");
+                                RecMPG.SetFilter("Start Date", '>=%1', StartDate);
+                                RecMPG.SetFilter("End Date", '<=%1', EndDate);
                                 if RecMPG.FindLast() then
                                     be."Expected Gross Profit" := RecMPG."Expected Gross Profit"
                                 else
@@ -348,7 +351,7 @@ report 70013 "MGP Monthly Report"
                                                      // be.Profit := round(be."Total Excl Tax" * (be."Consignment %" * 0.01));
                                                      // be.Cost := round(be."Total Excl Tax" - be.Profit);
                                 if be."Profit" <> 0 then begin
-                                    be.Ratio := (be.Cost / ABS(be."Profit")) * 10;
+                                    be.Ratio := (be.Profit / be."Total Excl Tax") * 100;
                                 end else begin
                                     be.Ratio := 0;
                                 end;
@@ -404,99 +407,102 @@ report 70013 "MGP Monthly Report"
 
                         until ce.next = 0;
                     end else begin
+                        if (DivisionFilter <> '') and (ProductGroupFilter <> '') then begin
+                            cleaR(be);
 
-                        cleaR(be);
+                            be.setrange("Store No.", ce."Store No.");
+                            be.SetRange("Vendor No.", CEHeader."Vendor No.");
+                            be.Setrange("Product Group", ce."Product Group");
+                            be.setrange("Special Group", ce."Special Group");
+                            be.setrange("Special Group 2", ce."Special Group 2");
+                            be.setrange("ItemNo", ce."Item No.");
+                            be.setrange("Consignment %", ce."Consignment %");
+                            be.setrange("VAT Code", ce."VAT Code");
+                            be.setrange("Contract ID", CEHeader."Contract ID");
+                            if not be.FindFirst() then begin
 
-                        be.setrange("Store No.", ce."Store No.");
-                        be.SetRange("Vendor No.", CEHeader."Vendor No.");
-                        be.Setrange("Product Group", ce."Product Group");
-                        be.setrange("Special Group", ce."Special Group");
-                        be.setrange("Special Group 2", ce."Special Group 2");
-                        be.setrange("ItemNo", ce."Item No.");
-                        be.setrange("Consignment %", ce."Consignment %");
-                        be.setrange("VAT Code", ce."VAT Code");
-                        be.setrange("Contract ID", CEHeader."Contract ID");
-                        if not be.FindFirst() then begin
+                                clear(be2);
+                                if be2.FindLast() then
+                                    nextlineno := be2."Line No." + 100
+                                else
+                                    nextlineno := 100;
 
-                            clear(be2);
-                            if be2.FindLast() then
-                                nextlineno := be2."Line No." + 100
-                            else
-                                nextlineno := 100;
+                                Clear(ConsContract);
+                                ConsContract.SetRange(ID, CEHeader."Contract ID");
+                                if ConsContract.FindSet() then
+                                    be.ContractName := ConsContract.Description;
 
-                            Clear(ConsContract);
-                            ConsContract.SetRange(ID, CEHeader."Contract ID");
-                            if ConsContract.FindSet() then
-                                be.ContractName := ConsContract.Description;
+                                be."Contract ID" := CEHeader."Contract ID";
 
-                            be."Contract ID" := CEHeader."Contract ID";
+                                Clear(RecMPG);
+                                RecMPG.SETCURRENTKEY("Expected Gross Profit");
+                                RecMPG.SetRange("Vendor No.", CEHeader."Vendor No.");
+                                RecMPG.SetRange("Contract ID", CEHeader."Contract ID");
+                                RecMPG.SetFilter("Start Date", '>=%1', StartDate);
+                                RecMPG.SetFilter("End Date", '<=%1', EndDate);
+                                if RecMPG.FindLast() then
+                                    be."Expected Gross Profit" := RecMPG."Expected Gross Profit"
+                                else
+                                    be."Expected Gross Profit" := ce."Expected Gross Profit";
 
-                            Clear(RecMPG);
-                            RecMPG.SETCURRENTKEY("Expected Gross Profit");
-                            RecMPG.SetRange("Vendor No.", CEHeader."Vendor No.");
-                            RecMPG.SetRange("Contract ID", CEHeader."Contract ID");
-                            if RecMPG.FindLast() then
-                                be."Expected Gross Profit" := RecMPG."Expected Gross Profit"
-                            else
-                                be."Expected Gross Profit" := ce."Expected Gross Profit";
+                                Clear(RecPeriods);
+                                RecPeriods.SetRange("ID", CEHeader."Billing Period ID");
+                                if RecPeriods.FindFirst() then begin
+                                    Month := RecPeriods."End Date";
+                                end;
 
-                            Clear(RecPeriods);
-                            RecPeriods.SetRange("ID", CEHeader."Billing Period ID");
-                            if RecPeriods.FindFirst() then begin
-                                Month := RecPeriods."End Date";
+                                Clear(RecAre);
+                                RecAre.SetRange("Vendor No.", CEHeader."Vendor No.");
+                                RecAre.SetRange("Contract ID", CEHeader."Contract ID");
+                                if RecAre.FindFirst() then
+                                    be."Area" := RecAre."Area";
+
+                                Clear(RecVendor);
+                                RecVendor.SetRange("No.", CEHeader."Vendor No.");
+                                if RecVendor.FindFirst() then
+                                    be."Vendor Name." := RecVendor."Name";
+
+                                be."Line No." := nextlineno;
+                                be."Special Group Description" := '';
+                                be."Billing Type" := be."Billing Type"::Sales;
+                                be."Store No." := '';
+                                be."Vendor No." := CEHeader."Vendor No.";
+                                be."Product Group" := '';
+                                be."Special Group" := '';
+                                be."Special Group 2" := '';
+                                be."Consignment %" := 0;
+                                be."VAT Code" := '';
+                                be."Total Excl Tax" := 0;
+                                be."Cost Incl Tax" := 0;
+                                be."Total Incl Tax" := 0;
+
+                                be."Total Tax" := be."Total Incl Tax" - be."Total Excl Tax";
+                                //Get data
+                                be.Profit := 0;// - 'Profit Excl Tax'
+                                be.Cost := 0;// - 'Profit Excl Tax'
+                                             // be.Profit := round(be."Total Excl Tax" * (be."Consignment %" * 0.01));
+                                             // be.Cost := round(be."Total Excl Tax" - be.Profit);
+
+                                be.Ratio := 0;
+
+
+                                CountGMP := be."Expected Gross Profit" - be.Profit;
+                                if CountGMP > 0 then begin
+                                    be.GPMAmount := round(CountGMP);
+                                    be.StatusTemp := 'Yes';
+                                end else begin
+                                    be.GPMAmount := 0;
+                                    be.StatusTemp := 'No';
+                                end;
+
+                                be."Product Group Description" := '';
+                                be."MDR Amount" := 0;
+                                be."MDR Rate" := 0;
+                                be."MDR Weight" := 0;
+                                be."Sales Date" := ce.Date;
+                                be.Quantity := 0;
+                                be.insert(true);
                             end;
-
-                            Clear(RecAre);
-                            RecAre.SetRange("Vendor No.", CEHeader."Vendor No.");
-                            RecAre.SetRange("Contract ID", CEHeader."Contract ID");
-                            if RecAre.FindFirst() then
-                                be."Area" := RecAre."Area";
-
-                            Clear(RecVendor);
-                            RecVendor.SetRange("No.", CEHeader."Vendor No.");
-                            if RecVendor.FindFirst() then
-                                be."Vendor Name." := RecVendor."Name";
-
-                            be."Line No." := nextlineno;
-                            be."Special Group Description" := '';
-                            be."Billing Type" := be."Billing Type"::Sales;
-                            be."Store No." := '';
-                            be."Vendor No." := CEHeader."Vendor No.";
-                            be."Product Group" := '';
-                            be."Special Group" := '';
-                            be."Special Group 2" := '';
-                            be."Consignment %" := 0;
-                            be."VAT Code" := '';
-                            be."Total Excl Tax" := 0;
-                            be."Cost Incl Tax" := 0;
-                            be."Total Incl Tax" := 0;
-
-                            be."Total Tax" := be."Total Incl Tax" - be."Total Excl Tax";
-                            //Get data
-                            be.Profit := 0;// - 'Profit Excl Tax'
-                            be.Cost := 0;// - 'Profit Excl Tax'
-                                         // be.Profit := round(be."Total Excl Tax" * (be."Consignment %" * 0.01));
-                                         // be.Cost := round(be."Total Excl Tax" - be.Profit);
-
-                            be.Ratio := 0;
-
-
-                            CountGMP := be."Expected Gross Profit" - be.Profit;
-                            if CountGMP > 0 then begin
-                                be.GPMAmount := round(CountGMP);
-                                be.StatusTemp := 'Yes';
-                            end else begin
-                                be.GPMAmount := 0;
-                                be.StatusTemp := 'No';
-                            end;
-
-                            be."Product Group Description" := '';
-                            be."MDR Amount" := 0;
-                            be."MDR Rate" := 0;
-                            be."MDR Weight" := 0;
-                            be."Sales Date" := ce.Date;
-                            be.Quantity := 0;
-                            be.insert(true);
                         end;
                     end;
                 end;

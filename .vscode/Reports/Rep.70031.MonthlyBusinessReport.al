@@ -138,8 +138,9 @@ report 70031 "Monthly Business Report"
                 tbItemCate: Record "Item Category";
                 tbProuctGroup: Record "LSC Retail Product Group";
                 tbTransHeader: Record "LSC Transaction Header";
+                QueProfitDirect: Query "QueryProfitDirect";
                 tbBudget: Record "wp Import Budget. Data";
-
+                quEfficiency: Query "QueEfficiencyOnlyProfit";
 
                 // DivisionInt: Integer;
                 // ProductGroupInt: Integer;
@@ -175,11 +176,11 @@ report 70031 "Monthly Business Report"
                 NumberMonth := 0;
                 Counter := 0;
                 Window.Open(
-                'Number of #1###########\' +
+                'Number of item #1###########\' +
                 'Processed              #2###########');
 
                 clear(tbDivision);
-                tbDivision.SetFilter(Code, '<>%1', '');
+                tbDivision.SetFilter(Code, '<>%1&<>%2', '04', '');
                 if DivisionFilter <> '' then tbDivision.SetRange(Code, DivisionFilter);
                 if tbDivision.FindSet() then begin
                     repeat
@@ -189,7 +190,7 @@ report 70031 "Monthly Business Report"
                             repeat
                                 clear(tbProuctGroup);
                                 tbProuctGroup.SetRange("Item Category Code", tbItemCate.Code);
-                                Window.Update(1, tbProuctGroup.Description);
+                                Window.Update(1, tbProuctGroup.Count);
                                 if tbProuctGroup.FindSet() then begin
                                     repeat
                                         ParseDateRange(DateFilter, StartDate, EndDate);
@@ -201,8 +202,7 @@ report 70031 "Monthly Business Report"
                                         CurrentDate := StartDate;
                                         while CurrentDate <= EndDate do begin
                                             Counter += 1;
-                                            if (Counter mod 100) = 0 then
-                                                Window.Update(2, Counter);
+                                            Window.Update(2, Counter);
 
                                             FirstDayOfMonth := DMY2Date(1, Date2DMY(CurrentDate, 2), Date2DMY(CurrentDate, 3));
                                             NextMonthDate := CalcDate('<1M>', FirstDayOfMonth);
@@ -220,7 +220,7 @@ report 70031 "Monthly Business Report"
                                             Data."Category" := tbItemCate.Code + ' - ' + tbItemCate.Description;
                                             Data."Product Group" := tbProuctGroup.Code + ' - ' + tbProuctGroup.Description;
 
-                                            //Lay trong thang
+                                            //sale theo tung thang
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
                                             quSaleTotal.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
@@ -232,7 +232,7 @@ report 70031 "Monthly Business Report"
                                                 Data.Sale := quSaleTotal.TSE_Total_Amount;
                                             end;
 
-                                            //Target This Month 1 -> 31
+                                            //Target theo tung thang
                                             Clear(tbBudget);
                                             tbBudget.SetFilter(Date, RangeText);
                                             if tbDivision.Code <> '' then
@@ -244,7 +244,33 @@ report 70031 "Monthly Business Report"
                                             tbBudget.CalcSums(TotalSales);
                                             Data.Budget := tbBudget.TotalSales;
 
-                                            //quTotalMember
+
+                                            //Profit theo tung thang CONS
+                                            Clear(quEfficiency);
+                                            quEfficiency.SetFilter(TH_DateFilter, RangeText);
+                                            quEfficiency.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            quEfficiency.SetFilter(TSE_CateagoryFilter, format(tbItemCate.Code));
+                                            quEfficiency.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                            quEfficiency.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                            quEfficiency.Open;
+                                            while quEfficiency.Read do begin
+                                                Data.Profit := quEfficiency.TSE_Profit;
+                                            End;
+
+                                            //Profit theo tung thang OUTRice
+                                            Clear(QueProfitDirect);
+                                            QueProfitDirect.SetFilter(TH_DateFilter, RangeText);
+                                            QueProfitDirect.SetRange(TSE_TyleSaleFilter, 'OUTR');
+                                            QueProfitDirect.SetFilter(TSE_DivisonFilter, format(tbDivision.Code));
+                                            QueProfitDirect.SetFilter(TSE_CategoryFilter, format(tbItemCate.Code));
+                                            QueProfitDirect.SetFilter(TSE_ProductGroupFilter, format(tbProuctGroup.Code));
+                                            QueProfitDirect.SetFilter(TH_StoreFilter, format(StoreFilter));
+                                            QueProfitDirect.Open;
+                                            while QueProfitDirect.Read do begin
+                                                Data.Profit := Data.Profit + QueProfitDirect.TSE_Net_Amount - QueProfitDirect.TSE_Cost_Amount;
+                                            End;
+
+                                            //quTotalMember theo tung thang
                                             Data.Cust := 0;
                                             LastReceipt := '';
                                             Clear(quTotalMember);
@@ -261,7 +287,7 @@ report 70031 "Monthly Business Report"
                                                 end;
                                             end;
 
-                                            //Lay Last year
+                                            //sale Last year
                                             RangeText := GetPreviousYearDateRange(RangeText);
                                             Clear(quSaleTotal);
                                             quSaleTotal.SetFilter(TH_DateFilter, RangeText);
@@ -274,7 +300,7 @@ report 70031 "Monthly Business Report"
                                                 Data.SaleLY := quSaleTotal.TSE_Total_Amount;
                                             end;
 
-                                            Data.Profit := 0;
+
                                             Data.LYProfit := 0;
                                             Data.CustLY := 0;
 

@@ -98,6 +98,11 @@ table 58060 "Consignment Purchase Report"
             Caption = 'Class';
             DataClassification = ToBeClassified;
         }
+        field(19; "ClassName"; Text[100])
+        {
+            Caption = 'ClassName';
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {
@@ -122,6 +127,7 @@ report 70032 "Consignment Purchase Report"
         {
             column(Brand; "Brand") { }
             column(Class; "Class") { }
+            column(ClassName; "ClassName") { }
             column(BrandName; BrandName) { }
             column(Quantity; Quantity) { }
             column(TaxRate; "Tax Rate") { }
@@ -148,6 +154,7 @@ report 70032 "Consignment Purchase Report"
                 LRecStore: Record "LSC Store";
                 LRecVendor: Record "Vendor";
                 lrecBrand: Record "LSC Item Special Groups";
+                lrecClass: Record "LSC Retail Product Group";
                 lrecdiv: Record "LSC Division";
                 tbItem: Record "Item";
                 tbVatPosting: Record "VAT Posting Setup";
@@ -158,14 +165,14 @@ report 70032 "Consignment Purchase Report"
                 memoFilter: Text;
                 TaxRate: Decimal;
             begin
-                IF (TotalingPeriod = '') THEN
+                IF (DateFilter = '') THEN
                     ERROR('The report couldn’t be generated, because it was empty. Input data for the Period field.');
 
                 Clear(ce);
                 tbResuft.DeleteAll();
 
                 Clear(ce);
-                ce.SetFilter("Date", TotalingPeriod);
+                ce.SetFilter("Date", DateFilter);
                 if VendorFilter <> '' then ce.SetFilter("Vendor No.", VendorFilter);
 
                 if ce.FindSet() then begin
@@ -192,73 +199,80 @@ report 70032 "Consignment Purchase Report"
                         // tbResuft.setrange("Tax Rate", TaxRate);
 
                         //Check Memo
-                        clear(lrecvendor);
-                        if LRecVendor.get(ce."Vendor No.") then begin
-                            IF (Memo1Filter = Memo1Filter::"1.One Time") then
-                                memoFilter := '1';
-                            IF (Memo1Filter = Memo1Filter::"2.Two Times") then
-                                memoFilter := '2';
-                        end;
+                        // clear(lrecvendor);
+                        // if LRecVendor.get(ce."Vendor No.") then begin
+                        //     IF (Memo1Filter = Memo1Filter::"1.One Time") then
+                        //         memoFilter := '1';
+                        //     IF (Memo1Filter = Memo1Filter::"2.Two Times") then
+                        //         memoFilter := '2';
+                        // end;
 
-                        if lrecvendor."Memo 1" = memoFilter then begin
-                            if (not tbResuft.FindFirst()) then begin
-                                // if (not tbResuft.FindFirst()) or (ce."Total Excl Tax" < 0) then begin
-                                Clear(tbResuft);
-                                clear(tbResuft2);
-                                Clear(TotalCost);
-                                Clear(TaxPrice);
+                        // if lrecvendor."Memo 1" = memoFilter then begin
+                        if (not tbResuft.FindFirst()) then begin
+                            // if (not tbResuft.FindFirst()) or (ce."Total Excl Tax" < 0) then begin
+                            Clear(tbResuft);
+                            clear(tbResuft2);
+                            Clear(TotalCost);
+                            Clear(TaxPrice);
 
-                                nextlineno := nextlineno + 100;
+                            nextlineno := nextlineno + 100;
 
-                                tbResuft.VendorName := LRecVendor.Name;
-                                tbResuft."Date" := ce.Date;
-                                tbResuft."Line No." := nextlineno;
-                                tbResuft.Brand := ce."Special Group";
+                            tbResuft.VendorName := LRecVendor.Name;
+                            tbResuft."Date" := ce.Date;
+                            tbResuft."Line No." := nextlineno;
+                            tbResuft.Brand := ce."Special Group";
 
-                                tbResuft.Class := ce."Product Group";
+                            tbResuft.Class := ce."Product Group";
 
-                                clear(lrecBrand);
-                                if lrecBrand.Get(ce."Special Group") then
-                                    tbResuft.BrandName := lrecBrand.Description;
-
-                                tbResuft.Cost := ce.Cost;
-                                tbResuft.ProfitMargin := ce."Consignment %";
-                                tbResuft.Quantity := ce.Quantity;
-                                tbResuft."Store No." := ce."Store No.";
-
-                                clear(LRecStore);
-                                if LRecStore.Get(ce."Store No.") then
-                                    tbResuft.StoreName := LRecStore.Name;
-
-                                tbResuft."Tax Rate" := TaxRate;
-                                TaxPrice := ce.Cost * (tbResuft."Tax Rate" / 100);
-                                tbResuft.Tax := TaxPrice;
-
-                                TotalCost := ce.Cost + TaxPrice;
-                                tbResuft.TotalCost := TotalCost;
-
-                                tbResuft.TotalExclTax := ce."Total Excl Tax";
-                                tbResuft.VendorNo := ce."Vendor No.";
-
-                                ParseDateRange(TotalingPeriod, StartDate, EndDate);
-                                tbResuft.FromDateFilter := StartDate;
-                                tbResuft.ToDateFilter := EndDate;
-
-                                tbResuft.Insert(true);
-                            end else begin
-                                tbResuft.TotalExclTax := tbResuft.TotalExclTax + ce."Total Excl Tax";
-                                tbResuft.Quantity := tbResuft.Quantity + ce."Quantity";
-                                tbResuft.Cost := tbResuft.Cost + ce."Cost";
-                                tbResuft."Tax Rate" := TaxRate;
-
-                                TaxPrice := ce.Cost * (tbResuft."Tax Rate" / 100);
-                                tbResuft.Tax := tbResuft.Tax + TaxPrice;
-
-                                TotalCost := ce.Cost + TaxPrice;
-                                tbResuft.TotalCost := tbResuft.TotalCost + TotalCost;
-                                tbResuft.Modify(true);
+                            Clear(lrecClass);
+                            lrecClass.SetRange(Code, ce."Product Group");
+                            if lrecClass.FindSet() then begin
+                                tbResuft.ClassName := lrecClass.Description;
                             end;
+
+
+                            clear(lrecBrand);
+                            if lrecBrand.Get(ce."Special Group") then
+                                tbResuft.BrandName := lrecBrand.Description;
+
+                            tbResuft.Cost := ce.Cost;
+                            tbResuft.ProfitMargin := ce."Consignment %";
+                            tbResuft.Quantity := ce.Quantity;
+                            tbResuft."Store No." := ce."Store No.";
+
+                            clear(LRecStore);
+                            if LRecStore.Get(ce."Store No.") then
+                                tbResuft.StoreName := LRecStore.Name;
+
+                            tbResuft."Tax Rate" := TaxRate;
+                            TaxPrice := ce.Cost * (tbResuft."Tax Rate" / 100);
+                            tbResuft.Tax := TaxPrice;
+
+                            TotalCost := ce.Cost + TaxPrice;
+                            tbResuft.TotalCost := TotalCost;
+
+                            tbResuft.TotalExclTax := ce."Total Excl Tax";
+                            tbResuft.VendorNo := ce."Vendor No.";
+
+                            ParseDateRange(DateFilter, StartDate, EndDate);
+                            tbResuft.FromDateFilter := StartDate;
+                            tbResuft.ToDateFilter := EndDate;
+
+                            tbResuft.Insert(true);
+                        end else begin
+                            tbResuft.TotalExclTax := tbResuft.TotalExclTax + ce."Total Excl Tax";
+                            tbResuft.Quantity := tbResuft.Quantity + ce."Quantity";
+                            tbResuft.Cost := tbResuft.Cost + ce."Cost";
+                            tbResuft."Tax Rate" := TaxRate;
+
+                            TaxPrice := ce.Cost * (tbResuft."Tax Rate" / 100);
+                            tbResuft.Tax := tbResuft.Tax + TaxPrice;
+
+                            TotalCost := ce.Cost + TaxPrice;
+                            tbResuft.TotalCost := tbResuft.TotalCost + TotalCost;
+                            tbResuft.Modify(true);
                         end;
+                    // end;
 
                     until ce.Next() = 0;
 
@@ -276,47 +290,54 @@ report 70032 "Consignment Purchase Report"
             {
                 group(GroupName)
                 {
-                    field(Memo1Filter; Memo1Filter)
-                    {
-                        ApplicationArea = Basic;
-                        Caption = 'Memo 1 Filter';
+                    // field(Memo1Filter; Memo1Filter)
+                    // {
+                    //     ApplicationArea = Basic;
+                    //     Caption = 'Memo 1 Filter';
 
-                    }
-                    field(PaymentDate; PaymentDate)
+                    // }
+                    // field(PaymentDate; PaymentDate)
+                    // {
+                    //     ApplicationArea = Basic;
+                    //     Caption = 'Payment Date';
+                    //     NotBlank = true;
+                    //     trigger OnValidate()
+                    //     var
+                    //         lRec_DateMaster: record "Date Master";
+                    //     begin
+                    //         TotalingPeriod := '';
+                    //         FromDate := 0D;
+                    //         ToDate := 0D;
+
+                    //         lRec_DateMaster.RESET;
+                    //         lRec_DateMaster.SETRANGE("Payment Type", Memo1Filter);
+                    //         lRec_DateMaster.SETRANGE("Payment Date", PaymentDate);
+                    //         lRec_DateMaster.FindLast();
+                    //         ToDate := lRec_DateMaster."Closing Date";
+                    //         lRec_DateMaster.RESET;
+                    //         lRec_DateMaster.SETRANGE("Payment Type", Memo1Filter);
+                    //         lRec_DateMaster.SETFilter("Payment Date", '<%1', PaymentDate);
+                    //         lRec_DateMaster.FindLast();
+                    //         FromDate := lRec_DateMaster."Closing Date" + 1;
+
+                    //         TotalingPeriod := FORMAT(FromDate) + '..' + FORMAT(ToDate);
+
+                    //     end;
+
+                    // }
+                    // field(TotalingPeriod; TotalingPeriod)
+                    // {
+                    //     ApplicationArea = Basic;
+                    //     Caption = 'Totaling Period';
+                    //     Editable = false;
+
+                    // }
+                    field("Date"; DateFilter)
                     {
-                        ApplicationArea = Basic;
-                        Caption = 'Payment Date';
-                        NotBlank = true;
                         trigger OnValidate()
-                        var
-                            lRec_DateMaster: record "Date Master";
                         begin
-                            TotalingPeriod := '';
-                            FromDate := 0D;
-                            ToDate := 0D;
-
-                            lRec_DateMaster.RESET;
-                            lRec_DateMaster.SETRANGE("Payment Type", Memo1Filter);
-                            lRec_DateMaster.SETRANGE("Payment Date", PaymentDate);
-                            lRec_DateMaster.FindLast();
-                            ToDate := lRec_DateMaster."Closing Date";
-                            lRec_DateMaster.RESET;
-                            lRec_DateMaster.SETRANGE("Payment Type", Memo1Filter);
-                            lRec_DateMaster.SETFilter("Payment Date", '<%1', PaymentDate);
-                            lRec_DateMaster.FindLast();
-                            FromDate := lRec_DateMaster."Closing Date" + 1;
-
-                            TotalingPeriod := FORMAT(FromDate) + '..' + FORMAT(ToDate);
-
+                            ApplicationManagement.MakeDateFilter(DateFilter);
                         end;
-
-                    }
-                    field(TotalingPeriod; TotalingPeriod)
-                    {
-                        ApplicationArea = Basic;
-                        Caption = 'Totaling Period';
-                        Editable = false;
-
                     }
                     field("Vendor"; VendorFilter)
                     {
@@ -369,8 +390,12 @@ report 70032 "Consignment Purchase Report"
         TaxPrice: Decimal;
         Memo1Filter: enum "Payment Type";
         PaymentDate: Date;
-        TotalingPeriod: Text[100];
+        // TotalingPeriod: Text[100];
         FromDate: Date;
         ToDate: Date;
         VendorFilter: text;
+        ApplicationManagement: Codeunit "Filter Tokens";
+        DateFilter: Text;
+        ClassName: Text;
+
 }

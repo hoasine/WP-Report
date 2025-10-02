@@ -97,8 +97,8 @@ report 70021 "Supplier Voucher Report"
                 Clear(tbTransPayment);
                 tbTransPayment.SetRange("Tender Type", '21');
                 tbTransPayment.SetFilter("Amount Tendered", '>%1', 0); //Kiểm tra bill decler thì skip
-                if DateFilter <> 0D then
-                    tbTransPayment.SetRange(Date, DateFilter);
+                if DateFilter <> '' then
+                    tbTransPayment.SetFilter(Date, DateFilter);
 
                 TotalCount := tbTransPayment.Count;
 
@@ -195,6 +195,10 @@ report 70021 "Supplier Voucher Report"
                 {
                     field("Date"; DateFilter)
                     {
+                        trigger OnValidate()
+                        begin
+                            ApplicationManagement.MakeDateFilter(DateFilter);
+                        end;
                     }
                     field("Brand Name"; SpecialGroupFilter)
                     {
@@ -230,7 +234,8 @@ report 70021 "Supplier Voucher Report"
     end;
 
     var
-        DateFilter: Date;
+        DateFilter: text;
         SpecialGroupFilter: Text[100];
         VendorNoFilter: Text[100];
+        ApplicationManagement: Codeunit "Filter Tokens";
 }

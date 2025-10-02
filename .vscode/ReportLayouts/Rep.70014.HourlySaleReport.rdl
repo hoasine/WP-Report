@@ -9,9 +9,9 @@
     </am:CreatedBy>
     <am:UpdatedBy>
       <am:Name>MSRB</am:Name>
-      <am:Version>15.1.30001.02</am:Version>
+      <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-22T03:40:47.4131160Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-08-28T06:30:17.9214356Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -2271,8 +2271,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Top>0.33514cm</Top>
-            <Left>0.38928cm</Left>
+            <Top>0.14111cm</Top>
+            <Left>0.31872cm</Left>
             <Height>4.46459cm</Height>
             <Width>8.96813cm</Width>
             <Style>
@@ -2303,10 +2303,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>27.33707cm</Height>
+        <Height>5.64124cm</Height>
         <Style />
       </Body>
-      <Width>28.54476cm</Width>
+      <Width>27.41587cm</Width>
       <Page>
         <PageHeader>
           <Height>1.90062cm</Height>
@@ -2319,8 +2319,8 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.52477cm</Top>
               <Left>0.34078cm</Left>
-              <Height>0.72456cm</Height>
-              <Width>3.13644cm</Width>
+              <Height>1.04206cm</Height>
+              <Width>3.842cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2337,8 +2337,7 @@
                     <TextRun>
                       <Value>Page No.</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
-                        <Color>DimGray</Color>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2349,8 +2348,7 @@
                     <TextRun>
                       <Value>Printed On</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
-                        <Color>DimGray</Color>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2361,18 +2359,17 @@
                     <TextRun>
                       <Value>Target Date</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
-                        <Color>DimGray</Color>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.17883in</Top>
-              <Left>8.44618in</Left>
-              <Height>0.55556in</Height>
-              <Width>0.75in</Width>
+              <Top>0.2066in</Top>
+              <Left>9.00131in</Left>
+              <Height>0.41299in</Height>
+              <Width>0.61111in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2394,8 +2391,7 @@
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
-                        <Color>DimGray</Color>
+                        <FontSize>7pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2406,9 +2402,8 @@
                     <TextRun>
                       <Value>=Globals!ExecutionTime</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                         <Format>g</Format>
-                        <Color>DimGray</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2419,9 +2414,8 @@
                     <TextRun>
                       <Value>=Fields!DateFilter.Value</Value>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                         <Format>dd/MM/yyyy</Format>
-                        <Color>DimGray</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2429,9 +2423,9 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.2066in</Top>
-              <Left>9.4184in</Left>
-              <Height>0.54167in</Height>
-              <Width>1.41592in</Width>
+              <Left>9.74437in</Left>
+              <Height>0.41299in</Height>
+              <Width>0.97842in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -2463,11 +2457,161 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.13387cm</Top>
+              <Top>0.9222cm</Top>
               <Left>0.34078cm</Left>
-              <Height>0.76675cm</Height>
+              <Height>0.97842cm</Height>
               <Width>26.89511cm</Width>
               <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox18">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Fields!Store.Value</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.57448in</Top>
+              <Left>0.74726in</Left>
+              <Height>0.15991in</Height>
+              <Width>0.87283in</Width>
+              <ZIndex>4</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox19">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>:</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.57448in</Top>
+              <Left>0.6292in</Left>
+              <Height>0.15991in</Height>
+              <Width>0.10417in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox20">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Store No</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.57448in</Top>
+              <Left>0.10799in</Left>
+              <Height>0.17142in</Height>
+              <Width>0.50732in</Width>
+              <ZIndex>6</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox8">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>:</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>:</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>:</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>0.2066in</Top>
+              <Left>9.62631in</Left>
+              <Height>0.41299in</Height>
+              <Width>0.10417in</Width>
+              <ZIndex>7</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -197,6 +197,10 @@ report 70018 "Credit Fee Detail"
         CheckReturnAmount: Decimal;
         CheckReturnCREDIT: Decimal;
         Isfilter: Boolean;
+
+        Window: Dialog;
+        TotalTrans: Integer;
+        Counter: Integer;
     begin
         DateTarget := ParseDateRangeOfFilter(DateFilter);
         DatePrint := FORMAT(Today(), 0, '<Day,2>/<Month,2>/<Year4>');
@@ -217,6 +221,15 @@ report 70018 "Credit Fee Detail"
                 tenderTypeList += Format(tenderTypeSetup."Code");
             until tenderTypeSetup.Next() = 0;
 
+        Counter := 0;
+
+        Window.Open(
+          'Number of Transactions #1###########\' +
+          'Processed              #2###########');
+
+        if DateFilter = '' then
+            Error('Please input Date !');
+
         clear(TransSaleEntry);
         if DateFilter <> '' then TransSaleEntry.SetFilter(Date, DateFilter);
         if StoreFilter <> '' then TransSaleEntry.SetRange("Store No.", StoreFilter);
@@ -224,18 +237,24 @@ report 70018 "Credit Fee Detail"
         if TransactionFilter > 0 then TransSaleEntry.SetRange("Transaction No.", TransactionFilter);
         if ProductGroupFilter <> '' then TransSaleEntry.SetRange("Retail Product Code", ProductGroupFilter);
         if DivisionFilter <> '' then TransSaleEntry.SetRange("Division Code", DivisionFilter);
+        Window.Update(1, TransSaleEntry.Counter);
         if TransSaleEntry.FindSet() then begin
             repeat
+                Counter += 1;
+                Window.Update(2, Counter);
+
                 //Check brand(Special Group)
                 if SpecialGroupFilter <> '' then begin
-                    Clear(tbItem);
-                    tbItem.SetRange("No.", TransSaleEntry."Item No.");
-                    if tbItem.FindFirst() then begin
+                    tbItem.Reset();
+                    if tbItem.get(TransSaleEntry."Item No.") then begin
+                        // ✅ Kiểm tra vendor filter: nếu có filter mà vendor hiện tại không match thì bỏ qua record
+                        tbItem.CalcFields("LSC Special Group Code");
                         if tbItem."LSC Special Group Code" = SpecialGroupFilter then
                             Isfilter := true else
                             Isfilter := false;
                     end;
-                end;
+                end else
+                    Isfilter := true;
 
                 if Isfilter = true then begin
                     clear(CreditFeeDetail);

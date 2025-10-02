@@ -4,8 +4,7 @@ query 50102 "QueSaleProduct"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Payment" = filter('<>0'), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
-            ;
+            DataItemTableFilter = "Transaction Type" = const(2), "Entry Status" = filter('<>2');
 
             filter(TH_DateFilter; Date)
             {
@@ -35,7 +34,6 @@ query 50102 "QueSaleProduct"
             {
                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
                 DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
-
                 SqlJoinType = InnerJoin;
 
                 column(SumNetAmount; "Net Amount")
@@ -54,6 +52,11 @@ query 50102 "QueSaleProduct"
                     ReverseSign = true;
                 }
                 column(SumDiscountAmount; "Discount Amount")
+                {
+                    Method = Sum;
+                    ReverseSign = true;
+                }
+                column(SumSaleItem; Quantity)
                 {
                     Method = Sum;
                     ReverseSign = true;
@@ -150,19 +153,54 @@ query 50103 "QueSaleTransCancel"
             filter(PosterminalFilter; "POS Terminal No.")
             {
             }
-            column(SumPayment; "Payment")
-            {
-                Method = Sum;
-                ReverseSign = true;
-            }
-            column(SumPaymentNonTax; "Net Amount")
-            {
-                Method = Sum;
-                ReverseSign = true;
-            }
+            // column(SumPayment; "Payment")
+            // {
+            //     Method = Sum;
+            //     ReverseSign = true;
+            // }
+            // column(SumPaymentNonTax; "Net Amount")
+            // {
+            //     Method = Sum;
+            //     ReverseSign = true;
+            // }
             column(CountTrans)
             {
                 Method = Count;
+            }
+            dataitem(trans; "LSC Trans. Sales Entry")
+            {
+                DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
+                DataItemTableFilter = "Gen. Prod. Posting Group" = filter('<>SERVICES');
+                SqlJoinType = InnerJoin;
+
+                column(SumNetAmount; "Net Amount")
+                {
+                    Method = Sum;
+                    ReverseSign = true;
+                }
+                column(SumGrossAmount; "Total Rounded Amt.")
+                {
+                    Method = Sum;
+                }
+                column(SumCostAmount; "Cost Amount")
+                {
+                    Method = Sum;
+                    ReverseSign = true;
+                }
+                column(SumDiscountAmount; "Discount Amount")
+                {
+                    Method = Sum;
+                    ReverseSign = true;
+                }
+                column(SumSaleItem; Quantity)
+                {
+                    Method = Sum;
+                    ReverseSign = true;
+                }
+                column(CountSaleItem)
+                {
+                    Method = Count;
+                }
             }
         }
     }

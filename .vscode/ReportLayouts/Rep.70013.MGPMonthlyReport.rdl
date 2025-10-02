@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.20318.47</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-08-25T07:40:21.6451090Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-09-01T09:37:59.4034110Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -949,7 +949,7 @@ Gross Profit</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1734,17 +1734,17 @@ Gross Profit</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Ratio.Value</Value>
+                                  <Value>=(Fields!Profit.Value/Fields!TotalExclTax.Value)*100</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
                                   <Value> %</Value>
                                   <Style>
                                     <FontSize>7pt</FontSize>
-                                    <Format>n0</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

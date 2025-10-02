@@ -4,8 +4,11 @@ query 50111 "CalSaleWithTenderTypeMember"
     {
         dataitem(Transaction_Header; "LSC Transaction Header")
         {
-            DataItemTableFilter = "Member Card No." = filter(<> ''), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+            DataItemTableFilter = "Transaction Type" = const(2), "Entry Status" = filter('<>2');
             ;
+            filter(TH_Member_Card_No_Filter; "Member Card No.")
+            {
+            }
             filter(TH_DateFilter; Date)
             {
             }
@@ -27,47 +30,48 @@ query 50111 "CalSaleWithTenderTypeMember"
                 column(TSE_Total_Amount; "Amount Tendered")
                 {
                     Method = Sum;
-                    ReverseSign = true;
                 }
             }
         }
     }
 }
 
-query 50112 "CalSaleWithTenderTypeNonMember"
-{
-    elements
-    {
-        dataitem(Transaction_Header; "LSC Transaction Header")
-        {
-            DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
-            ;
 
-            filter(TH_DateFilter; Date)
-            {
-            }
-            filter(TH_StoreFilter; "Store No.")
-            {
-            }
-            dataitem(PaymentValue; "LSC Trans. Payment Entry")
-            {
-                DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
-                SqlJoinType = InnerJoin;
+//KHONG DUNG
+// query 50112 "CalSaleWithTenderTypeNonMember"
+// {
+//     elements
+//     {
+//         dataitem(Transaction_Header; "LSC Transaction Header")
+//         {
+//             DataItemTableFilter = "Member Card No." = filter(''), "Transaction Type" = const(2), "Entry Status" = filter('<>2');
+//             ;
 
-                filter(TenderFilter; "Tender Type")
-                {
-                }
+//             filter(TH_DateFilter; Date)
+//             {
+//             }
+//             filter(TH_StoreFilter; "Store No.")
+//             {
+//             }
+//             dataitem(PaymentValue; "LSC Trans. Payment Entry")
+//             {
+//                 DataItemLink = "Transaction No." = Transaction_Header."Transaction No.", "Store No." = Transaction_Header."Store No.", "POS Terminal No." = Transaction_Header."POS Terminal No.";
+//                 SqlJoinType = InnerJoin;
 
-                column(TenderType; "Tender Type")
-                {
-                }
-                column(TSE_Total_Amount; "Amount Tendered")
-                {
-                    Method = Sum;
-                    ReverseSign = true;
-                }
-            }
-        }
-    }
-}
+//                 filter(TenderFilter; "Tender Type")
+//                 {
+//                 }
+
+//                 column(TenderType; "Tender Type")
+//                 {
+//                 }
+//                 column(TSE_Total_Amount; "Amount Tendered")
+//                 {
+//                     Method = Sum;
+//                     ReverseSign = true;
+//                 }
+//             }
+//         }
+//     }
+// }
 

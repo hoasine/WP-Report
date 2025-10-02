@@ -11,7 +11,7 @@ report 70020 "Staff Allowance HR Report"
 
     dataset
     {
-        dataitem(Data; "LSC Trans. Sales Entry")
+        dataitem(Data; "wpStaffAllowanceEntry")
         {
             RequestFilterFields = "Date";
 
@@ -25,18 +25,20 @@ report 70020 "Staff Allowance HR Report"
             column(Status; Status) { }
             column(YearlyBudget; Budget) { }
             column(UsedBudget; UsedBudget) { }
-            column(YearlySpending; -"Total Rounded Amt.") { }
-            column(YearlyAllowance; "wp Staff Disc. Amount") { }
+            column(YearlySpending; -("Gross Amount" * "Discount %")) { }
+            column(YearlyAllowance; -"Gross Amount") { }
             column(MemberCode; MemberCode) { }
             column(MemberName; MemberName) { }
             column(Date; "Date") { }
             column(POS_Terminal_No_; "POS Terminal No.") { }
             column(Transaction_No_; "Transaction No.") { }
             column(Brand; Brand) { }
+            column(Line_No_; "Line No") { }
 
             trigger OnPreDataItem()
             begin
-                Data.SetFilter("wp Staff Card No.", '<>%1', '');
+                Data.SetFilter("Staff Card No.", '<>%1', '');
+                Data.SetRange("Tender Type Code", '80');
             end;
 
             trigger OnAfterGetRecord()
@@ -49,7 +51,9 @@ report 70020 "Staff Allowance HR Report"
                 tbMemberContact: Record "LSC Member Contact";
                 tbMSR: Record "LSC MSR Card Link Setup";
                 tbstaffBudget: Record "wpStaffAllowanceRoleLines";
-                queryStaff: Query "QueStaffAllowanceHRReport";
+                // queryStaff: Query "QueStaffAllowanceHRReport";
+                tbwpStaffAllowanceEntry: Record "wpStaffAllowanceEntry";
+                tbTransSale: Record "LSC Trans. Sales Entry";
 
                 AmountSale: Decimal;
             begin
@@ -66,7 +70,7 @@ report 70020 "Staff Allowance HR Report"
 
 
                 Clear(tbMSR);
-                tbMSR.SetRange("Card Number", "wp Staff Card No.");
+                tbMSR.SetRange("Card Number", "Staff Card No.");
                 if tbMSR.FindFirst() then begin
                     Clear(staff);
                     staff.SetRange(ID, tbMSR."Link No.");
@@ -100,25 +104,47 @@ report 70020 "Staff Allowance HR Report"
                     MemberCode := tbTransactionHeader."Member Card No."
                 end;
 
+                if StaffCode = '15025' then begin
+                    StaffCode := '15025'
+                end;
+
+                Budget := 0;
                 Clear(tbstaffBudget);
-                tbstaffBudget.SetRange("Role ID", "wp Staff Role");
+                tbstaffBudget.SetRange("Role ID", "Staff Role");
                 if tbstaffBudget.FindFirst() then
                     Budget := tbstaffBudget."Purchase Amount";
 
-                Clear(queryStaff);
-                queryStaff.SetFilter(DateFilter, Data.GetFilter(Date));
-                queryStaff.SetRange(staffFilter, "wp Staff Card No.");
-                queryStaff.Open;
-                while queryStaff.Read do begin
-                    AmountSale := queryStaff.TSE_Total_Amount;
+                // Clear(queryStaff);
+                // queryStaff.SetFilter(DateFilter, Data.GetFilter(Date));
+                // queryStaff.SetRange(staffFilter, "wp Staff Card No.");
+                // queryStaff.Open;
+                // while queryStaff.Read do begin
+                //     AmountSale := queryStaff.TSE_Total_Amount;
+                // end;
+                AmountSale := 0;
+                clear(tbwpStaffAllowanceEntry);
+                tbwpStaffAllowanceEntry.SetRange("Staff Card No.", "Staff Card No.");
+                tbwpStaffAllowanceEntry.SetFilter("Date", Data.GetFilter(Date));
+                if tbwpStaffAllowanceEntry.FindSet() then begin
+                    repeat
+                        AmountSale += (-tbwpStaffAllowanceEntry."Gross Amount" * tbwpStaffAllowanceEntry."Discount %");
+                    until tbwpStaffAllowanceEntry.Next() = 0;
                 end;
 
+                UsedBudget := 0;
                 UsedBudget := Budget - AmountSale;
 
-                Clear(tbProductGroup);
-                tbProductGroup.SetRange("Code", Data."Retail Product Code");
-                if tbProductGroup.FindFirst() then begin
-                    Brand := tbProductGroup."Description"
+                Clear(tbTransSale);
+                tbTransSale.SetRange("Transaction No.", Data."Transaction No.");
+                tbTransSale.SetRange("Store No.", Data."Store No.");
+                tbTransSale.SetRange("POS Terminal No.", Data."POS Terminal No.");
+                tbTransSale.SetRange("Line No.", Data."Line No" * 10);
+                if tbTransSale.FindSet() then begin
+                    Clear(tbProductGroup);
+                    tbProductGroup.SetRange("Code", tbTransSale."Retail Product Code");
+                    if tbProductGroup.FindFirst() then begin
+                        Brand := tbProductGroup."Description"
+                    end;
                 end;
             end;
         }

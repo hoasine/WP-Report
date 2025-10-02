@@ -43,23 +43,27 @@ report 70022 "Returned Credit Voucher Report"
                 tbTransHeader.SetRange("Store No.", Data."Store No.");
                 tbTransHeader.SetRange("Transaction No.", Data."Transaction No.");
                 tbTransHeader.SetRange("Receipt No.", Data."Receipt No.");
-                if tbTransHeader.FindFirst() then
-                    Amount := tbTransHeader.Payment;
+                if tbTransHeader.FindFirst() then begin
+                    if (tbTransHeader."Transaction Type" = tbTransHeader."Transaction Type"::Sales) and (tbTransHeader."Entry Status" <> 2) then begin
+                        Amount := tbTransHeader.Payment;
 
-                clear(tbTransPayment);
-                tbTransPayment.SetRange("POS Terminal No.", Data."POS Terminal No.");
-                tbTransPayment.SetRange("Store No.", Data."Store No.");
-                tbTransPayment.SetRange("Transaction No.", Data."Transaction No.");
-                tbTransPayment.SetRange("Receipt No.", Data."Receipt No.");
-                tbTransPayment.SetRange("Tender Type", '21');
-                tbTransPayment.CalcSums("Amount Tendered");
-                CreditVoucher := tbTransPayment."Amount Tendered";
+                        clear(tbTransPayment);
+                        tbTransPayment.SetRange("POS Terminal No.", Data."POS Terminal No.");
+                        tbTransPayment.SetRange("Store No.", Data."Store No.");
+                        tbTransPayment.SetRange("Transaction No.", Data."Transaction No.");
+                        tbTransPayment.SetRange("Receipt No.", Data."Receipt No.");
+                        tbTransPayment.SetRange("Tender Type", '21');
+                        tbTransPayment.CalcSums("Amount Tendered");
+                        CreditVoucher := tbTransPayment."Amount Tendered";
 
-                Refund := Amount - CreditVoucher;
+                        Refund := Amount - CreditVoucher;
 
-                EndingBalance := Amount - Refund - CreditVoucher;
+                        EndingBalance := Amount - Refund - CreditVoucher;
 
-                UsedDate := '';
+                        UsedDate := '';
+                    end else
+                        CurrReport.Skip();
+                end;
             end;
         }
     }

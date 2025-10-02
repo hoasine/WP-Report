@@ -373,15 +373,26 @@ report 70024 "Sales List Transaction Report"
         Data.insert(true);
 
         //Product sale Tax querSaleITem
-        Amount := 0;
         Quantity := 0;
+        Clear(tbTransHeader);
+        tbTransHeader.SetFilter("Date", DateFilter);
+        tbTransHeader.SetRange("Transaction Type", tbTransHeader."Transaction Type"::Sales);
+        tbTransHeader.SetFilter("Payment", '<>0');
+        tbTransHeader.SetFilter("Net Amount", '<>0');
+        if StoreFilter <> '' then tbTransHeader.SetRange("Store No.", StoreFilter);
+        if PosTerminalFilter <> '' then tbTransHeader.SetRange("POS Terminal No.", PosTerminalFilter);
+        tbTransHeader.CalcSums("Payment");
+        Quantity := tbTransHeader.Count;
+
+        Amount := 0;
+        // Quantity := 0;
         Clear(querSaleITem);
         querSaleITem.SetFilter("TH_DateFilter", DateFilter);
         if StoreFilter <> '' then querSaleITem.SetRange("TH_StoreFilter", StoreFilter);
         if PosTerminalFilter <> '' then querSaleITem.SetRange("PosterminalFilter", PosTerminalFilter);
         querSaleITem.Open;
         while querSaleITem.Read do begin
-            Quantity := querSaleITem.CountSaleItem;
+            // Quantity := querSaleITem.CountSaleItem;
             Amount := querSaleITem.SumGrossAmount;
         end;
 
@@ -397,14 +408,14 @@ report 70024 "Sales List Transaction Report"
 
         //Product sale
         Amount := 0;
-        Quantity := 0;
+        // Quantity := 0;
         Clear(querSaleITem);
         querSaleITem.SetFilter("TH_DateFilter", DateFilter);
         if StoreFilter <> '' then querSaleITem.SetRange("TH_StoreFilter", StoreFilter);
         if PosTerminalFilter <> '' then querSaleITem.SetRange("PosterminalFilter", PosTerminalFilter);
         querSaleITem.Open;
         while querSaleITem.Read do begin
-            Quantity := querSaleITem.CountSaleItem;
+            // Quantity := querSaleITem.CountSaleItem;
             Amount := querSaleITem.SumNetAmount;
         end;
 
@@ -527,7 +538,7 @@ report 70024 "Sales List Transaction Report"
         querySaleTransCancel.Open;
         while querySaleTransCancel.Read do begin
             Quantity := querySaleTransCancel.CountTrans;
-            Amount := querySaleTransCancel.SumPayment;
+            Amount := querySaleTransCancel.SumGrossAmount;
         end;
 
         Clear(Data);
@@ -552,7 +563,7 @@ report 70024 "Sales List Transaction Report"
         querySaleTransCancel.Open;
         while querySaleTransCancel.Read do begin
             Quantity := querySaleTransCancel.CountTrans;
-            Amount := querySaleTransCancel.SumPayment;
+            Amount := querySaleTransCancel.SumGrossAmount;
         end;
 
         Clear(Data);
@@ -577,7 +588,7 @@ report 70024 "Sales List Transaction Report"
         querySaleTransCancel.Open;
         while querySaleTransCancel.Read do begin
             Quantity := querySaleTransCancel.CountTrans;
-            Amount := -querySaleTransCancel.SumPaymentNonTax;
+            Amount := -querySaleTransCancel.SumNetAmount;
         end;
 
         Clear(Data);
