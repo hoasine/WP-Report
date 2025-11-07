@@ -49,35 +49,6 @@ table 58047 "Sales List Transaction Report"
     }
 }
 
-table 58056 "Group By Sale List"
-{
-    Access = Internal;
-    Caption = 'Sales List Transaction Report';
-    DataClassification = CustomerContent;
-    TableType = Temporary;
-    ReplicateData = false;
-
-    fields
-    {
-        field(1; "Item"; Text[100])
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Key';
-        }
-        field(2; "Value"; Text[100])
-        {
-            DataClassification = ToBeClassified;
-            Caption = 'Value';
-        }
-    }
-    keys
-    {
-        key(PK; "Item")
-        {
-            Clustered = true;
-        }
-    }
-}
 
 report 70024 "Sales List Transaction Report"
 {
@@ -211,7 +182,6 @@ report 70024 "Sales List Transaction Report"
         querySaleTransCancel: Query "QueSaleTransCancel";
         querySaleTransCancelDepUnused: Query "QueSaleTransCancelDepUnused";
         tbStaffAllowance: Record wpStaffAllowanceEntry;
-        tbTempGroup: Record "Group By Sale List";
         querQueSaleTransaction_staff: Query "QueSaleTransaction_staff";
         querSaleITem: Query "QueSaleProduct";
         querQueSaleTransaction_staffTotal: Query "QueSaleTransaction_staffTotal";
@@ -1489,6 +1459,25 @@ report 70024 "Sales List Transaction Report"
         end else begin
             Clear(Data);
             DAta.Item := 'Member Allowance';
+            DAta.Code := '';
+            Data.Amount := 0;
+            Data.Qty := 0;
+            STTTemp := STTTemp + 1;
+            Data.STT := STTTemp;
+            KeyTemp := KeyTemp + 1;
+            Data."Key" := KeyTemp;
+            Data.Insert(true);
+        end;
+
+        Clear(Data);
+        Data.SetRange(Code, '83');
+        if Data.FindFirst() then begin
+            STTTemp := STTTemp + 1;
+            Data.STT := STTTemp;
+            Data.Modify(true);
+        end else begin
+            Clear(Data);
+            DAta.Item := 'Special Allowance';
             DAta.Code := '';
             Data.Amount := 0;
             Data.Qty := 0;
